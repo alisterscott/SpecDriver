@@ -1,11 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using OpenQA.Selenium;
-
-namespace Project1.Pages
+﻿namespace Project1.Pages
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
+    using OpenQA.Selenium;
+
     public class GoogleHomePageModel : BasePageModel
     {
         private static readonly By SearchEditSelector = By.Name("q");

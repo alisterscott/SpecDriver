@@ -1,13 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using TechTalk.SpecFlow;
-using NUnit.Framework;
-using Project1.Pages;
-
-namespace Project1.StepDefinitions
+﻿namespace Project1.StepDefinitions
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
+    using TechTalk.SpecFlow;
+    using NUnit.Framework;
+    using Project1.Pages;
+    
     [Binding]
     public class GoogleSearchStepDefinitions : BaseStepDefinitions
     {
