@@ -2,7 +2,7 @@
 
 SpecDriver is a simple, open-source, page object model framework for C# automated web testing, that uses, as you guessed, SpecFlow and WebDriver.
 
-See [http://watirmelon.com/2011/03/15/specdriver] for more info.
+See [my blog post](http://watirmelon.com/2011/03/15/specdriver for more info.
 
 # Requirements
 
