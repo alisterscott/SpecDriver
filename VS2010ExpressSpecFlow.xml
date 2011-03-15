@@ -1,0 +1,106 @@
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+  <Import Project="C:\Program Files\MSBuild\ExtensionPack\4.0\MSBuild.ExtensionPack.tasks"/>
+  <Import Project="$(MSBuildExtensionsPath)\MSBuildCommunityTasks\MSBuild.Community.Tasks.Targets" />
+  
+  <PropertyGroup>
+    <BuildDependsOn>
+      GetProjectFilesFromProjectFilesProperty;
+      GetProjectFilesFromSolutionProperty;
+      MakeCopiesOfProjectFiles;
+      SpecFlow;
+      AddSpecFlowCSFilesToProject;
+      BuildProjects;
+      NUnit;
+      DeleteCopiedFiles;
+    </BuildDependsOn>
+  </PropertyGroup>
+  
+	<Target Name="Build" DependsOnTargets="$(BuildDependsOn)">
+	</Target>
+
+  <!-- The ProjectFiles property is set and there are no items, ie from the Solution building -->
+  <Target Name="GetProjectFilesFromProjectFilesProperty" Condition="'$(ProjectFiles)'!='' And '@(ProjectFiles)'==''">
+    <Message Text="GetProjectFilesFromProjectFilesProperty" Importance="high" />
+    <ItemGroup>
+      <ProjectFiles Include="$(ProjectFiles)" />
+    </ItemGroup>
+  </Target>
+
+  <!-- When there is a solution file, get the projects contained in the solution -->
+  <Target Name="GetProjectFilesFromSolutionProperty" Condition="'$(Solution)'!=''">
+    <Message Text="GetProjectFilesFromSolutionProperty" Importance="high" />
+    <GetSolutionProjects Solution="$(Solution)">
+      <Output ItemName="ProjectFiles" TaskParameter="Output"/>
+    </GetSolutionProjects>
+  </Target>
+  
+  <Target Name="MakeCopiesOfProjectFiles" Condition="'@(ProjectFiles)'!=''">
+    <Copy
+      SourceFiles="@(ProjectFiles)"
+      DestinationFiles="@(ProjectFiles->'%(fullpath).copy')"
+      SkipUnchangedFiles="false"
+      ContinueOnError="false">
+        <Output ItemName="CopiedProjects" TaskParameter="CopiedFiles" />
+    </Copy>
+  </Target>
+  
+  <!-- Run the CopiedProjects files through SpecFlow -->
+  <Target Name="SpecFlow" Condition="'@(CopiedProjects)'!=''"  Outputs="%(CopiedProjects.fullpath)" >
+		<Exec Command='SpecFlow generateall "%(CopiedProjects.fullpath)"' />
+	</Target>
+
+  <!-- Build the CopiedProjects -->
+  <Target Name="BuildProjects" Condition="'@(CopiedProjects)'!=''" >
+    <MSBuild Projects="@(CopiedProjects)" Properties="Configuration=Debug">
+      <Output ItemName="OutputDLLs" TaskParameter="TargetOutputs" />
+    </MSBuild>
+    <Message Text="@(OutputDLLs)" Importance="high" />
+  </Target>
+
+  <Target Name="AddSpecFlowCSFilesToProject" Outputs="%(CopiedProjects.fullpath)" Condition="'@(CopiedProjects)'!=''" >
+    <XmlRead Prefix="n"
+      Namespace="http://schemas.microsoft.com/developer/msbuild/2003"
+      XPath="/n:Project/n:ItemGroup/n:Content/@Include"
+      XmlFileName="%(CopiedProjects.fullpath)">
+        <Output TaskParameter="Value" PropertyName="BuildTargets" />
+    </XmlRead>
+
+    <TextString TaskAction="Split" String1="$(BuildTargets)" String2=";">
+      <Output ItemName="out" TaskParameter="Strings"/>
+    </TextString>
+
+    <RegexMatch 
+      Input="%(out.Identity)" 
+      Expression=".*\.feature">
+        <Output ItemName ="Features" TaskParameter="Output" />
+    </RegexMatch>
+
+    <!-- Add project filepath to each Feature -->
+    <CreateItem
+      Include="@(Features)"
+      AdditionalMetadata="FName=%(CopiedProjects.fullpath)">
+        <Output TaskParameter="Include" ItemName="MySourceItemsWithMetadata"/>
+    </CreateItem>
+    
+    <FileUpdate
+     Files='%(MySourceItemsWithMetadata.FName)'
+     Regex='(?&#60;Space&#62;\s*)(?&#60;Compile&#62;&#60;\s*Compile\s+Include=".+"\s*/\s*&#62;\s*)(?&#60;ItemGroup&#62;\s*&#60;/ItemGroup&#62;)'
+     ReplacementText='${Compile}&#60;Compile Include="%(MySourceItemsWithMetadata.Identity).cs" /&#62;${ItemGroup}' />
+    
+  </Target>
+		
+	<Target Name="NUnit" Condition="'@(OutputDLLs)'!=''" >
+    <TextString TaskAction="Split" String1="@(OutputDLLs)" String2=";">
+      <Output ItemName="out2" TaskParameter="Strings"/>
+    </TextString>
+    
+    <Exec Command='NUnit "%(out2.Identity)" /run' />
+	</Target>
+
+  <!-- Cleanup, Remove the CopiedProjects -->
+  <Target Name='DeleteCopiedFiles' Condition="'@(CopiedProjects)'!=''">
+    <Delete Files="@(CopiedProjects)" />
+  </Target>
+  
+</Project>
