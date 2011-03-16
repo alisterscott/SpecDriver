@@ -16,28 +16,16 @@ namespace Project1.Pages
             this.FindKnownElementOnPage(knownElementOnPage);
         }
 
-
         public string Title
         {
-            get
-            {
-                return driver.Title;
-            }
+            get { return driver.Title; }
         }
 
         public IWebDriver Driver
         {
-            get
-            {
-                return this.driver;
-            }
-
-            set
-            {
-                this.driver = value;
-            }
+            get { return this.driver; }
+            set { this.driver = value; }
         }
-
 
         private void FindKnownElementOnPage(By knownElementOnPage)
         {
