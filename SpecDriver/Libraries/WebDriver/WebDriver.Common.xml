@@ -316,6 +316,56 @@
             Gets the text of the alert.
             </summary>
         </member>
+        <member name="T:OpenQA.Selenium.ICapabilities">
+            <summary>
+            Capabilities of the browser that you are going to use
+            </summary>
+        </member>
+        <member name="M:OpenQA.Selenium.ICapabilities.HasCapability(System.String)">
+            <summary>
+            Gets a value indicating whether the browser has a given capability.
+            </summary>
+            <param name="capability">The capability ot get.</param>
+            <returns>Returns <see langword="true"/> if the browser has the capability; otherwise, <see langword="false"/>.</returns>
+        </member>
+        <member name="M:OpenQA.Selenium.ICapabilities.GetCapability(System.String)">
+            <summary>
+            Gets a capability of the browser.
+            </summary>
+            <param name="capability">The capability to get.</param>
+            <returns>An object associated with the capability, or <see langword="null"/>
+            if the capability is not set on the browser.</returns>
+        </member>
+        <member name="P:OpenQA.Selenium.ICapabilities.BrowserName">
+            <summary>
+            Gets the browser name
+            </summary>
+        </member>
+        <member name="P:OpenQA.Selenium.ICapabilities.Platform">
+            <summary>
+            Gets the platform
+            </summary>
+        </member>
+        <member name="P:OpenQA.Selenium.ICapabilities.Version">
+            <summary>
+            Gets the browser version
+            </summary>
+        </member>
+        <member name="P:OpenQA.Selenium.ICapabilities.IsJavaScriptEnabled">
+            <summary>
+            Gets a value indicating whether the browser is JavaScript enabled
+            </summary>
+        </member>
+        <member name="T:OpenQA.Selenium.IHasCapabilities">
+            <summary>
+            Defines the interface through which the user can determine the capabilities of a driver.
+            </summary>
+        </member>
+        <member name="P:OpenQA.Selenium.IHasCapabilities.Capabilities">
+            <summary>
+            Gets the <see cref="T:OpenQA.Selenium.ICapabilities"/> object describing the driver's capabilities.
+            </summary>
+        </member>
         <member name="T:OpenQA.Selenium.IHasInputDevices">
             <summary>
             Provides access to input devices for advanced user interactions.
@@ -568,6 +618,42 @@
             <summary>
             Refreshes the current page.
             </summary>
+        </member>
+        <member name="T:OpenQA.Selenium.InvalidCookieDomainException">
+            <summary>
+            The exception that is thrown when the users attempts to set a cookie with an invalid domain.
+            </summary>
+        </member>
+        <member name="M:OpenQA.Selenium.InvalidCookieDomainException.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:OpenQA.Selenium.InvalidCookieDomainException"/> class.
+            </summary>
+        </member>
+        <member name="M:OpenQA.Selenium.InvalidCookieDomainException.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:OpenQA.Selenium.InvalidCookieDomainException"/> class with 
+            a specified error message.
+            </summary>
+            <param name="message">The message that describes the error.</param>
+        </member>
+        <member name="M:OpenQA.Selenium.InvalidCookieDomainException.#ctor(System.String,System.Exception)">
+            <summary>
+            Initializes a new instance of the <see cref="T:OpenQA.Selenium.InvalidCookieDomainException"/> class with
+            a specified error message and a reference to the inner exception that is the
+            cause of this exception.
+            </summary>
+            <param name="message">The error message that explains the reason for the exception.</param>
+            <param name="innerException">The exception that is the cause of the current exception,
+            or <see langword="null"/> if no inner exception is specified.</param>
+        </member>
+        <member name="M:OpenQA.Selenium.InvalidCookieDomainException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            Initializes a new instance of the <see cref="T:OpenQA.Selenium.InvalidCookieDomainException"/> class with serialized data.
+            </summary>
+            <param name="info">The <see cref="T:System.Runtime.Serialization.SerializationInfo"/> that holds the serialized 
+            object data about the exception being thrown.</param>
+            <param name="context">The <see cref="T:System.Runtime.Serialization.StreamingContext"/> that contains contextual 
+            information about the source or destination.</param>
         </member>
         <member name="T:OpenQA.Selenium.IOptions">
             <summary>
@@ -1374,6 +1460,42 @@
             Represents the function key COMMAND.
             </summary>
         </member>
+        <member name="T:OpenQA.Selenium.NoAlertPresentException">
+            <summary>
+            The exception that is thrown when an alert is not found.
+            </summary>
+        </member>
+        <member name="M:OpenQA.Selenium.NoAlertPresentException.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:OpenQA.Selenium.NoAlertPresentException"/> class.
+            </summary>
+        </member>
+        <member name="M:OpenQA.Selenium.NoAlertPresentException.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:OpenQA.Selenium.NoAlertPresentException"/> class with 
+            a specified error message.
+            </summary>
+            <param name="message">The message that describes the error.</param>
+        </member>
+        <member name="M:OpenQA.Selenium.NoAlertPresentException.#ctor(System.String,System.Exception)">
+            <summary>
+            Initializes a new instance of the <see cref="T:OpenQA.Selenium.NoAlertPresentException"/> class with
+            a specified error message and a reference to the inner exception that is the
+            cause of this exception.
+            </summary>
+            <param name="message">The error message that explains the reason for the exception.</param>
+            <param name="innerException">The exception that is the cause of the current exception,
+            or <see langword="null"/> if no inner exception is specified.</param>
+        </member>
+        <member name="M:OpenQA.Selenium.NoAlertPresentException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            Initializes a new instance of the <see cref="T:OpenQA.Selenium.NoAlertPresentException"/> class with serialized data.
+            </summary>
+            <param name="info">The <see cref="T:System.Runtime.Serialization.SerializationInfo"/> that holds the serialized 
+            object data about the exception being thrown.</param>
+            <param name="context">The <see cref="T:System.Runtime.Serialization.StreamingContext"/> that contains contextual 
+            information about the source or destination.</param>
+        </member>
         <member name="T:OpenQA.Selenium.NoSuchElementException">
             <summary>
             The exception that is thrown when an element is not found.
@@ -1732,6 +1854,78 @@
         <member name="M:OpenQA.Selenium.StaleElementReferenceException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
             <summary>
             Initializes a new instance of the <see cref="T:OpenQA.Selenium.StaleElementReferenceException"/> class with serialized data.
+            </summary>
+            <param name="info">The <see cref="T:System.Runtime.Serialization.SerializationInfo"/> that holds the serialized 
+            object data about the exception being thrown.</param>
+            <param name="context">The <see cref="T:System.Runtime.Serialization.StreamingContext"/> that contains contextual 
+            information about the source or destination.</param>
+        </member>
+        <member name="T:OpenQA.Selenium.UnableToSetCookieException">
+            <summary>
+            The exception that is thrown when the user is unable to set a cookie.
+            </summary>
+        </member>
+        <member name="M:OpenQA.Selenium.UnableToSetCookieException.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:OpenQA.Selenium.UnableToSetCookieException"/> class.
+            </summary>
+        </member>
+        <member name="M:OpenQA.Selenium.UnableToSetCookieException.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:OpenQA.Selenium.UnableToSetCookieException"/> class with 
+            a specified error message.
+            </summary>
+            <param name="message">The message that describes the error.</param>
+        </member>
+        <member name="M:OpenQA.Selenium.UnableToSetCookieException.#ctor(System.String,System.Exception)">
+            <summary>
+            Initializes a new instance of the <see cref="T:OpenQA.Selenium.UnableToSetCookieException"/> class with
+            a specified error message and a reference to the inner exception that is the
+            cause of this exception.
+            </summary>
+            <param name="message">The error message that explains the reason for the exception.</param>
+            <param name="innerException">The exception that is the cause of the current exception,
+            or <see langword="null"/> if no inner exception is specified.</param>
+        </member>
+        <member name="M:OpenQA.Selenium.UnableToSetCookieException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            Initializes a new instance of the <see cref="T:OpenQA.Selenium.UnableToSetCookieException"/> class with serialized data.
+            </summary>
+            <param name="info">The <see cref="T:System.Runtime.Serialization.SerializationInfo"/> that holds the serialized 
+            object data about the exception being thrown.</param>
+            <param name="context">The <see cref="T:System.Runtime.Serialization.StreamingContext"/> that contains contextual 
+            information about the source or destination.</param>
+        </member>
+        <member name="T:OpenQA.Selenium.UnhandledAlertException">
+            <summary>
+            The exception that is thrown when an unhandled alert is present.
+            </summary>
+        </member>
+        <member name="M:OpenQA.Selenium.UnhandledAlertException.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:OpenQA.Selenium.UnhandledAlertException"/> class.
+            </summary>
+        </member>
+        <member name="M:OpenQA.Selenium.UnhandledAlertException.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:OpenQA.Selenium.UnhandledAlertException"/> class with 
+            a specified error message.
+            </summary>
+            <param name="message">The message that describes the error.</param>
+        </member>
+        <member name="M:OpenQA.Selenium.UnhandledAlertException.#ctor(System.String,System.Exception)">
+            <summary>
+            Initializes a new instance of the <see cref="T:OpenQA.Selenium.UnhandledAlertException"/> class with
+            a specified error message and a reference to the inner exception that is the
+            cause of this exception.
+            </summary>
+            <param name="message">The error message that explains the reason for the exception.</param>
+            <param name="innerException">The exception that is the cause of the current exception,
+            or <see langword="null"/> if no inner exception is specified.</param>
+        </member>
+        <member name="M:OpenQA.Selenium.UnhandledAlertException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            Initializes a new instance of the <see cref="T:OpenQA.Selenium.UnhandledAlertException"/> class with serialized data.
             </summary>
             <param name="info">The <see cref="T:System.Runtime.Serialization.SerializationInfo"/> that holds the serialized 
             object data about the exception being thrown.</param>

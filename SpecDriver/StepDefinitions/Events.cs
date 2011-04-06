@@ -1,15 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using TechTalk.SpecFlow;
-using OpenQA.Selenium;
-using OpenQA.Selenium.Chrome;
-using OpenQA.Selenium.Firefox;
-using OpenQA.Selenium.IE;
-
-namespace Project1.StepDefinitions
+﻿namespace Project1.StepDefinitions
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
+    using System.Threading;
+    using TechTalk.SpecFlow;
+    using OpenQA.Selenium;
+    using OpenQA.Selenium.Chrome;
+    using OpenQA.Selenium.Firefox;
+    using OpenQA.Selenium.IE;
+
     [Binding]
     public class Events : BaseStepDefinitions
     {
@@ -33,6 +34,7 @@ namespace Project1.StepDefinitions
         [BeforeScenario]
         public static void GoToHomePage()
         {
+            Thread.Sleep(1000); // between scenarios can be problematic when running too fast 
             Driver.Navigate().GoToUrl(GoogleUrl);
         }
 

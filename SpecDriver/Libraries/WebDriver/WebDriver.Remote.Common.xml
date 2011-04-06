@@ -130,46 +130,6 @@
             If you wish to use default values use the static methods
             </summary>
         </member>
-        <member name="T:OpenQA.Selenium.Remote.ICapabilities">
-            <summary>
-            Capabilities of the browser that you are going to use
-            </summary>
-        </member>
-        <member name="M:OpenQA.Selenium.Remote.ICapabilities.HasCapability(System.String)">
-            <summary>
-            Gets a value indicating whether the browser has a given capability.
-            </summary>
-            <param name="capability">The capability ot get.</param>
-            <returns>Returns <see langword="true"/> if the browser has the capability; otherwise, <see langword="false"/>.</returns>
-        </member>
-        <member name="M:OpenQA.Selenium.Remote.ICapabilities.GetCapability(System.String)">
-            <summary>
-            Gets a capability of the browser.
-            </summary>
-            <param name="capability">The capability to get.</param>
-            <returns>An object associated with the capability, or <see langword="null"/>
-            if the capability is not set on the browser.</returns>
-        </member>
-        <member name="P:OpenQA.Selenium.Remote.ICapabilities.BrowserName">
-            <summary>
-            Gets the browser name
-            </summary>
-        </member>
-        <member name="P:OpenQA.Selenium.Remote.ICapabilities.Platform">
-            <summary>
-            Gets the platform
-            </summary>
-        </member>
-        <member name="P:OpenQA.Selenium.Remote.ICapabilities.Version">
-            <summary>
-            Gets the browser version
-            </summary>
-        </member>
-        <member name="P:OpenQA.Selenium.Remote.ICapabilities.IsJavaScriptEnabled">
-            <summary>
-            Gets a value indicating whether the browser is JavaScript enabled
-            </summary>
-        </member>
         <member name="M:OpenQA.Selenium.Remote.DesiredCapabilities.#ctor(System.String,System.String,OpenQA.Selenium.Platform)">
             <summary>
             Initializes a new instance of the DesiredCapabilities class
@@ -211,6 +171,12 @@
             Method to return a new DesiredCapabilities using defaults
             </summary>
             <returns>New instance of DesiredCapabilities for use with HTMLUnit</returns>
+        </member>
+        <member name="M:OpenQA.Selenium.Remote.DesiredCapabilities.HtmlUnitWithJavaScript">
+            <summary>
+            Method to return a new DesiredCapabilities using defaults
+            </summary>
+            <returns>New instance of DesiredCapabilities for use with HTMLUnit with JS</returns>
         </member>
         <member name="M:OpenQA.Selenium.Remote.DesiredCapabilities.IPhone">
             <summary>

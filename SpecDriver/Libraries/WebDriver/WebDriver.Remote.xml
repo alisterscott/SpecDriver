@@ -64,25 +64,25 @@
             </code>
             </example>
         </member>
-        <member name="M:OpenQA.Selenium.Remote.RemoteWebDriver.#ctor(OpenQA.Selenium.Remote.ICommandExecutor,OpenQA.Selenium.Remote.ICapabilities)">
+        <member name="M:OpenQA.Selenium.Remote.RemoteWebDriver.#ctor(OpenQA.Selenium.Remote.ICommandExecutor,OpenQA.Selenium.ICapabilities)">
             <summary>
             Initializes a new instance of the RemoteWebDriver class
             </summary>
             <param name="commandExecutor">An <see cref="T:OpenQA.Selenium.Remote.ICommandExecutor"/> object which executes commands for the driver.</param>
-            <param name="desiredCapabilities">An <see cref="T:OpenQA.Selenium.Remote.ICapabilities"/> object containing the desired capabilities of the browser.</param>
+            <param name="desiredCapabilities">An <see cref="T:OpenQA.Selenium.ICapabilities"/> object containing the desired capabilities of the browser.</param>
         </member>
-        <member name="M:OpenQA.Selenium.Remote.RemoteWebDriver.#ctor(OpenQA.Selenium.Remote.ICapabilities)">
+        <member name="M:OpenQA.Selenium.Remote.RemoteWebDriver.#ctor(OpenQA.Selenium.ICapabilities)">
             <summary>
             Initializes a new instance of the RemoteWebDriver class. This constructor defaults proxy to http://127.0.0.1:4444/wd/hub
             </summary>
-            <param name="desiredCapabilities">An <see cref="T:OpenQA.Selenium.Remote.ICapabilities"/> object containing the desired capabilities of the browser.</param>
+            <param name="desiredCapabilities">An <see cref="T:OpenQA.Selenium.ICapabilities"/> object containing the desired capabilities of the browser.</param>
         </member>
-        <member name="M:OpenQA.Selenium.Remote.RemoteWebDriver.#ctor(System.Uri,OpenQA.Selenium.Remote.ICapabilities)">
+        <member name="M:OpenQA.Selenium.Remote.RemoteWebDriver.#ctor(System.Uri,OpenQA.Selenium.ICapabilities)">
             <summary>
             Initializes a new instance of the RemoteWebDriver class
             </summary>
             <param name="remoteAddress">URI containing the address of the WebDriver remote server (e.g. http://127.0.0.1:4444/wd/hub).</param>
-            <param name="desiredCapabilities">An <see cref="T:OpenQA.Selenium.Remote.ICapabilities"/> object containing the desired capabilities of the browser.</param>
+            <param name="desiredCapabilities">An <see cref="T:OpenQA.Selenium.ICapabilities"/> object containing the desired capabilities of the browser.</param>
         </member>
         <member name="M:OpenQA.Selenium.Remote.RemoteWebDriver.FindElement(OpenQA.Selenium.By)">
             <summary>
@@ -423,7 +423,7 @@
             </summary>
             <param name="disposing">if its in the process of disposing</param>
         </member>
-        <member name="M:OpenQA.Selenium.Remote.RemoteWebDriver.StartSession(OpenQA.Selenium.Remote.ICapabilities)">
+        <member name="M:OpenQA.Selenium.Remote.RemoteWebDriver.StartSession(OpenQA.Selenium.ICapabilities)">
             <summary>
             Starts a session with the driver
             </summary>

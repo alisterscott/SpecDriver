@@ -82,7 +82,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 13
   testRunner.When("I convert 10 cm to inches");
 #line 14
-  testRunner.Then("I should see the conversion result \"10 centimetres = 3.93700787 inches\"");
+  testRunner.Then("I should see the conversion result \"10 centimeters = 3.93700787 inches\"");
 #line hidden
             testRunner.CollectScenarioErrors();
         }
