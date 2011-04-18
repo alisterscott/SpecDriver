@@ -35,7 +35,7 @@
         public static void GoToHomePage()
         {
             Thread.Sleep(1000); // between scenarios can be problematic when running too fast 
-            Driver.Navigate().GoToUrl(GoogleUrl);
+            //Driver.Navigate().GoToUrl(GoogleUrl);
         }
 
         [AfterScenario]

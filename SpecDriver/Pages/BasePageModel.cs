@@ -10,9 +10,13 @@ namespace Project1.Pages
     {
         private IWebDriver driver;
 
-        protected BasePageModel(IWebDriver webDriver, By knownElementOnPage)
+        protected BasePageModel(IWebDriver webDriver, By knownElementOnPage, String loadUrl = "")
         {
             this.driver = webDriver;
+            if (loadUrl != String.Empty)
+            {
+                driver.Navigate().GoToUrl(loadUrl);
+            }
             this.FindKnownElementOnPage(knownElementOnPage);
         }
 

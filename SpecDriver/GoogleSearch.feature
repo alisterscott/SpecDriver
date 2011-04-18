@@ -11,7 +11,7 @@ Scenario: Search for Watir
 Scenario: Do a unit conversion
   Given I am on the Google Home Page
   When I convert 10 cm to inches
-  Then I should see the conversion result "10 centimeters = 3.93700787 inches"
+  Then I should see the conversion result "10 centimetres = 3.93700787 inches"
 
 Scenario: Do a search using data specified externally
   Given I am on the Google Home Page

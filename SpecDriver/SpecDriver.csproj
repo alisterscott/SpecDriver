@@ -34,12 +34,23 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="EstyAdvancedSearch.feature.cs" />
+    <Compile Include="EtsyBrowse.feature.cs" />
+    <Compile Include="EtsyCartFeature.feature.cs" />
     <Compile Include="GoogleSearch.feature.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="Pages\BasePageModel.cs" />
+    <Compile Include="Pages\EstyItemPageModel.cs" />
+    <Compile Include="Pages\EstyCartPageModel.cs" />
+    <Compile Include="Pages\EstyTreasuryPageModel.cs" />
+    <Compile Include="Pages\EstyBuyPageModel.cs" />
+    <Compile Include="Pages\EstyHomePageModel.cs" />
+    <Compile Include="Pages\EstySearchResultsPageModel.cs" />
+    <Compile Include="Pages\EstySearchPageModel.cs" />
     <Compile Include="Pages\GoogleSearchResultsPageModel.cs" />
     <Compile Include="Pages\GoogleHomePageModel.cs" />
     <Compile Include="Pages\WebElementExtensions.cs" />
+    <Compile Include="StepDefinitions\EtsyStepDefinitions.cs" />
     <Compile Include="StepDefinitions\Events.cs" />
     <Compile Include="StepDefinitions\BaseStepDefinitions.cs" />
     <Compile Include="StepDefinitions\GoogleSearchStepDefinitions.cs" />
@@ -93,6 +104,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="EstyAdvancedSearch.feature" />
+    <None Include="EtsyBrowse.feature" />
+    <None Include="EtsyCartFeature.feature" />
     <None Include="generatespecflowtests.bat" />
     <None Include="runspecflowtests.bat" />
     <None Include="GoogleSearch.feature" />

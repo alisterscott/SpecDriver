@@ -8,11 +8,12 @@
 
     public class GoogleHomePageModel : BasePageModel
     {
+        private static readonly String Url = "http://www.google.com";
         private static readonly By SearchEditSelector = By.Name("q");
         private static readonly By SearchButtonSelector = By.Name("btnG");
 
         public GoogleHomePageModel(IWebDriver driver)
-            : base(driver, SearchEditSelector)
+            : base(driver, SearchEditSelector, Url)
         {
         }
 

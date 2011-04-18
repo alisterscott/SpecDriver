@@ -23,5 +23,43 @@ namespace Project1.StepDefinitions
             get { return (GoogleSearchResultsPageModel)ScenarioContext.Current[CurrentPageKey]; }
             set { ScenarioContext.Current[CurrentPageKey] = value; }
         }
+        protected EtsySearchPageModel EtsySearchPage
+        {
+            get { return (EtsySearchPageModel)ScenarioContext.Current[CurrentPageKey]; }
+            set { ScenarioContext.Current[CurrentPageKey] = value; }
+        }
+        protected EtsySearchResultsPageModel EtsySearchResultsPage
+        {
+            get { return (EtsySearchResultsPageModel)ScenarioContext.Current[CurrentPageKey]; }
+            set { ScenarioContext.Current[CurrentPageKey] = value; }
+        }
+        protected EtsyHomePageModel EtsyHomePage
+        {
+            get { return (EtsyHomePageModel)ScenarioContext.Current[CurrentPageKey]; }
+            set { ScenarioContext.Current[CurrentPageKey] = value; }
+        }
+        protected EtsyBuyPageModel EtsyBuyPage
+        {
+            get { return (EtsyBuyPageModel)ScenarioContext.Current[CurrentPageKey]; }
+            set { ScenarioContext.Current[CurrentPageKey] = value; }
+        }
+        protected EtsyTreasuryPageModel EtsyTreasuryPage
+        {
+            get { return (EtsyTreasuryPageModel)ScenarioContext.Current[CurrentPageKey]; }
+            set { ScenarioContext.Current[CurrentPageKey] = value; }
+        }
+        protected EtsyCartPageModel EtsyCartPage
+        {
+            get { return (EtsyCartPageModel)ScenarioContext.Current[CurrentPageKey]; }
+            set { ScenarioContext.Current[CurrentPageKey] = value; }
+        }
+        protected EtsyItemPageModel EtsyItemPage
+        {
+            get { return (EtsyItemPageModel)ScenarioContext.Current[CurrentPageKey]; }
+            set { ScenarioContext.Current[CurrentPageKey] = value; }
+        }
+
+
+
     }
 }
