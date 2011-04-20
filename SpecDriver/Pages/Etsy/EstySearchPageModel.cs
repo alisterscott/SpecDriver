@@ -36,7 +36,7 @@
 
         public void SpecifySubCategory(String subCategory)
         {
-            this.SearchCategoryComboElement.Set(subCategory);
+            this.SearchCategoryComboElement.SelectValue(subCategory);
         }
 
         public EtsySearchResultsPageModel SearchForSomething(String term)

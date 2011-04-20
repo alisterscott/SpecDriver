@@ -48,16 +48,16 @@
     </Compile>
     <Compile Include="Main.cs" />
     <Compile Include="Pages\BasePageModel.cs" />
-    <Compile Include="Pages\EstyItemPageModel.cs" />
-    <Compile Include="Pages\EstyCartPageModel.cs" />
-    <Compile Include="Pages\EstyTreasuryPageModel.cs" />
-    <Compile Include="Pages\EstyBuyPageModel.cs" />
-    <Compile Include="Pages\EstyHomePageModel.cs" />
-    <Compile Include="Pages\EstySearchResultsPageModel.cs" />
-    <Compile Include="Pages\EstySearchPageModel.cs" />
-    <Compile Include="Pages\GoogleSearchResultsPageModel.cs" />
-    <Compile Include="Pages\GoogleHomePageModel.cs" />
-    <Compile Include="Pages\WebElementExtensions.cs" />
+    <Compile Include="Pages\Etsy\EstyItemPageModel.cs" />
+    <Compile Include="Pages\Etsy\EstyCartPageModel.cs" />
+    <Compile Include="Pages\Etsy\EstyTreasuryPageModel.cs" />
+    <Compile Include="Pages\Etsy\EstyBuyPageModel.cs" />
+    <Compile Include="Pages\Etsy\EstyHomePageModel.cs" />
+    <Compile Include="Pages\Etsy\EstySearchResultsPageModel.cs" />
+    <Compile Include="Pages\Etsy\EstySearchPageModel.cs" />
+    <Compile Include="Pages\Google\GoogleSearchResultsPageModel.cs" />
+    <Compile Include="Pages\Google\GoogleHomePageModel.cs" />
+    <Compile Include="StepDefinitions\WebElementExtensions.cs" />
     <Compile Include="StepDefinitions\EtsyStepDefinitions.cs" />
     <Compile Include="StepDefinitions\Events.cs" />
     <Compile Include="StepDefinitions\BaseStepDefinitions.cs" />
