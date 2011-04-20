@@ -48,13 +48,13 @@
     </Compile>
     <Compile Include="Main.cs" />
     <Compile Include="Pages\BasePageModel.cs" />
-    <Compile Include="Pages\Etsy\EstyItemPageModel.cs" />
-    <Compile Include="Pages\Etsy\EstyCartPageModel.cs" />
-    <Compile Include="Pages\Etsy\EstyTreasuryPageModel.cs" />
-    <Compile Include="Pages\Etsy\EstyBuyPageModel.cs" />
-    <Compile Include="Pages\Etsy\EstyHomePageModel.cs" />
-    <Compile Include="Pages\Etsy\EstySearchResultsPageModel.cs" />
-    <Compile Include="Pages\Etsy\EstySearchPageModel.cs" />
+    <Compile Include="Pages\Etsy\EtsyItemPageModel.cs" />
+    <Compile Include="Pages\Etsy\EtsyCartPageModel.cs" />
+    <Compile Include="Pages\Etsy\EtsyTreasuryPageModel.cs" />
+    <Compile Include="Pages\Etsy\EtsyBuyPageModel.cs" />
+    <Compile Include="Pages\Etsy\EtsyHomePageModel.cs" />
+    <Compile Include="Pages\Etsy\EtsySearchResultsPageModel.cs" />
+    <Compile Include="Pages\Etsy\EtsySearchPageModel.cs" />
     <Compile Include="Pages\Google\GoogleSearchResultsPageModel.cs" />
     <Compile Include="Pages\Google\GoogleHomePageModel.cs" />
     <Compile Include="StepDefinitions\WebElementExtensions.cs" />
