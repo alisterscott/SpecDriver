@@ -9,7 +9,7 @@
 //  </auto-generated>
 // ------------------------------------------------------------------------------
 #region Designer generated code
-namespace Project1
+namespace Project1.Features.Etsy
 {
     using TechTalk.SpecFlow;
     
@@ -23,7 +23,7 @@ namespace Project1
         
         private static TechTalk.SpecFlow.ITestRunner testRunner;
         
-#line 1 "EstyAdvancedSearch.feature"
+#line 1 "EtsyAdvancedSearch.feature"
 #line hidden
         
         [NUnit.Framework.TestFixtureSetUpAttribute()]

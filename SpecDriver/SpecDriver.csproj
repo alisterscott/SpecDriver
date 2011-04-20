@@ -34,10 +34,18 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="EstyAdvancedSearch.feature.cs" />
-    <Compile Include="EtsyBrowse.feature.cs" />
-    <Compile Include="EtsyCartFeature.feature.cs" />
-    <Compile Include="GoogleSearch.feature.cs" />
+    <Compile Include="Features\Etsy\EtsyAdvancedSearch.feature.cs">
+      <DependentUpon>EtsyAdvancedSearch.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Features\Etsy\EtsyBrowse.feature.cs">
+      <DependentUpon>EtsyBrowse.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Features\Etsy\EtsyShoppingCart.feature.cs">
+      <DependentUpon>EtsyShoppingCart.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Features\Google\GoogleSearch.feature.cs">
+      <DependentUpon>GoogleSearch.feature</DependentUpon>
+    </Compile>
     <Compile Include="Main.cs" />
     <Compile Include="Pages\BasePageModel.cs" />
     <Compile Include="Pages\EstyItemPageModel.cs" />
@@ -70,16 +78,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Libraries\nunit.framework.dll</HintPath>
     </Reference>
-    <Reference Include="Selenium.WebDriverBackedSelenium">
-      <HintPath>Libraries\WebDriver\Selenium.WebDriverBackedSelenium.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="TechTalk.SpecFlow, Version=1.5.0.0, Culture=neutral, PublicKeyToken=0778194805d6db41, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Libraries\TechTalk.SpecFlow.dll</HintPath>
-    </Reference>
-    <Reference Include="ThoughtWorks.Selenium.Core">
-      <HintPath>Libraries\WebDriver\ThoughtWorks.Selenium.Core.dll</HintPath>
     </Reference>
     <Reference Include="WebDriver.Chrome">
       <HintPath>Libraries\WebDriver\WebDriver.Chrome.dll</HintPath>
@@ -104,12 +106,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="EstyAdvancedSearch.feature" />
-    <None Include="EtsyBrowse.feature" />
-    <None Include="EtsyCartFeature.feature" />
-    <None Include="generatespecflowtests.bat" />
-    <None Include="runspecflowtests.bat" />
-    <None Include="GoogleSearch.feature" />
+    <None Include="Features\Etsy\EtsyAdvancedSearch.feature" />
+    <None Include="Features\Etsy\EtsyBrowse.feature" />
+    <None Include="Features\Etsy\EtsyShoppingCart.feature" />
+    <None Include="Utils\generatespecflowtests.bat" />
+    <None Include="Utils\runspecflowtests.bat" />
+    <None Include="Features\Google\GoogleSearch.feature" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

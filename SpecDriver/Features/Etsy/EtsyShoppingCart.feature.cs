@@ -9,7 +9,7 @@
 //  </auto-generated>
 // ------------------------------------------------------------------------------
 #region Designer generated code
-namespace Project1
+namespace Project1.Features.Etsy
 {
     using TechTalk.SpecFlow;
     
@@ -17,21 +17,21 @@ namespace Project1
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "1.5.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("Etsy Browse Functionality")]
-    public partial class EtsyBrowseFunctionalityFeature
+    [NUnit.Framework.DescriptionAttribute("Etsy Cart Functionality")]
+    public partial class EtsyCartFunctionalityFeature
     {
         
         private static TechTalk.SpecFlow.ITestRunner testRunner;
         
-#line 1 "EtsyBrowse.feature"
+#line 1 "EtsyShoppingCart.feature"
 #line hidden
         
         [NUnit.Framework.TestFixtureSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Etsy Browse Functionality", "In order to show the browsing cart functionality\r\nAs a user\r\nI want to browse in " +
-                    "a gallery", GenerationTargetLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Etsy Cart Functionality", "In order to show the basic cart functionality\r\nAs a user\r\nI want to add and remov" +
+                    "e items from the cart", GenerationTargetLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -54,18 +54,24 @@ namespace Project1
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Browsing around the site for items")]
-        public virtual void BrowsingAroundTheSiteForItems()
+        [NUnit.Framework.DescriptionAttribute("Item can be added to then removed from cart")]
+        public virtual void ItemCanBeAddedToThenRemovedFromCart()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Browsing around the site for items", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Item can be added to then removed from cart", ((string[])(null)));
 #line 6
 this.ScenarioSetup(scenarioInfo);
 #line 7
- testRunner.Given("I am on Etsy.com");
+ testRunner.Given("I am on the Etsy cart page");
 #line 8
- testRunner.When("I want to browse through a treasury gallery");
+ testRunner.And("that the cart is empty");
 #line 9
- testRunner.Then("results will be displayed in the gallery");
+ testRunner.When("an item is added to the cart");
+#line 10
+    testRunner.Then("the cart contains that item");
+#line 11
+ testRunner.When("I remove the item from the cart");
+#line 12
+ testRunner.Then("the cart is empty");
 #line hidden
             testRunner.CollectScenarioErrors();
         }

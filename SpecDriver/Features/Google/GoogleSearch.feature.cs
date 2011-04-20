@@ -9,7 +9,7 @@
 //  </auto-generated>
 // ------------------------------------------------------------------------------
 #region Designer generated code
-namespace Project1
+namespace Project1.Features.Google
 {
     using TechTalk.SpecFlow;
     
