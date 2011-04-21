@@ -14,7 +14,7 @@ Examples:
 	| Jewelry      | 'necklace'   | some           |
 	| Jewelry      | 'specdriver' | no             |
 
-Scenario: Mispelling a word corrects search automatically
+Scenario: Misspelling a word corrects search automatically
 	Given I am searching on Etsy.com
 	When I specify the Knitting sub category
 	And I search for 'scalf'
