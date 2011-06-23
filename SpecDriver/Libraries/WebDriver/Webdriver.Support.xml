@@ -47,23 +47,6 @@
             <returns>An <see cref="T:OpenQA.Selenium.ITargetLocator"/> object which can be used to select
             a frame or window.</returns>
         </member>
-        <member name="M:OpenQA.Selenium.Support.Events.EventFiringWebDriver.GetWindowHandles">
-            <summary>
-            Get the window handles of open browser windows.
-            </summary>
-            <returns>A <see cref="T:System.Collections.ObjectModel.ReadOnlyCollection`1"/> containing all window handles
-            of windows belonging to this driver instance.</returns>
-            <remarks>The set of window handles returned by this method can be used to 
-            iterate over all open windows of this <see cref="T:OpenQA.Selenium.IWebDriver"/> instance by 
-            passing them to <c>SwitchTo().Window(string)</c></remarks>
-        </member>
-        <member name="M:OpenQA.Selenium.Support.Events.EventFiringWebDriver.GetWindowHandle">
-            <summary>
-            Get the current window handle.
-            </summary>
-            <returns>An opaque handle to this window that uniquely identifies it 
-            within this driver instance.</returns>
-        </member>
         <member name="M:OpenQA.Selenium.Support.Events.EventFiringWebDriver.FindElement(OpenQA.Selenium.By)">
             <summary>
             Find the first <see cref="T:OpenQA.Selenium.IWebElement"/> using the given method. 
@@ -313,11 +296,6 @@
             Gets the <see cref="T:OpenQA.Selenium.IWebDriver"/> wrapped by this EventsFiringWebDriver instance.
             </summary>
         </member>
-        <member name="P:OpenQA.Selenium.Support.Events.EventFiringWebDriver.IsJavaScriptEnabled">
-            <summary>
-            Gets a value indicating whether JavaScript is enabled for this browser.
-            </summary>
-        </member>
         <member name="P:OpenQA.Selenium.Support.Events.EventFiringWebDriver.Url">
             <summary>
             Gets or sets the URL the browser is currently displaying.
@@ -352,6 +330,17 @@
             representation of the underlying DOM: do not expect it to be formatted 
             or escaped in the same way as the response sent from the web server. 
             </remarks>
+        </member>
+        <member name="P:OpenQA.Selenium.Support.Events.EventFiringWebDriver.CurrentWindowHandle">
+            <summary>
+            Gets the current window handle, which is an opaque handle to this 
+            window that uniquely identifies it within this driver instance.
+            </summary>
+        </member>
+        <member name="P:OpenQA.Selenium.Support.Events.EventFiringWebDriver.WindowHandles">
+            <summary>
+            Gets the window handles of open browser windows.
+            </summary>
         </member>
         <member name="T:OpenQA.Selenium.Support.Events.EventFiringWebDriver.EventFiringNavigation">
             <summary>
@@ -402,51 +391,15 @@
             </summary>
             <param name="driver">Instance of the driver currently in use</param>
         </member>
-        <member name="M:OpenQA.Selenium.Support.Events.EventFiringWebDriver.EventFiringOptions.AddCookie(OpenQA.Selenium.Cookie)">
-            <summary>
-            Method for creating a cookie in the browser
-            </summary>
-            <param name="cookie"><see cref="T:OpenQA.Selenium.Cookie"/> that represents a cookie in the browser</param>
-        </member>
-        <member name="M:OpenQA.Selenium.Support.Events.EventFiringWebDriver.EventFiringOptions.GetCookies">
-            <summary>
-            Method for getting a Collection of Cookies that are present in the browser
-            </summary>
-            <returns>ReadOnlyCollection of Cookies in the browser</returns>
-        </member>
-        <member name="M:OpenQA.Selenium.Support.Events.EventFiringWebDriver.EventFiringOptions.GetCookieNamed(System.String)">
-            <summary>
-            Method for returning a getting a cookie by name
-            </summary>
-            <param name="name">name of the cookie that needs to be returned</param>
-            <returns>A Cookie from the name</returns>
-        </member>
-        <member name="M:OpenQA.Selenium.Support.Events.EventFiringWebDriver.EventFiringOptions.DeleteCookie(OpenQA.Selenium.Cookie)">
-            <summary>
-            Delete a cookie in the browser by passing in a copy of a cookie
-            </summary>
-            <param name="cookie">An object that represents a copy of the cookie that needs to be deleted</param>
-        </member>
-        <member name="M:OpenQA.Selenium.Support.Events.EventFiringWebDriver.EventFiringOptions.DeleteCookieNamed(System.String)">
-            <summary>
-            Delete the cookie by passing in the name of the cookie
-            </summary>
-            <param name="name">The name of the cookie that is in the browser</param>
-        </member>
-        <member name="M:OpenQA.Selenium.Support.Events.EventFiringWebDriver.EventFiringOptions.DeleteAllCookies">
-            <summary>
-            Delete All Cookies that are present in the browser
-            </summary>
-        </member>
         <member name="M:OpenQA.Selenium.Support.Events.EventFiringWebDriver.EventFiringOptions.Timeouts">
             <summary>
             Provides access to the timeouts defined for this driver.
             </summary>
             <returns>An object implementing the <see cref="T:OpenQA.Selenium.ITimeouts"/> interface.</returns>
         </member>
-        <member name="P:OpenQA.Selenium.Support.Events.EventFiringWebDriver.EventFiringOptions.Speed">
+        <member name="P:OpenQA.Selenium.Support.Events.EventFiringWebDriver.EventFiringOptions.Cookies">
             <summary>
-            Gets or sets the speed with which actions are executed in the browser.
+            Gets an object allowing the user to manipulate cookies on the page.
             </summary>
         </member>
         <member name="T:OpenQA.Selenium.Support.Events.EventFiringWebDriver.EventFiringTargetLocator">
@@ -598,6 +551,13 @@
             </summary>
             <returns>Whether the toggled element is selected (true) or not (false) after this toggle is complete</returns>
         </member>
+        <member name="M:OpenQA.Selenium.Support.Events.EventFiringWebDriver.EventFiringWebElement.GetCssValue(System.String)">
+            <summary>
+            Method to return the value of a CSS Property
+            </summary>
+            <param name="propertyName">CSS property key</param>
+            <returns>string value of the CSS property</returns>
+        </member>
         <member name="M:OpenQA.Selenium.Support.Events.EventFiringWebDriver.EventFiringWebElement.FindElement(OpenQA.Selenium.By)">
             <summary>
             Finds the first element in the page that matches the <see cref="T:OpenQA.Selenium.By"/> object
@@ -627,11 +587,6 @@
             Gets the text from the element
             </summary>
         </member>
-        <member name="P:OpenQA.Selenium.Support.Events.EventFiringWebDriver.EventFiringWebElement.Value">
-            <summary>
-            Gets the value of the element's "value" attribute. If this value has been modified after the page has loaded (for example, through javascript) then this will reflect the current value of the "value" attribute.
-            </summary>
-        </member>
         <member name="P:OpenQA.Selenium.Support.Events.EventFiringWebDriver.EventFiringWebElement.Enabled">
             <summary>
             Gets a value indicating whether an element is currently enabled
@@ -642,56 +597,24 @@
             Gets a value indicating whether this element is selected or not. This operation only applies to input elements such as checkboxes, options in a select and radio buttons.
             </summary>
         </member>
-        <member name="T:OpenQA.Selenium.Support.Events.EventFiringWebDriver.EventFiringRenderedWebElement">
-            <summary>
-            Provides a mechanism to find Rendered Elements on the page
-            </summary>
-        </member>
-        <member name="M:OpenQA.Selenium.Support.Events.EventFiringWebDriver.EventFiringRenderedWebElement.#ctor(OpenQA.Selenium.Support.Events.EventFiringWebDriver,OpenQA.Selenium.IWebElement)">
-            <summary>
-            Initializes a new instance of the <see cref="T:OpenQA.Selenium.Support.Events.EventFiringWebDriver.EventFiringRenderedWebElement"/> class.
-            </summary>
-            <param name="driver">The <see cref="T:OpenQA.Selenium.Support.Events.EventFiringWebDriver"/> instance hosting this element.</param>
-            <param name="element">The <see cref="T:OpenQA.Selenium.IWebElement"/> to wrap for event firing.</param>
-        </member>
-        <member name="M:OpenQA.Selenium.Support.Events.EventFiringWebDriver.EventFiringRenderedWebElement.GetValueOfCssProperty(System.String)">
-            <summary>
-            Method to return the value of a CSS Property
-            </summary>
-            <param name="propertyName">CSS property key</param>
-            <returns>string value of the CSS property</returns>
-        </member>
-        <member name="M:OpenQA.Selenium.Support.Events.EventFiringWebDriver.EventFiringRenderedWebElement.Hover">
-            <summary>
-            Moves the mouse over the element to do a hover
-            </summary>
-        </member>
-        <member name="M:OpenQA.Selenium.Support.Events.EventFiringWebDriver.EventFiringRenderedWebElement.DragAndDropBy(System.Int32,System.Int32)">
-            <summary>
-            Move to an element, MouseDown on the element and move it by passing in the how many pixels horizontally and vertically you wish to move it
-            </summary>
-            <param name="moveRightBy">Integer to move it left or right</param>
-            <param name="moveDownBy">Integer to move it up or down</param>
-        </member>
-        <member name="M:OpenQA.Selenium.Support.Events.EventFiringWebDriver.EventFiringRenderedWebElement.DragAndDropOn(OpenQA.Selenium.IRenderedWebElement)">
-            <summary>
-            Drag and Drop an element to another element
-            </summary>
-            <param name="element">Element you wish to drop on</param>
-        </member>
-        <member name="P:OpenQA.Selenium.Support.Events.EventFiringWebDriver.EventFiringRenderedWebElement.Location">
+        <member name="P:OpenQA.Selenium.Support.Events.EventFiringWebDriver.EventFiringWebElement.Location">
             <summary>
             Gets the Location of an element and returns a Point object
             </summary>
         </member>
-        <member name="P:OpenQA.Selenium.Support.Events.EventFiringWebDriver.EventFiringRenderedWebElement.Size">
+        <member name="P:OpenQA.Selenium.Support.Events.EventFiringWebDriver.EventFiringWebElement.Size">
             <summary>
-            Gets the <see cref="P:OpenQA.Selenium.Support.Events.EventFiringWebDriver.EventFiringRenderedWebElement.Size"/> of the element on the page
+            Gets the <see cref="P:OpenQA.Selenium.Support.Events.EventFiringWebDriver.EventFiringWebElement.Size"/> of the element on the page
             </summary>
         </member>
-        <member name="P:OpenQA.Selenium.Support.Events.EventFiringWebDriver.EventFiringRenderedWebElement.Displayed">
+        <member name="P:OpenQA.Selenium.Support.Events.EventFiringWebDriver.EventFiringWebElement.Displayed">
             <summary>
             Gets a value indicating whether the element is currently being displayed
+            </summary>
+        </member>
+        <member name="P:OpenQA.Selenium.Support.Events.EventFiringWebDriver.EventFiringWebElement.ParentDriver">
+            <summary>
+            Gets the underlying EventFiringWebDriver for this element.
             </summary>
         </member>
         <member name="T:OpenQA.Selenium.Support.Events.FindElementEventArgs">
@@ -823,6 +746,18 @@
             Gets the element used for the action.
             </summary>
         </member>
+        <member name="T:OpenQA.Selenium.Support.PageObjects.ByFactory">
+            <summary>
+            Provides instances of the <see cref="T:OpenQA.Selenium.By"/> object to the attributes.
+            </summary>
+        </member>
+        <member name="M:OpenQA.Selenium.Support.PageObjects.ByFactory.From(OpenQA.Selenium.Support.PageObjects.FindsByAttribute)">
+            <summary>
+            Gets an instance of the <see cref="T:OpenQA.Selenium.By"/> class based on the specified attribute.
+            </summary>
+            <param name="attribute">The <see cref="T:OpenQA.Selenium.Support.PageObjects.FindsByAttribute"/> describing how to find the element.</param>
+            <returns>An instance of the <see cref="T:OpenQA.Selenium.By"/> class.</returns>
+        </member>
         <member name="T:OpenQA.Selenium.Support.PageObjects.CacheLookupAttribute">
             <summary>
             Marks the element so that lookups to the browser page are cached. This class cannot be inherited.
@@ -834,10 +769,19 @@
             </summary>
         </member>
         <member name="P:OpenQA.Selenium.Support.PageObjects.FindsByAttribute.How">
-            <summary>The method to look up the element</summary>
+            <summary>
+            Gets or sets the method used to look up the element
+            </summary>
         </member>
         <member name="P:OpenQA.Selenium.Support.PageObjects.FindsByAttribute.Using">
-            <summary>The value to lookup by (i.e. for How.Name, the actual name to look up)</summary>
+            <summary>
+            Gets or sets the value to lookup by (i.e. for How.Name, the actual name to look up)
+            </summary>
+        </member>
+        <member name="P:OpenQA.Selenium.Support.PageObjects.FindsByAttribute.Bys">
+            <summary>
+            Gets the list of <see cref="T:OpenQA.Selenium.By"/> object from which to find.
+            </summary>
         </member>
         <member name="T:OpenQA.Selenium.Support.PageObjects.How">
             <summary>
@@ -845,28 +789,44 @@
             </summary>
         </member>
         <member name="F:OpenQA.Selenium.Support.PageObjects.How.Id">
-            <see cref="M:OpenQA.Selenium.By.Id(System.String)"/>
+            <summary>
+            Finds by <see cref="M:OpenQA.Selenium.By.Id(System.String)"/>
+            </summary>
         </member>
         <member name="F:OpenQA.Selenium.Support.PageObjects.How.Name">
-            <see cref="M:OpenQA.Selenium.By.Name(System.String)"/>
+            <summary>
+            Finds by <see cref="M:OpenQA.Selenium.By.Name(System.String)"/>
+            </summary>
         </member>
         <member name="F:OpenQA.Selenium.Support.PageObjects.How.TagName">
-            <see cref="M:OpenQA.Selenium.By.TagName(System.String)"/>
+            <summary>
+            Finds by <see cref="M:OpenQA.Selenium.By.TagName(System.String)"/>
+            </summary>
         </member>
         <member name="F:OpenQA.Selenium.Support.PageObjects.How.ClassName">
-            <see cref="M:OpenQA.Selenium.By.ClassName(System.String)"/>
+            <summary>
+            Finds by <see cref="M:OpenQA.Selenium.By.ClassName(System.String)"/>
+            </summary>
         </member>
         <member name="F:OpenQA.Selenium.Support.PageObjects.How.CssSelector">
-            <see cref="M:OpenQA.Selenium.By.CssSelector(System.String)"/>
+            <summary>
+            Finds by <see cref="M:OpenQA.Selenium.By.CssSelector(System.String)"/>
+            </summary>
         </member>
         <member name="F:OpenQA.Selenium.Support.PageObjects.How.LinkText">
-            <see cref="M:OpenQA.Selenium.By.LinkText(System.String)"/>
+            <summary>
+            Finds by <see cref="M:OpenQA.Selenium.By.LinkText(System.String)"/>
+            </summary>
         </member>
         <member name="F:OpenQA.Selenium.Support.PageObjects.How.PartialLinkText">
-            <see cref="M:OpenQA.Selenium.By.PartialLinkText(System.String)"/>
+            <summary>
+            Finds by <see cref="M:OpenQA.Selenium.By.PartialLinkText(System.String)"/>
+            </summary>
         </member>
         <member name="F:OpenQA.Selenium.Support.PageObjects.How.XPath">
-            <see cref="M:OpenQA.Selenium.By.XPath(System.String)"/>
+            <summary>
+            Finds by <see cref="M:OpenQA.Selenium.By.XPath(System.String)"/>
+            </summary>
         </member>
         <member name="T:OpenQA.Selenium.Support.PageObjects.PageFactory">
             <summary>

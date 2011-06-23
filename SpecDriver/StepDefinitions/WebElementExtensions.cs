@@ -13,7 +13,7 @@
 
         public static void SelectValue(this IWebElement me, string text)
         {
-            me.ItemInCombo(text).Select();
+            me.ItemInCombo(text).Click();
         }
 
         private static IWebElement ItemInCombo(this IWebElement me, string text)

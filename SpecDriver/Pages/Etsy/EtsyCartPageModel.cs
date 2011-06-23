@@ -36,7 +36,24 @@
 
         public string ItemsInCart()
         {
+            System.Threading.Thread.Sleep(2000);
             return CheckOutHeaderElement.Text;       
+        }
+
+        public bool IsCartEmpty()
+        {
+            for (var i = 0; i < 5; i++)
+            {
+                if (ItemsInCart() == "0 items in your cart")
+                {
+                    return true;
+                }
+                else
+                {
+                    System.Threading.Thread.Sleep(1000);
+                }
+            }
+            return false;
         }
 
         public void RemoveOneItem()

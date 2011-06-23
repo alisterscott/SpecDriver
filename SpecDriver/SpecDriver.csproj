@@ -64,14 +64,17 @@
     <Compile Include="StepDefinitions\GoogleSearchStepDefinitions.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="Castle.Core">
+    <Reference Include="Castle.Core, Version=2.5.1.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>Libraries\WebDriver\Castle.Core.dll</HintPath>
     </Reference>
-    <Reference Include="Ionic.Zip.Reduced">
+    <Reference Include="Ionic.Zip.Reduced, Version=1.9.1.1, Culture=neutral, PublicKeyToken=edbe51ad942a3f5c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>Libraries\WebDriver\Ionic.Zip.Reduced.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="Newtonsoft.Json">
+    <Reference Include="Newtonsoft.Json, Version=3.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>Libraries\WebDriver\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="nunit.framework, Version=2.5.9.10348, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
@@ -83,25 +86,11 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Libraries\TechTalk.SpecFlow.dll</HintPath>
     </Reference>
-    <Reference Include="WebDriver.Chrome">
-      <HintPath>Libraries\WebDriver\WebDriver.Chrome.dll</HintPath>
+    <Reference Include="WebDriver">
+      <HintPath>Libraries\WebDriver\WebDriver.dll</HintPath>
     </Reference>
-    <Reference Include="WebDriver.Common">
-      <HintPath>Libraries\WebDriver\WebDriver.Common.dll</HintPath>
-    </Reference>
-    <Reference Include="WebDriver.Firefox">
-      <HintPath>Libraries\WebDriver\WebDriver.Firefox.dll</HintPath>
-    </Reference>
-    <Reference Include="WebDriver.IE">
-      <HintPath>Libraries\WebDriver\WebDriver.IE.dll</HintPath>
-    </Reference>
-    <Reference Include="WebDriver.Remote">
-      <HintPath>Libraries\WebDriver\WebDriver.Remote.dll</HintPath>
-    </Reference>
-    <Reference Include="WebDriver.Remote.Common">
-      <HintPath>Libraries\WebDriver\WebDriver.Remote.Common.dll</HintPath>
-    </Reference>
-    <Reference Include="Webdriver.Support">
+    <Reference Include="Webdriver.Support, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>Libraries\WebDriver\Webdriver.Support.dll</HintPath>
     </Reference>
   </ItemGroup>

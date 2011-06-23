@@ -1,4 +1,5 @@
-﻿Feature: Etsy Cart Functionality
+﻿@ignore
+Feature: Etsy Cart Functionality
 	In order to show the basic cart functionality
 	As a user
 	I want to add and remove items from the cart

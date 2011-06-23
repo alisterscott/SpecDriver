@@ -248,49 +248,16 @@
             <param name="value">The second parameter to the command.</param>
             <returns>The result of the command.</returns>
         </member>
-        <member name="T:Selenium.Internal.SeleniumEmulation.AddLocationStrategy.UserLookupStrategy">
-            <summary>
-            Provides a mechanism for user-defined lookup strategies.
-            </summary>
-        </member>
-        <member name="T:Selenium.ILookupStrategy">
-            <summary>
-            Provides methods for finding elements.
-            </summary>
-        </member>
-        <member name="M:Selenium.ILookupStrategy.Find(OpenQA.Selenium.IWebDriver,System.String)">
-            <summary>
-            Finds an element.
-            </summary>
-            <param name="driver">The <see cref="T:OpenQA.Selenium.IWebDriver"/> to use in finding the element.</param>
-            <param name="use">The locator string to use.</param>
-            <returns>An <see cref="T:OpenQA.Selenium.IWebElement"/> that matches the locator string.</returns>
-        </member>
-        <member name="M:Selenium.Internal.SeleniumEmulation.AddLocationStrategy.UserLookupStrategy.#ctor(System.String)">
-            <summary>
-            Initializes a new instance of the <see cref="T:Selenium.Internal.SeleniumEmulation.AddLocationStrategy.UserLookupStrategy"/> class.
-            </summary>
-            <param name="functionDefinition">A JavaScript function that returns a web element.</param>
-        </member>
-        <member name="M:Selenium.Internal.SeleniumEmulation.AddLocationStrategy.UserLookupStrategy.Find(OpenQA.Selenium.IWebDriver,System.String)">
-            <summary>
-            Finds an element on the page based on a user-defined JavaScript function.
-            </summary>
-            <param name="driver">The <see cref="T:OpenQA.Selenium.IWebDriver"/> object driving the browser.</param>
-            <param name="use">The script to use to find the element.</param>
-            <returns>An <see cref="T:OpenQA.Selenium.IWebElement"/> that matches the criteria.</returns>
-        </member>
         <member name="T:Selenium.Internal.SeleniumEmulation.AddSelection">
             <summary>
             Defines the command for the addSelection keyword.
             </summary>
         </member>
-        <member name="M:Selenium.Internal.SeleniumEmulation.AddSelection.#ctor(Selenium.Internal.SeleniumEmulation.ElementFinder,Selenium.Internal.SeleniumEmulation.SeleniumOptionSelector)">
+        <member name="M:Selenium.Internal.SeleniumEmulation.AddSelection.#ctor(Selenium.Internal.SeleniumEmulation.ElementFinder)">
             <summary>
             Initializes a new instance of the <see cref="T:Selenium.Internal.SeleniumEmulation.AddSelection"/> class.
             </summary>
             <param name="elementFinder">The <see cref="T:Selenium.Internal.SeleniumEmulation.ElementFinder"/> to use in finding elements.</param>
-            <param name="optionSelector">A <see cref="T:Selenium.Internal.SeleniumEmulation.SeleniumOptionSelector"/> to use in selecting the option.</param>
         </member>
         <member name="M:Selenium.Internal.SeleniumEmulation.AddSelection.HandleSeleneseCommand(OpenQA.Selenium.IWebDriver,System.String,System.String)">
             <summary>
@@ -451,6 +418,53 @@
             <param name="value">The second parameter to the command.</param>
             <returns>The result of the command.</returns>
         </member>
+        <member name="T:Selenium.Internal.SeleniumEmulation.CompoundMutator">
+            <summary>
+            A class that collects together a group of other mutators and applies
+            them in the order they've been added to any script that needs modification.
+            Any JS to be executed will be wrapped in an "eval" block so that a
+            meaningful return value can be created.
+            </summary>
+        </member>
+        <member name="T:Selenium.Internal.SeleniumEmulation.IScriptMutator">
+            <summary>
+            A mechanism for taking a single method from a script meant for Selenium Core
+            and converting to something that webdriver can evaluate.
+            </summary>
+        </member>
+        <member name="M:Selenium.Internal.SeleniumEmulation.IScriptMutator.Mutate(System.String,System.Text.StringBuilder)">
+            <summary>
+            Mutate a script. The original, unmodified script is used to generate a
+            script on the StringBuilder, the "ToString" method of which should be
+            used to get the result. We make use of a StringBuilder rather than a
+            normal String so that we can efficiently chain mutators.
+            </summary>
+            <param name="script">The original script.</param>
+            <param name="outputTo">The mutated script</param>
+        </member>
+        <member name="M:Selenium.Internal.SeleniumEmulation.CompoundMutator.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Selenium.Internal.SeleniumEmulation.CompoundMutator"/> class.
+            </summary>
+            <param name="basePath">The URL to use in mutating the script.</param>
+        </member>
+        <member name="M:Selenium.Internal.SeleniumEmulation.CompoundMutator.Mutate(System.String,System.Text.StringBuilder)">
+            <summary>
+            Mutate a script so by calling all component mutators on it in turn.
+            The original, unmodified script is used to generate a script
+            on the StringBuilder, the "ToString" method of which should be
+            used to get the result. We make use of a StringBuilder rather than a
+            normal String so that we can efficiently chain mutators.
+            </summary>
+            <param name="script">The original script.</param>
+            <param name="outputTo">The mutated script.</param>
+        </member>
+        <member name="M:Selenium.Internal.SeleniumEmulation.CompoundMutator.AddMutator(Selenium.Internal.SeleniumEmulation.IScriptMutator)">
+            <summary>
+            Adds a mutator to the collection
+            </summary>
+            <param name="mutator">The <see cref="T:Selenium.Internal.SeleniumEmulation.IScriptMutator"/> to add.</param>
+        </member>
         <member name="T:Selenium.Internal.SeleniumEmulation.ControlKeyDown">
             <summary>
             Defines the command for the controlKeyDown keyword.
@@ -598,22 +612,10 @@
             Provides methods for finding elements.
             </summary>
         </member>
-        <member name="F:Selenium.Internal.SeleniumEmulation.ElementFinder.StrategyPattern">
-            <summary>
-            A <see cref="T:System.Text.RegularExpressions.Regex"/> used to match element lookup patterns.
-            </summary>
-        </member>
         <member name="M:Selenium.Internal.SeleniumEmulation.ElementFinder.#ctor">
             <summary>
             Initializes a new instance of the <see cref="T:Selenium.Internal.SeleniumEmulation.ElementFinder"/> class.
             </summary>
-        </member>
-        <member name="M:Selenium.Internal.SeleniumEmulation.ElementFinder.DetermineLocator(System.String)">
-            <summary>
-            Gets the locator value to use in finding elements.
-            </summary>
-            <param name="locator">The locator string.</param>
-            <returns>The value to use in finding elements.</returns>
         </member>
         <member name="M:Selenium.Internal.SeleniumEmulation.ElementFinder.FindElement(OpenQA.Selenium.IWebDriver,System.String)">
             <summary>
@@ -629,25 +631,25 @@
             Gets the strategy used to find elements.
             </summary>
             <param name="locator">The locator string that defines the strategy.</param>
-            <returns>An <see cref="T:Selenium.ILookupStrategy"/> object used in finding elements.</returns>
+            <returns>A string used in finding elements.</returns>
         </member>
-        <member name="M:Selenium.Internal.SeleniumEmulation.ElementFinder.AddStrategy(System.String,Selenium.ILookupStrategy)">
+        <member name="M:Selenium.Internal.SeleniumEmulation.ElementFinder.AddStrategy(System.String,System.String)">
             <summary>
             Adds a strategy to the dictionary of known lookup strategies.
             </summary>
             <param name="strategyName">The name used to identify the lookup strategy.</param>
-            <param name="strategy">The <see cref="T:Selenium.ILookupStrategy"/> used in finding elements.</param>
+            <param name="strategy">The string used in finding elements.</param>
         </member>
         <member name="T:Selenium.Internal.SeleniumEmulation.FindFirstSelectedOptionProperty">
             <summary>
             Defines the command for the findFirstSelectedOptionProperty keyword.
             </summary>
         </member>
-        <member name="M:Selenium.Internal.SeleniumEmulation.FindFirstSelectedOptionProperty.#ctor(Selenium.Internal.SeleniumEmulation.SeleniumOptionSelector,Selenium.Internal.SeleniumEmulation.SeleniumOptionSelector.Property)">
+        <member name="M:Selenium.Internal.SeleniumEmulation.FindFirstSelectedOptionProperty.#ctor(Selenium.Internal.SeleniumEmulation.ElementFinder,System.String)">
             <summary>
             Initializes a new instance of the <see cref="T:Selenium.Internal.SeleniumEmulation.FindFirstSelectedOptionProperty"/> class.
             </summary>
-            <param name="optionSelect">A <see cref="T:Selenium.Internal.SeleniumEmulation.SeleniumOptionSelector"/> that gets options from the element.</param>
+            <param name="finder">A <see cref="T:Selenium.Internal.SeleniumEmulation.ElementFinder"/> that gets options from the element.</param>
             <param name="property">The property on which to select the options.</param>
         </member>
         <member name="M:Selenium.Internal.SeleniumEmulation.FindFirstSelectedOptionProperty.HandleSeleneseCommand(OpenQA.Selenium.IWebDriver,System.String,System.String)">
@@ -664,11 +666,11 @@
             Defines the command for the findSelectedOptionProperties keyword.
             </summary>
         </member>
-        <member name="M:Selenium.Internal.SeleniumEmulation.FindSelectedOptionProperties.#ctor(Selenium.Internal.SeleniumEmulation.SeleniumOptionSelector,Selenium.Internal.SeleniumEmulation.SeleniumOptionSelector.Property)">
+        <member name="M:Selenium.Internal.SeleniumEmulation.FindSelectedOptionProperties.#ctor(Selenium.Internal.SeleniumEmulation.ElementFinder,System.String)">
             <summary>
             Initializes a new instance of the <see cref="T:Selenium.Internal.SeleniumEmulation.FindSelectedOptionProperties"/> class.
             </summary>
-            <param name="optionSelect">A <see cref="T:Selenium.Internal.SeleniumEmulation.SeleniumOptionSelector"/> that gets options from the element.</param>
+            <param name="finder">A <see cref="T:Selenium.Internal.SeleniumEmulation.ElementFinder"/> that gets options from the element.</param>
             <param name="property">The property on which to select the options.</param>
         </member>
         <member name="M:Selenium.Internal.SeleniumEmulation.FindSelectedOptionProperties.HandleSeleneseCommand(OpenQA.Selenium.IWebDriver,System.String,System.String)">
@@ -720,6 +722,30 @@
             <param name="locator">The first parameter to the command.</param>
             <param name="value">The second parameter to the command.</param>
             <returns>The result of the command.</returns>
+        </member>
+        <member name="T:Selenium.Internal.SeleniumEmulation.FunctionDeclaration">
+            <summary>
+            A mechanism for taking a function declaration from a script meant for Selenium Core
+            and converting to something that webdriver can evaluate.
+            </summary>
+        </member>
+        <member name="M:Selenium.Internal.SeleniumEmulation.FunctionDeclaration.#ctor(System.String,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Selenium.Internal.SeleniumEmulation.FunctionDeclaration"/> class.
+            </summary>
+            <param name="raw">The raw term to mutate.</param>
+            <param name="result">The result to which to set the term.</param>
+        </member>
+        <member name="M:Selenium.Internal.SeleniumEmulation.FunctionDeclaration.Mutate(System.String,System.Text.StringBuilder)">
+            <summary>
+            Mutate a script so that function declarations have the correct scope.
+            The original, unmodified script is used to generate a script
+            on the StringBuilder, the "ToString" method of which should be
+            used to get the result. We make use of a StringBuilder rather than a
+            normal String so that we can efficiently chain mutators.
+            </summary>
+            <param name="script">The original script.</param>
+            <param name="outputTo">The mutated script.</param>
         </member>
         <member name="T:Selenium.Internal.SeleniumEmulation.GetAlert">
             <summary>
@@ -1012,13 +1038,27 @@
             Defines the command for the getEval keyword.
             </summary>
         </member>
-        <member name="M:Selenium.Internal.SeleniumEmulation.GetEval.#ctor(System.Uri)">
+        <member name="M:Selenium.Internal.SeleniumEmulation.GetEval.#ctor(Selenium.Internal.SeleniumEmulation.IScriptMutator)">
             <summary>
             Initializes a new instance of the <see cref="T:Selenium.Internal.SeleniumEmulation.GetEval"/> class.
             </summary>
-            <param name="baseUrl">The <see cref="T:System.Uri"/> used to replace the base URL in the script being run.</param>
+            <param name="mutator">The <see cref="T:Selenium.Internal.SeleniumEmulation.IScriptMutator"/> used to replace terms in the script being run.</param>
         </member>
         <member name="M:Selenium.Internal.SeleniumEmulation.GetEval.HandleSeleneseCommand(OpenQA.Selenium.IWebDriver,System.String,System.String)">
+            <summary>
+            Handles the command.
+            </summary>
+            <param name="driver">The driver used to execute the command.</param>
+            <param name="locator">The first parameter to the command.</param>
+            <param name="value">The second parameter to the command.</param>
+            <returns>The result of the command.</returns>
+        </member>
+        <member name="T:Selenium.Internal.SeleniumEmulation.GetExpression">
+            <summary>
+            Defines the command for the getExpression keyword.
+            </summary>
+        </member>
+        <member name="M:Selenium.Internal.SeleniumEmulation.GetExpression.HandleSeleneseCommand(OpenQA.Selenium.IWebDriver,System.String,System.String)">
             <summary>
             Handles the command.
             </summary>
@@ -1060,11 +1100,11 @@
             Defines the command for the getSelectOptions keyword.
             </summary>
         </member>
-        <member name="M:Selenium.Internal.SeleniumEmulation.GetSelectOptions.#ctor(Selenium.Internal.SeleniumEmulation.SeleniumOptionSelector)">
+        <member name="M:Selenium.Internal.SeleniumEmulation.GetSelectOptions.#ctor(Selenium.Internal.SeleniumEmulation.ElementFinder)">
             <summary>
             Initializes a new instance of the <see cref="T:Selenium.Internal.SeleniumEmulation.GetSelectOptions"/> class.
             </summary>
-            <param name="optionsSelector">A <see cref="T:Selenium.Internal.SeleniumEmulation.SeleniumOptionSelector"/> used in getting the select options.</param>
+            <param name="finder">A <see cref="T:Selenium.Internal.SeleniumEmulation.ElementFinder"/> used in getting the select options.</param>
         </member>
         <member name="M:Selenium.Internal.SeleniumEmulation.GetSelectOptions.HandleSeleneseCommand(OpenQA.Selenium.IWebDriver,System.String,System.String)">
             <summary>
@@ -1209,6 +1249,19 @@
             <param name="allElements">A list of all elements to be filtered.</param>
             <param name="filterValue">The filter string containing the criteria on which to filter.</param>
             <returns>A list of element, filtered by the criteria.</returns>
+        </member>
+        <member name="T:Selenium.ILookupStrategy">
+            <summary>
+            Provides methods for finding elements.
+            </summary>
+        </member>
+        <member name="M:Selenium.ILookupStrategy.Find(OpenQA.Selenium.IWebDriver,System.String)">
+            <summary>
+            Finds an element.
+            </summary>
+            <param name="driver">The <see cref="T:OpenQA.Selenium.IWebDriver"/> to use in finding the element.</param>
+            <param name="use">The locator string to use.</param>
+            <returns>An <see cref="T:OpenQA.Selenium.IWebElement"/> that matches the locator string.</returns>
         </member>
         <member name="T:Selenium.Internal.SeleniumEmulation.IOptionSelectStrategy">
             <summary>
@@ -1364,11 +1417,10 @@
             Defines the command for the isSomethingSelected keyword.
             </summary>
         </member>
-        <member name="M:Selenium.Internal.SeleniumEmulation.IsSomethingSelected.#ctor(Selenium.Internal.SeleniumEmulation.SeleniumOptionSelector)">
+        <member name="M:Selenium.Internal.SeleniumEmulation.IsSomethingSelected.#ctor">
             <summary>
             Initializes a new instance of the <see cref="T:Selenium.Internal.SeleniumEmulation.IsSomethingSelected"/> class.
             </summary>
-            <param name="optionSelector">A <see cref="T:Selenium.Internal.SeleniumEmulation.SeleniumOptionSelector"/> used to get options in the select element.</param>
         </member>
         <member name="M:Selenium.Internal.SeleniumEmulation.IsSomethingSelected.HandleSeleneseCommand(OpenQA.Selenium.IWebDriver,System.String,System.String)">
             <summary>
@@ -1382,11 +1434,6 @@
         <member name="T:Selenium.Internal.SeleniumEmulation.IsTextPresent">
             <summary>
             Defines the command for the isTextPresent keyword.
-            </summary>
-        </member>
-        <member name="M:Selenium.Internal.SeleniumEmulation.IsTextPresent.#ctor">
-            <summary>
-            Initializes a new instance of the <see cref="T:Selenium.Internal.SeleniumEmulation.IsTextPresent"/> class.
             </summary>
         </member>
         <member name="M:Selenium.Internal.SeleniumEmulation.IsTextPresent.HandleSeleneseCommand(OpenQA.Selenium.IWebDriver,System.String,System.String)">
@@ -1445,7 +1492,7 @@
             <param name="element">An <see cref="T:OpenQA.Selenium.IWebElement"/> used as an argument to the JavaScript function.</param>
             <param name="values">An array of values containing additional arguments to the function.</param>
         </member>
-        <member name="M:Selenium.Internal.SeleniumEmulation.JavaScriptLibrary.CallEmbeddedHtmlUtils(OpenQA.Selenium.IWebDriver,System.String,OpenQA.Selenium.IWebElement,System.Object[])">
+        <member name="M:Selenium.Internal.SeleniumEmulation.JavaScriptLibrary.CallEmbeddedHtmlUtilities(OpenQA.Selenium.IWebDriver,System.String,OpenQA.Selenium.IWebElement,System.Object[])">
             <summary>
             Calls the embedded HTML utilities library in a web page.
             </summary>
@@ -1463,6 +1510,13 @@
             <param name="script">The script to run.</param>
             <param name="args">An array of values containing additional arguments to the function.</param>
             <returns>The result of the script</returns>
+        </member>
+        <member name="M:Selenium.Internal.SeleniumEmulation.JavaScriptLibrary.GetSeleniumScript(System.String)">
+            <summary>
+            Loads the named Selenium script and returns it wrapped in an anonymous function.
+            </summary>
+            <param name="libraryName">The script to load.</param>
+            <returns>The loaded script wrapped in an anonymous function.</returns>
         </member>
         <member name="T:Selenium.Internal.SeleniumEmulation.KeyEvent">
             <summary>
@@ -1692,12 +1746,11 @@
             Defines the command for the removeSelection keyword.
             </summary>
         </member>
-        <member name="M:Selenium.Internal.SeleniumEmulation.RemoveSelection.#ctor(Selenium.Internal.SeleniumEmulation.ElementFinder,Selenium.Internal.SeleniumEmulation.SeleniumOptionSelector)">
+        <member name="M:Selenium.Internal.SeleniumEmulation.RemoveSelection.#ctor(Selenium.Internal.SeleniumEmulation.ElementFinder)">
             <summary>
             Initializes a new instance of the <see cref="T:Selenium.Internal.SeleniumEmulation.RemoveSelection"/> class.
             </summary>
             <param name="elementFinder">An <see cref="T:Selenium.Internal.SeleniumEmulation.ElementFinder"/> used to find the element on which to execute the command.</param>
-            <param name="optionSelector">The <see cref="T:Selenium.Internal.SeleniumEmulation.SeleniumOptionSelector"/> used to select the object.</param>
         </member>
         <member name="M:Selenium.Internal.SeleniumEmulation.RemoveSelection.HandleSeleneseCommand(OpenQA.Selenium.IWebDriver,System.String,System.String)">
             <summary>
@@ -1712,6 +1765,13 @@
             <summary>
             Defines the command for the runScript keyword.
             </summary>
+        </member>
+        <member name="M:Selenium.Internal.SeleniumEmulation.RunScript.#ctor(Selenium.Internal.SeleniumEmulation.IScriptMutator)">
+            <summary>
+            Initializes a new instance of the RunScript class.
+            </summary>
+            <param name="mutator">The <see cref="T:Selenium.Internal.SeleniumEmulation.IScriptMutator"/> object to modify the 
+            script so that WebDriver can use it.</param>
         </member>
         <member name="M:Selenium.Internal.SeleniumEmulation.RunScript.HandleSeleneseCommand(OpenQA.Selenium.IWebDriver,System.String,System.String)">
             <summary>
@@ -1747,12 +1807,12 @@
             Defines the command for the selectOption keyword.
             </summary>
         </member>
-        <member name="M:Selenium.Internal.SeleniumEmulation.SelectOption.#ctor(Selenium.Internal.AlertOverride,Selenium.Internal.SeleniumEmulation.SeleniumOptionSelector)">
+        <member name="M:Selenium.Internal.SeleniumEmulation.SelectOption.#ctor(Selenium.Internal.AlertOverride,Selenium.Internal.SeleniumEmulation.ElementFinder)">
             <summary>
             Initializes a new instance of the <see cref="T:Selenium.Internal.SeleniumEmulation.SelectOption"/> class.
             </summary>
             <param name="alertOverride">An <see cref="T:Selenium.Internal.AlertOverride"/> object used to handle JavaScript alerts.</param>
-            <param name="optionSelector">The <see cref="T:Selenium.Internal.SeleniumEmulation.SeleniumOptionSelector"/> used in selecting the option.</param>
+            <param name="finder">The <see cref="T:Selenium.Internal.SeleniumEmulation.ElementFinder"/> used in selecting the option.</param>
         </member>
         <member name="M:Selenium.Internal.SeleniumEmulation.SelectOption.HandleSeleneseCommand(OpenQA.Selenium.IWebDriver,System.String,System.String)">
             <summary>
@@ -1783,67 +1843,74 @@
             <param name="value">The second parameter to the command.</param>
             <returns>The result of the command.</returns>
         </member>
-        <member name="T:Selenium.Internal.SeleniumEmulation.SeleniumOptionSelector">
+        <member name="T:Selenium.Internal.SeleniumEmulation.SeleniumMutator">
             <summary>
-            Provides methods for selecting options.
+            A mechanism for taking a script meant for Selenium Core
+            and converting to something that webdriver can evaluate.
             </summary>
         </member>
-        <member name="M:Selenium.Internal.SeleniumEmulation.SeleniumOptionSelector.#ctor(Selenium.Internal.SeleniumEmulation.ElementFinder)">
+        <member name="M:Selenium.Internal.SeleniumEmulation.SeleniumMutator.#ctor(System.String,System.String)">
             <summary>
-            Initializes a new instance of the <see cref="T:Selenium.Internal.SeleniumEmulation.SeleniumOptionSelector"/> class.
+            Initializes a new instance of the <see cref="T:Selenium.Internal.SeleniumEmulation.SeleniumMutator"/> class.
             </summary>
-            <param name="finder">An <see cref="T:Selenium.Internal.SeleniumEmulation.ElementFinder"/> used in finding the options.</param>
+            <param name="method">The name of the atom to mutate.</param>
+            <param name="atom">The source code of the atom to execute.</param>
         </member>
-        <member name="M:Selenium.Internal.SeleniumEmulation.SeleniumOptionSelector.IsMultiSelect(OpenQA.Selenium.IWebElement)">
+        <member name="M:Selenium.Internal.SeleniumEmulation.SeleniumMutator.Mutate(System.String,System.Text.StringBuilder)">
             <summary>
-            Gets a value indicating whether a select element allows multiple selections.
+            Mutate an atom script so that it has the correct scope.
+            The original, unmodified script is used to generate a script
+            on the StringBuilder, the "ToString" method of which should be
+            used to get the result. We make use of a StringBuilder rather than a
+            normal String so that we can efficiently chain mutators.
             </summary>
-            <param name="theSelect">The <see cref="T:OpenQA.Selenium.IWebElement"/> to check.</param>
-            <returns><see langword="true"/> if the select element supports multiple selections; otherwise, <see langword="false"/>.</returns>
+            <param name="script">The original script.</param>
+            <param name="outputTo">The mutated script.</param>
         </member>
-        <member name="M:Selenium.Internal.SeleniumEmulation.SeleniumOptionSelector.GetOptions(OpenQA.Selenium.IWebDriver,System.String,Selenium.Internal.SeleniumEmulation.SeleniumOptionSelector.Property,System.Boolean)">
+        <member name="T:Selenium.Internal.SeleniumEmulation.SeleniumSelect">
             <summary>
-            Gets the list of options.
-            </summary>
-            <param name="driver">The <see cref="T:OpenQA.Selenium.IWebDriver"/> used to find the options.</param>
-            <param name="selectLocator">A locator used by find the containing select element.</param>
-            <param name="property">A <see cref="T:Selenium.Internal.SeleniumEmulation.SeleniumOptionSelector.Property"/> detemining how to find the options.</param>
-            <param name="fetchAll"><see langword="true"/> to find all options; otherwise <see langword="false"/>.</param>
-            <returns>A list of strings describing the options.</returns>
-        </member>
-        <member name="M:Selenium.Internal.SeleniumEmulation.SeleniumOptionSelector.Select(OpenQA.Selenium.IWebDriver,System.String,System.String,System.Boolean,System.Boolean)">
-            <summary>
-            Selects the specified options.
-            </summary>
-            <param name="driver">The <see cref="T:OpenQA.Selenium.IWebDriver"/> used to find the options.</param>
-            <param name="selectLocator">A locator used by find the containing select element.</param>
-            <param name="optionLocator">A locator used to find the options to select in the select element.</param>
-            <param name="setSelected"><see langword="true"/> to select the options; <see langword="false"/> to unselect.</param>
-            <param name="onlyOneOption"><see langword="true"/> to select only the first option found; <see langword="false"/> to select all options.</param>
-        </member>
-        <member name="T:Selenium.Internal.SeleniumEmulation.SeleniumOptionSelector.Property">
-            <summary>
-            Describes the property to use in finding the options within the select element.
+            Provides a set of methods designed to help selecting options in select lists.
             </summary>
         </member>
-        <member name="F:Selenium.Internal.SeleniumEmulation.SeleniumOptionSelector.Property.ID">
+        <member name="M:Selenium.Internal.SeleniumEmulation.SeleniumSelect.#ctor(Selenium.Internal.SeleniumEmulation.ElementFinder,OpenQA.Selenium.IWebDriver,System.String)">
             <summary>
-            Find the option by its ID.
+            Initializes a new instance of the <see cref="T:Selenium.Internal.SeleniumEmulation.SeleniumSelect"/> class.
+            </summary>
+            <param name="finder">An <see cref="T:Selenium.Internal.SeleniumEmulation.ElementFinder"/> used in finding options.</param>
+            <param name="driver">An <see cref="T:OpenQA.Selenium.IWebDriver"/> used to drive the browser.</param>
+            <param name="locator">A locator used to find options.</param>
+        </member>
+        <member name="M:Selenium.Internal.SeleniumEmulation.SeleniumSelect.SetSelected(System.String)">
+            <summary>
+            Selects the indicated option.
+            </summary>
+            <param name="optionLocator">The locator to use to find the option to select.</param>
+        </member>
+        <member name="M:Selenium.Internal.SeleniumEmulation.SeleniumSelect.AddSelection(System.String)">
+            <summary>
+            Adds a selection to the currently selected options.
+            </summary>
+            <param name="optionLocator">The locator to use to find the option to select.</param>
+        </member>
+        <member name="M:Selenium.Internal.SeleniumEmulation.SeleniumSelect.RemoveSelection(System.String)">
+            <summary>
+            Deselects a currently selected option.
+            </summary>
+            <param name="optionLocator">The locator to use to find the option to select.</param>
+        </member>
+        <member name="P:Selenium.Internal.SeleniumEmulation.SeleniumSelect.AllOptions">
+            <summary>
+            Gets a collection of elements representing all options for the select list.
             </summary>
         </member>
-        <member name="F:Selenium.Internal.SeleniumEmulation.SeleniumOptionSelector.Property.Index">
+        <member name="P:Selenium.Internal.SeleniumEmulation.SeleniumSelect.SelectedOptions">
             <summary>
-            Find the option by its index.
+            Gets a collection of elements representing all currently selected options for the select list.
             </summary>
         </member>
-        <member name="F:Selenium.Internal.SeleniumEmulation.SeleniumOptionSelector.Property.Text">
+        <member name="P:Selenium.Internal.SeleniumEmulation.SeleniumSelect.IsMultiple">
             <summary>
-            Find the option by its text.
-            </summary>
-        </member>
-        <member name="F:Selenium.Internal.SeleniumEmulation.SeleniumOptionSelector.Property.Value">
-            <summary>
-            Find the option by its value.
+            Gets a value indicating whether the select list supports multiple selections.
             </summary>
         </member>
         <member name="T:Selenium.Internal.SeleniumEmulation.SetNextConfirmationState">
@@ -2009,6 +2076,30 @@
             <param name="value">The second parameter to the command.</param>
             <returns>The result of the command.</returns>
         </member>
+        <member name="T:Selenium.Internal.SeleniumEmulation.VariableDeclaration">
+            <summary>
+            A mechanism for taking a variable declaration from a script meant for Selenium Core
+            and converting to something that webdriver can evaluate.
+            </summary>
+        </member>
+        <member name="M:Selenium.Internal.SeleniumEmulation.VariableDeclaration.#ctor(System.String,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Selenium.Internal.SeleniumEmulation.VariableDeclaration"/> class.
+            </summary>
+            <param name="raw">The raw term to mutate.</param>
+            <param name="declaration">The declaration to which to set the term.</param>
+        </member>
+        <member name="M:Selenium.Internal.SeleniumEmulation.VariableDeclaration.Mutate(System.String,System.Text.StringBuilder)">
+            <summary>
+            Mutate a script so that variable declarations have the correct scope.
+            The original, unmodified script is used to generate a script
+            on the StringBuilder, the "ToString" method of which should be
+            used to get the result. We make use of a StringBuilder rather than a
+            normal String so that we can efficiently chain mutators.
+            </summary>
+            <param name="script">The original script.</param>
+            <param name="outputTo">The mutated script.</param>
+        </member>
         <member name="T:Selenium.Internal.SeleniumEmulation.Waiter">
             <summary>
             Provides methods to wait for a condition to be true.
@@ -2077,6 +2168,13 @@
             Defines the command for the waitForCondition keyword.
             </summary>
         </member>
+        <member name="M:Selenium.Internal.SeleniumEmulation.WaitForCondition.#ctor(Selenium.Internal.SeleniumEmulation.IScriptMutator)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Selenium.Internal.SeleniumEmulation.WaitForCondition"/> class.
+            </summary>
+            <param name="mutator">An <see cref="T:Selenium.Internal.SeleniumEmulation.IScriptMutator"/> used to modify the script 
+            into something WebDriver can parse.</param>
+        </member>
         <member name="M:Selenium.Internal.SeleniumEmulation.WaitForCondition.HandleSeleneseCommand(OpenQA.Selenium.IWebDriver,System.String,System.String)">
             <summary>
             Handles the command.
@@ -2119,21 +2217,37 @@
             <param name="value">The second parameter to the command.</param>
             <returns>The result of the command.</returns>
         </member>
-        <member name="T:Selenium.Internal.SeleniumEmulation.WaitForPageToLoad.PageLoadWaiter">
+        <member name="T:Selenium.Internal.SeleniumEmulation.WaitForPageToLoad.ReadyStateWaiter">
             <summary>
-            Provides methods to wait for a page to load.
+            Provides methods to wait for the page ready state to be 'complete'.
             </summary>
         </member>
-        <member name="M:Selenium.Internal.SeleniumEmulation.WaitForPageToLoad.PageLoadWaiter.#ctor(OpenQA.Selenium.IWebDriver,System.Int32)">
+        <member name="M:Selenium.Internal.SeleniumEmulation.WaitForPageToLoad.ReadyStateWaiter.#ctor(OpenQA.Selenium.IWebDriver)">
             <summary>
-            Initializes a new instance of the <see cref="T:Selenium.Internal.SeleniumEmulation.WaitForPageToLoad.PageLoadWaiter"/> class.
+            Initializes a new instance of the <see cref="T:Selenium.Internal.SeleniumEmulation.WaitForPageToLoad.ReadyStateWaiter"/> class.
             </summary>
             <param name="driver">The <see cref="T:OpenQA.Selenium.IWebDriver"/> object to use to wait.</param>
-            <param name="timeToWaitAfterPageLoad">The time to wait after the page loads.</param>
         </member>
-        <member name="M:Selenium.Internal.SeleniumEmulation.WaitForPageToLoad.PageLoadWaiter.Until">
+        <member name="M:Selenium.Internal.SeleniumEmulation.WaitForPageToLoad.ReadyStateWaiter.Until">
             <summary>
-            The function called to wait for the condition
+            The function called to wait for the ready state to be 'complete'.
+            </summary>
+            <returns>Returns true when it's time to stop waiting.</returns>
+        </member>
+        <member name="T:Selenium.Internal.SeleniumEmulation.WaitForPageToLoad.LengthCheckingWaiter">
+            <summary>
+            Provides methods to wait for the page body has a length other than zero.
+            </summary>
+        </member>
+        <member name="M:Selenium.Internal.SeleniumEmulation.WaitForPageToLoad.LengthCheckingWaiter.#ctor(OpenQA.Selenium.IWebDriver)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Selenium.Internal.SeleniumEmulation.WaitForPageToLoad.LengthCheckingWaiter"/> class.
+            </summary>
+            <param name="driver">The <see cref="T:OpenQA.Selenium.IWebDriver"/> object to use to wait.</param>
+        </member>
+        <member name="M:Selenium.Internal.SeleniumEmulation.WaitForPageToLoad.LengthCheckingWaiter.Until">
+            <summary>
+            The function called to wait for the body text length to be greater than zero.
             </summary>
             <returns>Returns true when it's time to stop waiting.</returns>
         </member>
@@ -2246,323 +2360,6 @@
             be thrown.
             </para>
             </remarks>
-        </member>
-        <member name="T:Selenium.Internal.SeleniumEmulation.FilterFunctions.BaseFilterFunction">
-            <summary>
-            Defines a function for filtering element lists.
-            </summary>
-        </member>
-        <member name="M:Selenium.Internal.SeleniumEmulation.FilterFunctions.BaseFilterFunction.FilterElements(System.Collections.Generic.IList{OpenQA.Selenium.IWebElement},System.String)">
-            <summary>
-            Filters a list of elements by the specified value.
-            </summary>
-            <param name="allElements">A list of <see cref="T:OpenQA.Selenium.IWebElement"/> objects to be filtered.</param>
-            <param name="filterValue">The value to filter on.</param>
-            <returns>The filtered list of <see cref="T:OpenQA.Selenium.IWebElement"/> objects.</returns>
-        </member>
-        <member name="M:Selenium.Internal.SeleniumEmulation.FilterFunctions.BaseFilterFunction.ShouldAdd(OpenQA.Selenium.IWebElement,System.String)">
-            <summary>
-            Gets a value indicating whether an element meets the filter criteria.
-            </summary>
-            <param name="element">The candidate <see cref="T:OpenQA.Selenium.IWebElement"/> to be evaluated.</param>
-            <param name="filterValue">The value which defines the filter.</param>
-            <returns><see langword="true"/> if the element should be added to the filtered list; <see langword="false"/> if not.</returns>
-        </member>
-        <member name="T:Selenium.Internal.SeleniumEmulation.FilterFunctions.IndexFilterFunction">
-            <summary>
-            Defines a function for filtering element lists by index.
-            </summary>
-        </member>
-        <member name="M:Selenium.Internal.SeleniumEmulation.FilterFunctions.IndexFilterFunction.FilterElements(System.Collections.Generic.IList{OpenQA.Selenium.IWebElement},System.String)">
-            <summary>
-            Filters a list of elements by the specified value.
-            </summary>
-            <param name="allElements">A list of <see cref="T:OpenQA.Selenium.IWebElement"/> objects to be filtered.</param>
-            <param name="filterValue">The value to filter on.</param>
-            <returns>The filtered list of <see cref="T:OpenQA.Selenium.IWebElement"/> objects.</returns>
-        </member>
-        <member name="T:Selenium.Internal.SeleniumEmulation.FilterFunctions.NameFilterFunction">
-            <summary>
-            Defines a function for filtering element lists by element name.
-            </summary>
-        </member>
-        <member name="M:Selenium.Internal.SeleniumEmulation.FilterFunctions.NameFilterFunction.ShouldAdd(OpenQA.Selenium.IWebElement,System.String)">
-            <summary>
-            Gets a value indicating whether an element meets the filter criteria.
-            </summary>
-            <param name="element">The candidate <see cref="T:OpenQA.Selenium.IWebElement"/> to be evaluated.</param>
-            <param name="filterValue">The value which should match the element name.</param>
-            <returns><see langword="true"/> if the element should be added to the filtered list; <see langword="false"/> if not.</returns>
-        </member>
-        <member name="T:Selenium.Internal.SeleniumEmulation.FilterFunctions.ValueFilterFunction">
-            <summary>
-            Defines a function for filtering element lists by element value.
-            </summary>
-        </member>
-        <member name="M:Selenium.Internal.SeleniumEmulation.FilterFunctions.ValueFilterFunction.ShouldAdd(OpenQA.Selenium.IWebElement,System.String)">
-            <summary>
-            Gets a value indicating whether an element meets the filter criteria.
-            </summary>
-            <param name="element">The candidate <see cref="T:OpenQA.Selenium.IWebElement"/> to be evaluated.</param>
-            <param name="filterValue">The value which should match the element value.</param>
-            <returns><see langword="true"/> if the element should be added to the filtered list; <see langword="false"/> if not.</returns>
-        </member>
-        <member name="T:Selenium.AltLookupStrategy">
-            <summary>
-            Defines a strategy to look up elements based on the alt text.
-            </summary>
-        </member>
-        <member name="M:Selenium.AltLookupStrategy.Find(OpenQA.Selenium.IWebDriver,System.String)">
-            <summary>
-            Finds an element using the alt text.
-            </summary>
-            <param name="driver">The <see cref="T:OpenQA.Selenium.IWebDriver"/> to use in finding the element.</param>
-            <param name="use">The locator string to use.</param>
-            <returns>An <see cref="T:OpenQA.Selenium.IWebElement"/> that matches the locator string.</returns>
-        </member>
-        <member name="T:Selenium.ClassLookupStrategy">
-            <summary>
-            Defines a strategy to look up elements based on the class name.
-            </summary>
-        </member>
-        <member name="M:Selenium.ClassLookupStrategy.Find(OpenQA.Selenium.IWebDriver,System.String)">
-            <summary>
-            Finds an element using the class name.
-            </summary>
-            <param name="driver">The <see cref="T:OpenQA.Selenium.IWebDriver"/> to use in finding the element.</param>
-            <param name="use">The locator string to use.</param>
-            <returns>An <see cref="T:OpenQA.Selenium.IWebElement"/> that matches the locator string.</returns>
-        </member>
-        <member name="T:Selenium.CssSelectorLookupStrategy">
-            <summary>
-            Defines a strategy to look up elements based on a CSS selector.
-            </summary>
-        </member>
-        <member name="M:Selenium.CssSelectorLookupStrategy.Find(OpenQA.Selenium.IWebDriver,System.String)">
-            <summary>
-            Finds an element using CSS Selectors.
-            </summary>
-            <param name="driver">The <see cref="T:OpenQA.Selenium.IWebDriver"/> to use in finding the element.</param>
-            <param name="use">The locator string to use.</param>
-            <returns>An <see cref="T:OpenQA.Selenium.IWebElement"/> that matches the locator string.</returns>
-        </member>
-        <member name="T:Selenium.DomTraversalLookupStrategy">
-            <summary>
-            Defines a strategy to look up elements based on traversing the DOM.
-            </summary>
-        </member>
-        <member name="M:Selenium.DomTraversalLookupStrategy.Find(OpenQA.Selenium.IWebDriver,System.String)">
-            <summary>
-            Finds an element by traversing the DOM.
-            </summary>
-            <param name="driver">The <see cref="T:OpenQA.Selenium.IWebDriver"/> to use in finding the element.</param>
-            <param name="use">The locator string to use.</param>
-            <returns>An <see cref="T:OpenQA.Selenium.IWebElement"/> that matches the locator string.</returns>
-        </member>
-        <member name="T:Selenium.IdentifierLookupStrategy">
-            <summary>
-            Defines a strategy to look up elements based on the name and ID.
-            </summary>
-        </member>
-        <member name="M:Selenium.IdentifierLookupStrategy.Find(OpenQA.Selenium.IWebDriver,System.String)">
-            <summary>
-            Finds an element using the ID and name.
-            </summary>
-            <param name="driver">The <see cref="T:OpenQA.Selenium.IWebDriver"/> to use in finding the element.</param>
-            <param name="use">The locator string to use.</param>
-            <returns>An <see cref="T:OpenQA.Selenium.IWebElement"/> that matches the locator string.</returns>
-            <remarks>This method looks up elements first by ID, then by name.</remarks>
-        </member>
-        <member name="T:Selenium.IdLookupStrategy">
-            <summary>
-            Defines a strategy to look up elements based on the element ID.
-            </summary>
-        </member>
-        <member name="M:Selenium.IdLookupStrategy.Find(OpenQA.Selenium.IWebDriver,System.String)">
-            <summary>
-            Finds an element using the element ID.
-            </summary>
-            <param name="driver">The <see cref="T:OpenQA.Selenium.IWebDriver"/> to use in finding the element.</param>
-            <param name="use">The locator string to use.</param>
-            <returns>An <see cref="T:OpenQA.Selenium.IWebElement"/> that matches the locator string.</returns>
-        </member>
-        <member name="T:Selenium.ImplicitLookupStrategy">
-            <summary>
-            Defines a strategy to look up elements based on the appropriate method determined by the locator string.
-            </summary>
-        </member>
-        <member name="M:Selenium.ImplicitLookupStrategy.Find(OpenQA.Selenium.IWebDriver,System.String)">
-            <summary>
-            Finds an element using the appropriate method determined by the locator string.
-            </summary>
-            <param name="driver">The <see cref="T:OpenQA.Selenium.IWebDriver"/> to use in finding the element.</param>
-            <param name="use">The locator string to use.</param>
-            <returns>An <see cref="T:OpenQA.Selenium.IWebElement"/> that matches the locator string.</returns>
-            <remarks>If the locator string begins with "document.", this method uses the 
-            <see cref="T:Selenium.DomTraversalLookupStrategy">DOM traversal lookup strategy</see>.
-            If the locator string begins with "//", this method uses the <see cref="T:Selenium.XPathLookupStrategy">
-            XPath lookup strategy</see>. Otherwise, it uses the <see cref="T:Selenium.IdentifierLookupStrategy">
-            Identifier lookup strategy</see>, which looks up first by ID, then by name.</remarks>
-        </member>
-        <member name="T:Selenium.LinkLookupStrategy">
-            <summary>
-            Defines a strategy to look up elements based on the link text.
-            </summary>
-        </member>
-        <member name="M:Selenium.LinkLookupStrategy.Find(OpenQA.Selenium.IWebDriver,System.String)">
-            <summary>
-            Finds an element using the link text.
-            </summary>
-            <param name="driver">The <see cref="T:OpenQA.Selenium.IWebDriver"/> to use in finding the element.</param>
-            <param name="use">The locator string to use.</param>
-            <returns>An <see cref="T:OpenQA.Selenium.IWebElement"/> that matches the locator string.</returns>
-        </member>
-        <member name="T:Selenium.NameLookupStrategy">
-            <summary>
-            Defines a strategy to look up elements based on the element name.
-            </summary>
-        </member>
-        <member name="M:Selenium.NameLookupStrategy.#ctor">
-            <summary>
-            Initializes a new instance of the <see cref="T:Selenium.NameLookupStrategy"/> class.
-            </summary>
-        </member>
-        <member name="M:Selenium.NameLookupStrategy.Find(OpenQA.Selenium.IWebDriver,System.String)">
-            <summary>
-            Finds an element using the element name.
-            </summary>
-            <param name="driver">The <see cref="T:OpenQA.Selenium.IWebDriver"/> to use in finding the element.</param>
-            <param name="use">The locator string to use.</param>
-            <returns>An <see cref="T:OpenQA.Selenium.IWebElement"/> that matches the locator string.</returns>
-        </member>
-        <member name="T:Selenium.XPathLookupStrategy">
-            <summary>
-            Defines a strategy to look up elements based on the xpath to the element.
-            </summary>
-        </member>
-        <member name="M:Selenium.XPathLookupStrategy.Find(OpenQA.Selenium.IWebDriver,System.String)">
-            <summary>
-            Finds an element using the XPath to the element.
-            </summary>
-            <param name="driver">The <see cref="T:OpenQA.Selenium.IWebDriver"/> to use in finding the element.</param>
-            <param name="use">The locator string to use.</param>
-            <returns>An <see cref="T:OpenQA.Selenium.IWebElement"/> that matches the locator string.</returns>
-        </member>
-        <member name="T:Selenium.Internal.SeleniumEmulation.BaseOptionSelectStrategy">
-            <summary>
-            Provides methods for selecting options.
-            </summary>
-        </member>
-        <member name="M:Selenium.Internal.SeleniumEmulation.BaseOptionSelectStrategy.SelectOption(System.Collections.ObjectModel.ReadOnlyCollection{OpenQA.Selenium.IWebElement},System.String,System.Boolean,System.Boolean)">
-            <summary>
-            Selects an option in the specified list of options.
-            </summary>
-            <param name="fromOptions">The list of options from which to select an option.</param>
-            <param name="selectThis">The string determining which option to select.</param>
-            <param name="setSelected"><see langword="true"/> to select the option; <see langword="false"/> to unselect.</param>
-            <param name="allowMultipleSelect"><see langword="true"/> if multiple selections are allowed; <see langword="false"/> if not.</param>
-            <returns><see langword="true"/> if the option is selected; otherwise, <see langword="false"/>.</returns>
-        </member>
-        <member name="M:Selenium.Internal.SeleniumEmulation.BaseOptionSelectStrategy.SelectOption(OpenQA.Selenium.IWebElement,System.String)">
-            <summary>
-            Gets a value indicating whether an option meets the criteria for selection.
-            </summary>
-            <param name="optionElement">The candidate option element to select.</param>
-            <param name="selectThis">The string determining whether to select the option.</param>
-            <returns><see langword="true"/> if the option meets the criteria; otherwise, <see langword="false"/>.</returns>
-        </member>
-        <member name="T:Selenium.Internal.SeleniumEmulation.IdOptionSelectStrategy">
-            <summary>
-            Provides methods for selecting options based on the ID of the option.
-            </summary>
-        </member>
-        <member name="M:Selenium.Internal.SeleniumEmulation.IdOptionSelectStrategy.SelectOption(OpenQA.Selenium.IWebElement,System.String)">
-            <summary>
-            Gets a value indicating whether an option matches the specified ID.
-            </summary>
-            <param name="optionElement">The candidate option element to select.</param>
-            <param name="selectThis">The ID of the option to select.</param>
-            <returns><see langword="true"/> if the option meets the criteria; otherwise, <see langword="false"/>.</returns>
-        </member>
-        <member name="T:Selenium.Internal.SeleniumEmulation.IndexOptionSelectStrategy">
-            <summary>
-            Provides methods for selecting options based on the index of the option.
-            </summary>
-        </member>
-        <member name="M:Selenium.Internal.SeleniumEmulation.IndexOptionSelectStrategy.SelectOption(System.Collections.ObjectModel.ReadOnlyCollection{OpenQA.Selenium.IWebElement},System.String,System.Boolean,System.Boolean)">
-            <summary>
-            Selects an option in the specified list of options.
-            </summary>
-            <param name="fromOptions">The list of options from which to select an option.</param>
-            <param name="selectThis">The index of the option to select.</param>
-            <param name="setSelected"><see langword="true"/> to select the option; <see langword="false"/> to unselect.</param>
-            <param name="allowMultipleSelect"><see langword="true"/> if multiple selections are allowed; <see langword="false"/> if not.</param>
-            <returns><see langword="true"/> if the option is selected; otherwise, <see langword="false"/>.</returns>
-        </member>
-        <member name="T:Selenium.Internal.SeleniumEmulation.LabelOptionSelectStrategy">
-            <summary>
-            Provides methods for selecting options based on the label of the option.
-            </summary>
-        </member>
-        <member name="M:Selenium.Internal.SeleniumEmulation.LabelOptionSelectStrategy.SelectOption(OpenQA.Selenium.IWebElement,System.String)">
-            <summary>
-            Gets a value indicating whether an option has the specified label.
-            </summary>
-            <param name="optionElement">The candidate option element to select.</param>
-            <param name="selectThis">The label of the option to select.</param>
-            <returns><see langword="true"/> if the option meets the criteria; otherwise, <see langword="false"/>.</returns>
-        </member>
-        <member name="T:Selenium.Internal.SeleniumEmulation.ValueOptionSelectStrategy">
-            <summary>
-            Provides methods for selecting options based on the value of the option.
-            </summary>
-        </member>
-        <member name="M:Selenium.Internal.SeleniumEmulation.ValueOptionSelectStrategy.SelectOption(OpenQA.Selenium.IWebElement,System.String)">
-            <summary>
-            Gets a value indicating whether an option matches the specified value.
-            </summary>
-            <param name="optionElement">The candidate option element to select.</param>
-            <param name="selectThis">The value of the option to select.</param>
-            <returns><see langword="true"/> if the option meets the criteria; otherwise, <see langword="false"/>.</returns>
-        </member>
-        <member name="T:Selenium.Internal.SeleniumEmulation.ExactTextMatchingStrategy">
-            <summary>
-            Provides methods to determine if the text is a match to an exact text string.
-            </summary>
-        </member>
-        <member name="M:Selenium.Internal.SeleniumEmulation.ExactTextMatchingStrategy.IsAMatch(System.String,System.String)">
-            <summary>
-            Gets a value indicating whether the specified text is a match.
-            </summary>
-            <param name="compareThis">The text to compare.</param>
-            <param name="compareTo">The text to compare to.</param>
-            <returns><see langword="true"/> if the strings match; otherwise, <see langword="false"/>.</returns>
-        </member>
-        <member name="T:Selenium.Internal.SeleniumEmulation.GlobTextMatchingStrategy">
-            <summary>
-            Provides methods to determine if the text is a match to a glob string.
-            </summary>
-        </member>
-        <member name="M:Selenium.Internal.SeleniumEmulation.GlobTextMatchingStrategy.IsAMatch(System.String,System.String)">
-            <summary>
-            Gets a value indicating whether the specified text is a match.
-            </summary>
-            <param name="compareThis">The text to compare.</param>
-            <param name="compareTo">The text to compare to.</param>
-            <returns><see langword="true"/> if the strings match; otherwise, <see langword="false"/>.</returns>
-        </member>
-        <member name="T:Selenium.Internal.SeleniumEmulation.RegexTextMatchingStrategy">
-            <summary>
-            Provides methods to determine if the text is a match to a regular expression.
-            </summary>
-        </member>
-        <member name="M:Selenium.Internal.SeleniumEmulation.RegexTextMatchingStrategy.IsAMatch(System.String,System.String)">
-            <summary>
-            Gets a value indicating whether the specified text is a match.
-            </summary>
-            <param name="compareThis">The text to compare.</param>
-            <param name="compareTo">The text to compare to.</param>
-            <returns><see langword="true"/> if the strings match; otherwise, <see langword="false"/>.</returns>
         </member>
     </members>
 </doc>

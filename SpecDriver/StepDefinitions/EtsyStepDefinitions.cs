@@ -86,20 +86,20 @@
         [Then(@"the cart is empty")]
         public void ThenTheCartIsEmpty()
         {
-            Assert.AreEqual("0 items in your cart", EtsyCartPage.ItemsInCart());
+            Assert.IsTrue(EtsyCartPage.IsCartEmpty());
         }
 
         [Then(@"I should see some search results for '(.+)'")]
         public void ThenIShouldSeeSomeSearchResults(string term)
         {
-            StringAssert.IsMatch(@"\d+,?\d* results for " + term, EtsySearchResultsPage.SearchResultsText());
+            StringAssert.IsMatch(@"\d+,?\d* items for " + term, EtsySearchResultsPage.SearchResultsText());
             StringAssert.DoesNotMatch(@"^We didn't find anything for " + term + @"\.$", EtsySearchResultsPage.SearchResultsText());
         }
 
         [Then(@"I should see no search results for '(.+)'")]
         public void ThenIShouldSeeNoSearchResults(string term)
         {
-            StringAssert.DoesNotMatch(@"\d+,?\d* results for " + term, EtsySearchResultsPage.SearchResultsText());
+            StringAssert.DoesNotMatch(@"\d+,?\d* items for " + term, EtsySearchResultsPage.SearchResultsText());
             StringAssert.IsMatch(@"^We didn't find anything for " + term + @"\.$", EtsySearchResultsPage.SearchResultsText());
         }
 
