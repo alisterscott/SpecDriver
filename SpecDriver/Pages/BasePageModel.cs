@@ -17,13 +17,6 @@ namespace Project1.Pages
             {
                 driver.Navigate().GoToUrl(loadUrl);
             }
-            try
-            {
-                driver.FindElement(By.Name("save")).Click();
-            }
-            catch
-            {
-            }
             this.FindKnownElementOnPage(knownElementOnPage);
         }
 

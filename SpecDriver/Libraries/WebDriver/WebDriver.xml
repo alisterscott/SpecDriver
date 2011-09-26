@@ -14,6 +14,21 @@
             through static methods of this class. An example of this can be found in OpenQA.Support.ByIdOrName
             </remarks>
         </member>
+        <member name="M:OpenQA.Selenium.By.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:OpenQA.Selenium.By"/> class.
+            </summary>
+        </member>
+        <member name="M:OpenQA.Selenium.By.#ctor(System.Func{OpenQA.Selenium.ISearchContext,OpenQA.Selenium.IWebElement},System.Func{OpenQA.Selenium.ISearchContext,System.Collections.ObjectModel.ReadOnlyCollection{OpenQA.Selenium.IWebElement}})">
+            <summary>
+            Initializes a new instance of the <see cref="T:OpenQA.Selenium.By"/> class using the given functions to find elements.
+            </summary>
+            <param name="findElementMethod">A function that takes an object implementing <see cref="T:OpenQA.Selenium.ISearchContext"/>
+            and returns the found <see cref="T:OpenQA.Selenium.IWebElement"/>.</param>
+            <param name="findElementsMethod">A function that takes an object implementing <see cref="T:OpenQA.Selenium.ISearchContext"/> 
+            and returns a <see cref="T:System.Collections.ObjectModel.ReadOnlyCollection`1"/> of the found<see cref="T:OpenQA.Selenium.IWebElement">IWebElements</see>.
+            <see cref="T:OpenQA.Selenium.IWebElement">IWebElements</see>/&gt;.</param>
+        </member>
         <member name="M:OpenQA.Selenium.By.Id(System.String)">
             <summary>
             Gets a mechanism to find elements by their ID.
@@ -110,6 +125,21 @@
             Serves as a hash function for a particular type.
             </summary>
             <returns>A hash code for the current <see cref="T:System.Object">Object</see>.</returns>
+        </member>
+        <member name="P:OpenQA.Selenium.By.Description">
+            <summary>
+            Gets or sets the value of the description for this <see cref="T:OpenQA.Selenium.By"/> class instance.
+            </summary>
+        </member>
+        <member name="P:OpenQA.Selenium.By.FindElementMethod">
+            <summary>
+            Gets or sets the method used to find a single element matching specified criteria.
+            </summary>
+        </member>
+        <member name="P:OpenQA.Selenium.By.FindElementsMethod">
+            <summary>
+            Gets or sets the method used to find all elements matching specified criteria.
+            </summary>
         </member>
         <member name="T:OpenQA.Selenium.Cookie">
             <summary>
@@ -722,6 +752,42 @@
             <param name="context">The <see cref="T:System.Runtime.Serialization.StreamingContext"/> that contains contextual 
             information about the source or destination.</param>
         </member>
+        <member name="T:OpenQA.Selenium.InvalidSelectorException">
+            <summary>
+            The exception that is thrown when an element is not visible.
+            </summary>
+        </member>
+        <member name="M:OpenQA.Selenium.InvalidSelectorException.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:OpenQA.Selenium.InvalidSelectorException"/> class.
+            </summary>
+        </member>
+        <member name="M:OpenQA.Selenium.InvalidSelectorException.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:OpenQA.Selenium.InvalidSelectorException"/> class with 
+            a specified error message.
+            </summary>
+            <param name="message">The message that describes the error.</param>
+        </member>
+        <member name="M:OpenQA.Selenium.InvalidSelectorException.#ctor(System.String,System.Exception)">
+            <summary>
+            Initializes a new instance of the <see cref="T:OpenQA.Selenium.InvalidSelectorException"/> class with
+            a specified error message and a reference to the inner exception that is the
+            cause of this exception.
+            </summary>
+            <param name="message">The error message that explains the reason for the exception.</param>
+            <param name="innerException">The exception that is the cause of the current exception,
+            or <see langword="null"/> if no inner exception is specified.</param>
+        </member>
+        <member name="M:OpenQA.Selenium.InvalidSelectorException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            Initializes a new instance of the <see cref="T:OpenQA.Selenium.InvalidSelectorException"/> class with serialized data.
+            </summary>
+            <param name="info">The <see cref="T:System.Runtime.Serialization.SerializationInfo"/> that holds the serialized 
+            object data about the exception being thrown.</param>
+            <param name="context">The <see cref="T:System.Runtime.Serialization.StreamingContext"/> that contains contextual 
+            information about the source or destination.</param>
+        </member>
         <member name="T:OpenQA.Selenium.IOptions">
             <summary>
             Defines an interface allowing the user to set options on the browser.
@@ -745,7 +811,7 @@
         </member>
         <member name="M:OpenQA.Selenium.ISearchContext.FindElement(OpenQA.Selenium.By)">
             <summary>
-            Find the first <see cref="T:OpenQA.Selenium.IWebElement"/> using the given method. 
+            Finds the first <see cref="T:OpenQA.Selenium.IWebElement"/> using the given method. 
             </summary>
             <param name="by">The locating mechanism to use.</param>
             <returns>The first matching <see cref="T:OpenQA.Selenium.IWebElement"/> on the current context.</returns>
@@ -753,7 +819,7 @@
         </member>
         <member name="M:OpenQA.Selenium.ISearchContext.FindElements(OpenQA.Selenium.By)">
             <summary>
-            Find all <see cref="T:OpenQA.Selenium.IWebElement">IWebElements</see> within the current context 
+            Finds all <see cref="T:OpenQA.Selenium.IWebElement">IWebElements</see> within the current context 
             using the given mechanism.
             </summary>
             <param name="by">The locating mechanism to use.</param>
@@ -978,6 +1044,7 @@
             <remarks>If this element is a text entry element, the <see cref="M:OpenQA.Selenium.IWebElement.Clear"/>
             method will clear the value. It has no effect on other elements. Text entry elements 
             are defined as elements with INPUT or TEXTAREA tags.</remarks>
+            <exception cref="T:OpenQA.Selenium.StaleElementReferenceException">Thrown when the target element is no longer valid in the document DOM.</exception>
         </member>
         <member name="M:OpenQA.Selenium.IWebElement.SendKeys(System.String)">
             <summary>
@@ -988,6 +1055,9 @@
             backspaces, function keys, and so on. Valid special keys are defined in 
             <see cref="T:OpenQA.Selenium.Keys"/>.</remarks>
             <seealso cref="T:OpenQA.Selenium.Keys"/>
+            <exception cref="T:OpenQA.Selenium.InvalidElementStateException">Thrown when the target element is not enabled.</exception>
+            <exception cref="T:OpenQA.Selenium.ElementNotVisibleException">Thrown when the target element is not visible.</exception>
+            <exception cref="T:OpenQA.Selenium.StaleElementReferenceException">Thrown when the target element is no longer valid in the document DOM.</exception>
         </member>
         <member name="M:OpenQA.Selenium.IWebElement.Submit">
             <summary>
@@ -996,6 +1066,7 @@
             <remarks>If this current element is a form, or an element within a form, 
             then this will be submitted to the web server. If this causes the current 
             page to change, then this method will block until the new page is loaded.</remarks>
+            <exception cref="T:OpenQA.Selenium.StaleElementReferenceException">Thrown when the target element is no longer valid in the document DOM.</exception>
         </member>
         <member name="M:OpenQA.Selenium.IWebElement.Click">
             <summary>
@@ -1004,7 +1075,7 @@
             <remarks>
             <para>
             Click this element. If the click causes a new page to load, the <see cref="M:OpenQA.Selenium.IWebElement.Click"/> 
-            method will block until the page has loaded. After calling the 
+            method will attempt to block until the page has loaded. After calling the 
             <see cref="M:OpenQA.Selenium.IWebElement.Click"/> method, you should discard all references to this 
             element unless you know that the element and the page will still be present. 
             Otherwise, any further operations performed on this element will have an undefined.
@@ -1015,13 +1086,8 @@
             simulate a users to accidentally missing the target when clicking. 
             </para>
             </remarks>
-        </member>
-        <member name="M:OpenQA.Selenium.IWebElement.Select">
-            <summary>
-            Selects this element.
-            </summary>
-            <remarks>The <see cref="M:OpenQA.Selenium.IWebElement.Select"/> method is valid for radio buttons, 
-            "option" elements within a "select" element, and checkboxes.</remarks>
+            <exception cref="T:OpenQA.Selenium.ElementNotVisibleException">Thrown when the target element is not visible.</exception>
+            <exception cref="T:OpenQA.Selenium.StaleElementReferenceException">Thrown when the target element is no longer valid in the document DOM.</exception>
         </member>
         <member name="M:OpenQA.Selenium.IWebElement.GetAttribute(System.String)">
             <summary>
@@ -1057,15 +1123,7 @@
             </item>
             </list>
             </remarks>
-        </member>
-        <member name="M:OpenQA.Selenium.IWebElement.Toggle">
-            <summary>
-            Toggles the state of this element.
-            </summary>
-            <returns><see langword="true"/> if the element is selected; <see langword="false"/> otherwise.</returns>
-            <remarks>If the element is a checkbox, the <see cref="M:OpenQA.Selenium.IWebElement.Toggle"/> method
-            will toggle the element's state from selected to not selected, or from not selected 
-            to selected.</remarks>
+            <exception cref="T:OpenQA.Selenium.StaleElementReferenceException">Thrown when the target element is no longer valid in the document DOM.</exception>
         </member>
         <member name="M:OpenQA.Selenium.IWebElement.GetCssValue(System.String)">
             <summary>
@@ -1078,22 +1136,25 @@
             Color values should be returned as hex strings. For example, a 
             "background-color" property set as "green" in the HTML source, will
             return "#008000" for its value.</remarks>
+            <exception cref="T:OpenQA.Selenium.StaleElementReferenceException">Thrown when the target element is no longer valid in the document DOM.</exception>
         </member>
         <member name="P:OpenQA.Selenium.IWebElement.TagName">
             <summary>
-            Gets a value indicating the tag name of this element.
+            Gets the tag name of this element.
             </summary>
             <remarks>
             The <see cref="P:OpenQA.Selenium.IWebElement.TagName"/> property returns the tag name of the
             element, not the value of the name attribute. For example, it will return
             "input" for an element specifiedby the HTML markup &lt;input name="foo" /&gt;. 
             </remarks>
+            <exception cref="T:OpenQA.Selenium.StaleElementReferenceException">Thrown when the target element is no longer valid in the document DOM.</exception>
         </member>
         <member name="P:OpenQA.Selenium.IWebElement.Text">
             <summary>
-            Gets a value indicating the innerText of this element, without any leading 
-            or trailing whitespace.
+            Gets the innerText of this element, without any leading or trailing whitespace,
+            and with other whitespace collapsed.
             </summary>
+            <exception cref="T:OpenQA.Selenium.StaleElementReferenceException">Thrown when the target element is no longer valid in the document DOM.</exception>
         </member>
         <member name="P:OpenQA.Selenium.IWebElement.Enabled">
             <summary>
@@ -1101,6 +1162,7 @@
             </summary>
             <remarks>The <see cref="P:OpenQA.Selenium.IWebElement.Enabled"/> property will generally 
             return <see langword="true"/> for everything except explicitly disabled input elements.</remarks>
+            <exception cref="T:OpenQA.Selenium.StaleElementReferenceException">Thrown when the target element is no longer valid in the document DOM.</exception>
         </member>
         <member name="P:OpenQA.Selenium.IWebElement.Selected">
             <summary>
@@ -1108,17 +1170,20 @@
             </summary>
             <remarks>This operation only applies to input elements such as checkboxes,
             options in a select element and radio buttons.</remarks>
+            <exception cref="T:OpenQA.Selenium.StaleElementReferenceException">Thrown when the target element is no longer valid in the document DOM.</exception>
         </member>
         <member name="P:OpenQA.Selenium.IWebElement.Location">
             <summary>
-            Gets the coordinates of the upper-left corner of this element relative 
-            to the upper-left corner of the page.
+            Gets a <see cref="T:System.Drawing.Point"/> object containgin the coordinates of the upper-left corner
+            of this element relative to the upper-left corner of the page.
             </summary>
+            <exception cref="T:OpenQA.Selenium.StaleElementReferenceException">Thrown when the target element is no longer valid in the document DOM.</exception>
         </member>
         <member name="P:OpenQA.Selenium.IWebElement.Size">
             <summary>
-            Gets the height and width of this element.
+            Gets a <see cref="P:OpenQA.Selenium.IWebElement.Size"/> object containing the height and width of this element.
             </summary>
+            <exception cref="T:OpenQA.Selenium.StaleElementReferenceException">Thrown when the target element is no longer valid in the document DOM.</exception>
         </member>
         <member name="P:OpenQA.Selenium.IWebElement.Displayed">
             <summary>
@@ -1127,6 +1192,7 @@
             <remarks>The <see cref="P:OpenQA.Selenium.IWebElement.Displayed"/> property avoids the problem 
             of having to parse an element's "style" attribute to determine
             visibility of an element.</remarks>
+            <exception cref="T:OpenQA.Selenium.StaleElementReferenceException">Thrown when the target element is no longer valid in the document DOM.</exception>
         </member>
         <member name="T:OpenQA.Selenium.Keys">
             <summary>
@@ -1665,9 +1731,9 @@
             Versions of Microsoft Windows that are compatible with Windows Vista.
             </summary>
         </member>
-        <member name="F:OpenQA.Selenium.PlatformType.MacOSX">
+        <member name="F:OpenQA.Selenium.PlatformType.Mac">
             <summary>
-            Any version of the Macintosh OS X
+            Any version of the Macintosh OS
             </summary>
         </member>
         <member name="F:OpenQA.Selenium.PlatformType.Unix">
@@ -1678,11 +1744,6 @@
         <member name="F:OpenQA.Selenium.PlatformType.Linux">
             <summary>
             Any version of the Linux operating system.
-            </summary>
-        </member>
-        <member name="F:OpenQA.Selenium.PlatformType.Darwin">
-            <summary>
-            Any version using the Darwin packaging system (OS X).
             </summary>
         </member>
         <member name="T:OpenQA.Selenium.Platform">
@@ -1721,6 +1782,96 @@
         <member name="P:OpenQA.Selenium.Platform.PlatformType">
             <summary>
             Gets the type of the platform.
+            </summary>
+        </member>
+        <member name="T:OpenQA.Selenium.ProxyKind">
+            <summary>
+            Describes the kind of proxy.
+            </summary>
+            <remarks>
+            Keep these in sync with the Firefox preferences numbers:
+            http://kb.mozillazine.org/Network.proxy.type
+            </remarks>
+        </member>
+        <member name="F:OpenQA.Selenium.ProxyKind.Direct">
+            <summary>
+             Direct connection, no proxy (default on Windows).
+            </summary>
+        </member>
+        <member name="F:OpenQA.Selenium.ProxyKind.Manual">
+            <summary>
+            Manual proxy settings (e.g., for httpProxy).
+            </summary>
+        </member>
+        <member name="F:OpenQA.Selenium.ProxyKind.ProxyAutoConfigure">
+            <summary>
+            Proxy autoconfiguration from URL.
+            </summary>
+        </member>
+        <member name="F:OpenQA.Selenium.ProxyKind.AutoDetect">
+            <summary>
+            Use proxy autodetection.
+            </summary>
+        </member>
+        <member name="F:OpenQA.Selenium.ProxyKind.System">
+            <summary>
+            Use the system values for proxy settings (default on Linux).
+            </summary>
+        </member>
+        <member name="F:OpenQA.Selenium.ProxyKind.Unspecified">
+            <summary>
+            No proxy type is specified.
+            </summary>
+        </member>
+        <member name="T:OpenQA.Selenium.Proxy">
+            <summary>
+            Describes proxy settings to be used with a driver instance.
+            </summary>
+        </member>
+        <member name="M:OpenQA.Selenium.Proxy.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:OpenQA.Selenium.Proxy"/> class.
+            </summary>
+        </member>
+        <member name="M:OpenQA.Selenium.Proxy.#ctor(System.Collections.Generic.Dictionary{System.String,System.Object})">
+            <summary>
+            Initializes a new instance of the <see cref="T:OpenQA.Selenium.Proxy"/> class with the given proxy settings.
+            </summary>
+            <param name="settings">A dictionary of settings to use with the proxy.</param>
+        </member>
+        <member name="P:OpenQA.Selenium.Proxy.Kind">
+            <summary>
+            Gets or sets the type of proxy.
+            </summary>
+        </member>
+        <member name="P:OpenQA.Selenium.Proxy.IsAutoDetect">
+            <summary>
+            Gets or sets a value indicating whether the proxy uses autodetection.
+            </summary>
+        </member>
+        <member name="P:OpenQA.Selenium.Proxy.FtpProxy">
+            <summary>
+            Gets or sets the value of the proxy for the FTP protocol.
+            </summary>
+        </member>
+        <member name="P:OpenQA.Selenium.Proxy.HttpProxy">
+            <summary>
+            Gets or sets the value of the proxy for the HTTP protocol.
+            </summary>
+        </member>
+        <member name="P:OpenQA.Selenium.Proxy.NoProxy">
+            <summary>
+            Gets or sets the value for when no proxy is specified.
+            </summary>
+        </member>
+        <member name="P:OpenQA.Selenium.Proxy.ProxyAutoConfigUrl">
+            <summary>
+            Gets or sets the URL used for proxy autoconfiguration.
+            </summary>
+        </member>
+        <member name="P:OpenQA.Selenium.Proxy.SslProxy">
+            <summary>
+            Gets or sets the value of the proxy for the SSL protocol.
             </summary>
         </member>
         <member name="T:OpenQA.Selenium.Screenshot">
@@ -2019,6 +2170,11 @@
         <member name="F:OpenQA.Selenium.WebDriverResult.InvalidElementCoordinates">
             <summary>
             The coordinates of the element are invalid.
+            </summary>
+        </member>
+        <member name="F:OpenQA.Selenium.WebDriverResult.InvalidSelector">
+            <summary>
+            The selector used (CSS/XPath) was invalid.
             </summary>
         </member>
         <member name="T:OpenQA.Selenium.XPathLookupException">
@@ -2868,18 +3024,33 @@
             </summary>
             <param name="chromeDriverDirectory">The full path to the directory containing ChromeDriver.exe.</param>
         </member>
-        <member name="M:OpenQA.Selenium.Chrome.ChromeDriver.#ctor(System.String,System.TimeSpan)">
+        <member name="M:OpenQA.Selenium.Chrome.ChromeDriver.#ctor(OpenQA.Selenium.ICapabilities)">
             <summary>
-            Initializes a new instance of the ChromeDriver class using the specified path to the directory containing ChromeDriver.exe and command timeout.
+            Initializes a new instance of the ChromeDriver class using the capabilities.
+            </summary>
+            <param name="capabilities">The desired capabilities of the Chrome driver.</param>
+        </member>
+        <member name="M:OpenQA.Selenium.Chrome.ChromeDriver.#ctor(System.String,OpenQA.Selenium.ICapabilities)">
+            <summary>
+            Initializes a new instance of the ChromeDriver class using the specified path to the directory containing ChromeDriver.exe and capabilities.
             </summary>
             <param name="chromeDriverDirectory">The full path to the directory containing ChromeDriver.exe.</param>
+            <param name="capabilities">The desired capabilities of the Chrome driver.</param>
+        </member>
+        <member name="M:OpenQA.Selenium.Chrome.ChromeDriver.#ctor(System.String,OpenQA.Selenium.ICapabilities,System.TimeSpan)">
+            <summary>
+            Initializes a new instance of the ChromeDriver class using the specified path to the directory containing ChromeDriver.exe, command timeout, and capabilities.
+            </summary>
+            <param name="chromeDriverDirectory">The full path to the directory containing ChromeDriver.exe.</param>
+            <param name="capabilities">The desired capabilities of the Chrome driver.</param>
             <param name="commandTimeout">The maximum amount of time to wait for each command.</param>
         </member>
-        <member name="M:OpenQA.Selenium.Chrome.ChromeDriver.#ctor(OpenQA.Selenium.Chrome.ChromeDriverService,System.TimeSpan)">
+        <member name="M:OpenQA.Selenium.Chrome.ChromeDriver.#ctor(OpenQA.Selenium.Chrome.ChromeDriverService,OpenQA.Selenium.ICapabilities,System.TimeSpan)">
             <summary>
             Initializes a new instance of the ChromeDriver class using the specified <see cref="T:OpenQA.Selenium.Chrome.ChromeDriverService"/>.
             </summary>
             <param name="service">The <see cref="T:OpenQA.Selenium.Chrome.ChromeDriverService"/> to use.</param>
+            <param name="capabilities">The desired capabilities of the Chrome driver.</param>
             <param name="commandTimeout">The maximum amount of time to wait for each command.</param>
         </member>
         <member name="M:OpenQA.Selenium.Chrome.ChromeDriver.GetScreenshot">
@@ -2981,68 +3152,119 @@
             <param name="parentDriver">The <see cref="T:OpenQA.Selenium.Remote.RemoteWebDriver"/> instance hosting this element.</param>
             <param name="id">The ID assigned to the element.</param>
         </member>
-        <member name="M:OpenQA.Selenium.Remote.RemoteWebElement.Select">
-            <summary>
-            Select or unselect element. This operation only applies to input elements such as checkboxes, options in a select and radio buttons.
-            </summary>
-        </member>
         <member name="M:OpenQA.Selenium.Remote.RemoteWebElement.Clear">
             <summary>
-            Method to clear the text out of an Input element
+            Clears the content of this element.
             </summary>
+            <remarks>If this element is a text entry element, the <see cref="M:OpenQA.Selenium.Remote.RemoteWebElement.Clear"/>
+            method will clear the value. It has no effect on other elements. Text entry elements 
+            are defined as elements with INPUT or TEXTAREA tags.</remarks>
+            <exception cref="T:OpenQA.Selenium.StaleElementReferenceException">Thrown when the target element is no longer valid in the document DOM.</exception>
         </member>
         <member name="M:OpenQA.Selenium.Remote.RemoteWebElement.SendKeys(System.String)">
             <summary>
-            Method for sending native key strokes to the browser
+            Simulates typing text into the element.
             </summary>
-            <param name="text">String containing what you would like to type onto the screen</param>
+            <param name="text">The text to type into the element.</param>
+            <remarks>The text to be typed may include special characters like arrow keys,
+            backspaces, function keys, and so on. Valid special keys are defined in 
+            <see cref="T:OpenQA.Selenium.Keys"/>.</remarks>
+            <seealso cref="T:OpenQA.Selenium.Keys"/>
+            <exception cref="T:OpenQA.Selenium.InvalidElementStateException">Thrown when the target element is not enabled.</exception>
+            <exception cref="T:OpenQA.Selenium.ElementNotVisibleException">Thrown when the target element is not visible.</exception>
+            <exception cref="T:OpenQA.Selenium.StaleElementReferenceException">Thrown when the target element is no longer valid in the document DOM.</exception>
         </member>
         <member name="M:OpenQA.Selenium.Remote.RemoteWebElement.Submit">
             <summary>
-            If this current element is a form, or an element within a form, then this will be submitted to the remote server. 
-            If this causes the current page to change, then this method will block until the new page is loaded.
+            Submits this element to the web server.
             </summary>
+            <remarks>If this current element is a form, or an element within a form, 
+            then this will be submitted to the web server. If this causes the current 
+            page to change, then this method will attempt to block until the new page
+            is loaded.</remarks>
+            <exception cref="T:OpenQA.Selenium.StaleElementReferenceException">Thrown when the target element is no longer valid in the document DOM.</exception>
         </member>
         <member name="M:OpenQA.Selenium.Remote.RemoteWebElement.Click">
             <summary>
-            Click this element. If this causes a new page to load, this method will block until the page has loaded. At this point, you should discard all references to this element and any further operations performed on this element 
-            will have undefined behaviour unless you know that the element and the page will still be present. If this element is not clickable, then this operation is a no-op since it's pretty common for someone to accidentally miss 
-            the target when clicking in Real Life
+            Clicks this element. 
             </summary>
+            <remarks>
+            Click this element. If the click causes a new page to load, the <see cref="M:OpenQA.Selenium.Remote.RemoteWebElement.Click"/> 
+            method will attempt to block until the page has loaded. After calling the 
+            <see cref="M:OpenQA.Selenium.Remote.RemoteWebElement.Click"/> method, you should discard all references to this 
+            element unless you know that the element and the page will still be present. 
+            Otherwise, any further operations performed on this element will have an undefined
+            behavior.
+            </remarks>
+            <exception cref="T:OpenQA.Selenium.InvalidElementStateException">Thrown when the target element is not enabled.</exception>
+            <exception cref="T:OpenQA.Selenium.ElementNotVisibleException">Thrown when the target element is not visible.</exception>
+            <exception cref="T:OpenQA.Selenium.StaleElementReferenceException">Thrown when the target element is no longer valid in the document DOM.</exception>
         </member>
         <member name="M:OpenQA.Selenium.Remote.RemoteWebElement.GetAttribute(System.String)">
             <summary>
-            If this current element is a form, or an element within a form, then this will be submitted to the remote server. If this causes the current page to change, then this method will block until the new page is loaded.
+            Gets the value of the specified attribute for this element.
             </summary>
-            <param name="attributeName">Attribute you wish to get details of</param>
-            <returns>The attribute's current value or null if the value is not set.</returns>
-        </member>
-        <member name="M:OpenQA.Selenium.Remote.RemoteWebElement.Toggle">
-            <summary>
-            If the element is a checkbox this will toggle the elements state from selected to not selected, or from not selected to selected
-            </summary>
-            <returns>Whether the toggled element is selected (true) or not (false) after this toggle is complete</returns>
+            <param name="attributeName">The name of the attribute.</param>
+            <returns>The attribute's current value. Returns a <see langword="null"/> if the 
+            value is not set.</returns>
+            <remarks>The <see cref="M:OpenQA.Selenium.Remote.RemoteWebElement.GetAttribute(System.String)"/> method will return the current value
+            of the attribute, even if the value has been modified after the page has been 
+            loaded. Note that the value of the following attributes will be returned even if 
+            there is no explicit attribute on the element:
+            <list type="table">
+            <listheader>
+            <term>Attribute name</term>
+            <term>Value returned if not explicitly specified</term>
+            <term>Valid element types</term>
+            </listheader>
+            <item>
+            <description>checked</description>
+            <description>checked</description>
+            <description>Check Box</description>
+            </item>
+            <item>
+            <description>selected</description>
+            <description>selected</description>
+            <description>Options in Select elements</description>
+            </item>
+            <item>
+            <description>disabled</description>
+            <description>disabled</description>
+            <description>Input and other UI elements</description>
+            </item>
+            </list>
+            </remarks>
+            <exception cref="T:OpenQA.Selenium.StaleElementReferenceException">Thrown when the target element is no longer valid in the document DOM.</exception>
         </member>
         <member name="M:OpenQA.Selenium.Remote.RemoteWebElement.GetCssValue(System.String)">
             <summary>
-            Method to return the value of a CSS Property
+            Gets the value of a CSS property of this element.
             </summary>
-            <param name="propertyName">CSS property key</param>
-            <returns>string value of the CSS property</returns>
+            <param name="propertyName">The name of the CSS property to get the value of.</param>
+            <returns>The value of the specified CSS property.</returns>
+            <remarks>The value returned by the <see cref="M:OpenQA.Selenium.Remote.RemoteWebElement.GetCssValue(System.String)"/>
+            method is likely to be unpredictable in a cross-browser environment. 
+            Color values should be returned as hex strings. For example, a 
+            "background-color" property set as "green" in the HTML source, will
+            return "#008000" for its value.</remarks>
+            <exception cref="T:OpenQA.Selenium.StaleElementReferenceException">Thrown when the target element is no longer valid in the document DOM.</exception>
         </member>
         <member name="M:OpenQA.Selenium.Remote.RemoteWebElement.FindElements(OpenQA.Selenium.By)">
             <summary>
-            Finds the elements on the page by using the <see cref="T:OpenQA.Selenium.By"/> object and returns a ReadOnlyCollection of the Elements on the page
+            Finds all <see cref="T:OpenQA.Selenium.IWebElement">IWebElements</see> within the current context 
+            using the given mechanism.
             </summary>
-            <param name="by">By mechanism to find the element</param>
-            <returns>ReadOnlyCollection of IWebElement</returns>
+            <param name="by">The locating mechanism to use.</param>
+            <returns>A <see cref="T:System.Collections.ObjectModel.ReadOnlyCollection`1"/> of all <see cref="T:OpenQA.Selenium.IWebElement">WebElements</see>
+            matching the current criteria, or an empty list if nothing matches.</returns>
         </member>
         <member name="M:OpenQA.Selenium.Remote.RemoteWebElement.FindElement(OpenQA.Selenium.By)">
             <summary>
-            Finds the first element in the page that matches the <see cref="T:OpenQA.Selenium.By"/> object
+            Finds the first <see cref="T:OpenQA.Selenium.IWebElement"/> using the given method. 
             </summary>
-            <param name="by">By mechanism to find the element</param>
-            <returns>IWebElement object so that you can interction that object</returns>
+            <param name="by">The locating mechanism to use.</param>
+            <returns>The first matching <see cref="T:OpenQA.Selenium.IWebElement"/> on the current context.</returns>
+            <exception cref="T:OpenQA.Selenium.NoSuchElementException">If no element matches the criteria.</exception>
         </member>
         <member name="M:OpenQA.Selenium.Remote.RemoteWebElement.FindElementByLinkText(System.String)">
             <summary>
@@ -3285,38 +3507,59 @@
         </member>
         <member name="P:OpenQA.Selenium.Remote.RemoteWebElement.TagName">
             <summary>
-            Gets the DOM Tag of element
+            Gets the tag name of this element.
             </summary>
+            <remarks>
+            The <see cref="P:OpenQA.Selenium.Remote.RemoteWebElement.TagName"/> property returns the tag name of the
+            element, not the value of the name attribute. For example, it will return
+            "input" for an element specifiedby the HTML markup &lt;input name="foo" /&gt;. 
+            </remarks>
+            <exception cref="T:OpenQA.Selenium.StaleElementReferenceException">Thrown when the target element is no longer valid in the document DOM.</exception>
         </member>
         <member name="P:OpenQA.Selenium.Remote.RemoteWebElement.Text">
             <summary>
-            Gets the text from the element
+            Gets the innerText of this element, without any leading or trailing whitespace,
+            and with other whitespace collapsed.
             </summary>
+            <exception cref="T:OpenQA.Selenium.StaleElementReferenceException">Thrown when the target element is no longer valid in the document DOM.</exception>
         </member>
         <member name="P:OpenQA.Selenium.Remote.RemoteWebElement.Enabled">
             <summary>
-            Gets a value indicating whether an element is currently enabled
+            Gets a value indicating whether or not this element is enabled.
             </summary>
+            <remarks>The <see cref="P:OpenQA.Selenium.Remote.RemoteWebElement.Enabled"/> property will generally 
+            return <see langword="true"/> for everything except explicitly disabled input elements.</remarks>
+            <exception cref="T:OpenQA.Selenium.StaleElementReferenceException">Thrown when the target element is no longer valid in the document DOM.</exception>
         </member>
         <member name="P:OpenQA.Selenium.Remote.RemoteWebElement.Selected">
             <summary>
-            Gets a value indicating whether this element is selected or not. This operation only applies to input elements such as checkboxes, options in a select and radio buttons.
+            Gets a value indicating whether or not this element is selected.
             </summary>
+            <remarks>This operation only applies to input elements such as checkboxes,
+            options in a select element and radio buttons.</remarks>
+            <exception cref="T:OpenQA.Selenium.StaleElementReferenceException">Thrown when the target element is no longer valid in the document DOM.</exception>
         </member>
         <member name="P:OpenQA.Selenium.Remote.RemoteWebElement.Location">
             <summary>
-            Gets the Location of an element and returns a Point object
+            Gets a <see cref="T:System.Drawing.Point"/> object containgin the coordinates of the upper-left corner
+            of this element relative to the upper-left corner of the page.
             </summary>
+            <exception cref="T:OpenQA.Selenium.StaleElementReferenceException">Thrown when the target element is no longer valid in the document DOM.</exception>
         </member>
         <member name="P:OpenQA.Selenium.Remote.RemoteWebElement.Size">
             <summary>
-            Gets the <see cref="P:OpenQA.Selenium.Remote.RemoteWebElement.Size"/> of the element on the page
+            Gets a <see cref="P:OpenQA.Selenium.Remote.RemoteWebElement.Size"/> object containing the height and width of this element.
             </summary>
+            <exception cref="T:OpenQA.Selenium.StaleElementReferenceException">Thrown when the target element is no longer valid in the document DOM.</exception>
         </member>
         <member name="P:OpenQA.Selenium.Remote.RemoteWebElement.Displayed">
             <summary>
-            Gets a value indicating whether the element is currently being displayed
+            Gets a value indicating whether or not this element is displayed.
             </summary>
+            <remarks>The <see cref="P:OpenQA.Selenium.Remote.RemoteWebElement.Displayed"/> property avoids the problem 
+            of having to parse an element's "style" attribute to determine
+            visibility of an element.</remarks>
+            <exception cref="T:OpenQA.Selenium.StaleElementReferenceException">Thrown when the target element is no longer valid in the document DOM.</exception>
         </member>
         <member name="P:OpenQA.Selenium.Remote.RemoteWebElement.LocationOnScreenOnceScrolledIntoView">
             <summary>
@@ -3510,6 +3753,17 @@
             </code>
             </example>
         </member>
+        <member name="F:OpenQA.Selenium.Firefox.FirefoxDriver.ProfileCapabilityName">
+            <summary>
+            The name of the ICapabilities setting to use to define a custom Firefox profile.
+            </summary>
+        </member>
+        <member name="F:OpenQA.Selenium.Firefox.FirefoxDriver.BinaryCapabilityName">
+            <summary>
+            The name of the ICapabilities setting to use to define a custom location for the
+            Firefox executable.
+            </summary>
+        </member>
         <member name="F:OpenQA.Selenium.Firefox.FirefoxDriver.DefaultPort">
             <summary>
             The default port on which to communicate with the Firefox extension.
@@ -3536,6 +3790,13 @@
             </summary>
             <param name="profile">A <see cref="T:OpenQA.Selenium.Firefox.FirefoxProfile"/> object representing the profile settings
             to be used in starting Firefox.</param>
+        </member>
+        <member name="M:OpenQA.Selenium.Firefox.FirefoxDriver.#ctor(OpenQA.Selenium.ICapabilities)">
+            <summary>
+            Initializes a new instance of the <see cref="T:OpenQA.Selenium.Firefox.FirefoxDriver"/> class for a given set of capabilities.
+            </summary>
+            <param name="capabilities">The <see cref="T:OpenQA.Selenium.ICapabilities"/> object containing the desired
+            capabilities of this FirefoxDriver.</param>
         </member>
         <member name="M:OpenQA.Selenium.Firefox.FirefoxDriver.#ctor(OpenQA.Selenium.Firefox.FirefoxBinary,OpenQA.Selenium.Firefox.FirefoxProfile)">
             <summary>
@@ -3687,6 +3948,13 @@
             <param name="name">The name of the preference to add.</param>
             <param name="value">A <see cref="T:System.Boolean"/> value to add to the profile.</param>
         </member>
+        <member name="M:OpenQA.Selenium.Firefox.FirefoxProfile.SetProxyPreferences(OpenQA.Selenium.Proxy)">
+            <summary>
+            Set proxy preferences for this profile.
+            </summary>
+            <param name="proxy">The <see cref="T:OpenQA.Selenium.Proxy"/> object defining the proxy 
+            preferences for the profile.</param>
+        </member>
         <member name="M:OpenQA.Selenium.Firefox.FirefoxProfile.WriteToDisk">
             <summary>
             Writes this in-memory representation of a profile to disk.
@@ -3762,6 +4030,13 @@
             </summary>
             <param name="preferences">A <see cref="T:System.Collections.Generic.Dictionary`2"/> containing key-value pairs
             representing the preferences to write.</param>
+        </member>
+        <member name="M:OpenQA.Selenium.Firefox.FirefoxProfile.SetManualProxyPreference(System.String,System.String)">
+            <summary>
+            Sets a preference for a manually specified proxy.
+            </summary>
+            <param name="key">The protocol for which to set the proxy.</param>
+            <param name="settingString">The setting for the proxy.</param>
         </member>
         <member name="P:OpenQA.Selenium.Firefox.FirefoxProfile.Port">
             <summary>
@@ -4365,6 +4640,12 @@
             Performs the currently built action.
             </summary>
         </member>
+        <member name="M:OpenQA.Selenium.Interactions.Actions.AddAction(OpenQA.Selenium.Interactions.IAction)">
+            <summary>
+            Adds an action to current list of actions to be performed.
+            </summary>
+            <param name="actionToAdd">The <see cref="T:OpenQA.Selenium.Interactions.IAction"/> to be added.</param>
+        </member>
         <member name="T:OpenQA.Selenium.Interactions.ButtonReleaseAction">
             <summary>
             Defines an action for releasing the currently held mouse button.
@@ -4966,6 +5247,16 @@
         <member name="F:OpenQA.Selenium.Remote.CapabilityType.Rotatable">
             <summary>
             Capability name used to indicate whether the browser supports rotation.
+            </summary>
+        </member>
+        <member name="F:OpenQA.Selenium.Remote.CapabilityType.AcceptSslCertificates">
+            <summary>
+            Capability name used to indicate whether the browser accepts SSL certificates.
+            </summary>
+        </member>
+        <member name="F:OpenQA.Selenium.Remote.CapabilityType.HasNativeEvents">
+            <summary>
+            Capability name used to indicate whether the browser uses native events.
             </summary>
         </member>
         <member name="T:OpenQA.Selenium.Remote.Command">
@@ -6201,6 +6492,36 @@
             <param name="writer">JSON Writer instance</param>
             <param name="value">the platform</param>
             <param name="serializer">JSON Serializer Instance</param>
+        </member>
+        <member name="T:OpenQA.Selenium.Remote.ProxyJsonConverter">
+            <summary>
+            Provides a way to convert a <see cref="T:OpenQA.Selenium.Proxy"/> arry to JSON
+            </summary>
+        </member>
+        <member name="M:OpenQA.Selenium.Remote.ProxyJsonConverter.CanConvert(System.Type)">
+            <summary>
+            Checks if the object can be converted
+            </summary>
+            <param name="objectType">Type of the object</param>
+            <returns>A value indicating if it can be converted</returns>
+        </member>
+        <member name="M:OpenQA.Selenium.Remote.ProxyJsonConverter.ReadJson(Newtonsoft.Json.JsonReader,System.Type,System.Object,Newtonsoft.Json.JsonSerializer)">
+            <summary>
+            Get the platform from the JSON reader
+            </summary>
+            <param name="reader">JSON Reader instance</param>
+            <param name="objectType">Object type being read</param>
+            <param name="existingValue">The exisiting value of the object</param>
+            <param name="serializer">JSON Serializer instance</param>
+            <returns>Platform from JSON reader</returns>
+        </member>
+        <member name="M:OpenQA.Selenium.Remote.ProxyJsonConverter.WriteJson(Newtonsoft.Json.JsonWriter,System.Object,Newtonsoft.Json.JsonSerializer)">
+            <summary>
+            Create a JSON string representation of the Proxy
+            </summary>
+            <param name="writer">The JSON writer with a string</param>
+            <param name="value">Value of the string</param>
+            <param name="serializer">JSON serializer instance</param>
         </member>
         <member name="T:OpenQA.Selenium.Remote.ResponseValueJsonConverter">
             <summary>
