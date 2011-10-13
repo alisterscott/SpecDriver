@@ -11,29 +11,43 @@
             me.SendKeys(text);
         }
 
-        public static void SelectValue(this IWebElement me, string text)
+        public static IWebElement GetElement(this IWebDriver driver, By selector)
         {
-            me.ItemInCombo(text).Click();
-        }
-
-        private static IWebElement ItemInCombo(this IWebElement me, string text)
-        {
-            var itemsInCombo = me.FindElements(By.TagName("option"));
-            foreach (var item in itemsInCombo)
+            for (int i = 1; i <= 20; i++)
             {
-                if (item.Text == text)
+                try
                 {
-                    return item;
+                    return driver.FindElement(selector);
+                }
+                catch (OpenQA.Selenium.WebDriverException e)
+                {
+                    Console.WriteLine("Error " + i + " raised: " + e.Message);
                 }
             }
-
-            throw new Exception("Could not locate item of '" + text + "'in Combobox: '" + me.ToString() + "'");
+            return null;
         }
 
-
-
+        public static IWebElement GetElement(this IWebElement element, By selector)
+        {
+            for (int i = 1; i <= 20; i++)
+            {
+                try
+                {
+                    return element.FindElement(selector);
+                }
+                catch (OpenQA.Selenium.WebDriverException e)
+                {
+                    if (e.Message.Contains("No response from server for url"))
+                    {
+                        Console.WriteLine("Error " + i + " raised: " + e.Message);
+                    }
+                    else
+                    {
+                        throw e;
+                    }
+                }
+            }
+            return null;
+        }
     }
-
-    
-
 }

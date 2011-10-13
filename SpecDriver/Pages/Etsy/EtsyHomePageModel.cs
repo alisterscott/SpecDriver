@@ -19,7 +19,7 @@
 
         private IWebElement BuyLinkElement
         {
-            get { return Driver.FindElement(EtsyBuyLinkSelector); }
+            get { return Driver.GetElement(EtsyBuyLinkSelector); }
         }
 
         public EtsyBuyPageModel clickBuy()

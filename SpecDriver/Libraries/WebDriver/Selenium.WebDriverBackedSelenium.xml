@@ -404,6 +404,27 @@
             <param name="value">The second parameter to the command.</param>
             <returns>The result of the command.</returns>
         </member>
+        <member name="T:Selenium.Internal.SeleniumEmulation.ClickAt">
+            <summary>
+            Defines the command for the click keyword.
+            </summary>
+        </member>
+        <member name="M:Selenium.Internal.SeleniumEmulation.ClickAt.#ctor(Selenium.Internal.AlertOverride,Selenium.Internal.SeleniumEmulation.ElementFinder)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Selenium.Internal.SeleniumEmulation.ClickAt"/> class.
+            </summary>
+            <param name="alert">An <see cref="T:Selenium.Internal.AlertOverride"/> object used to handle JavaScript alerts.</param>
+            <param name="finder">An <see cref="T:Selenium.Internal.SeleniumEmulation.ElementFinder"/> used to find the element on which to execute the command.</param>
+        </member>
+        <member name="M:Selenium.Internal.SeleniumEmulation.ClickAt.HandleSeleneseCommand(OpenQA.Selenium.IWebDriver,System.String,System.String)">
+            <summary>
+            Handles the command.
+            </summary>
+            <param name="driver">The driver used to execute the command.</param>
+            <param name="locator">The first parameter to the command.</param>
+            <param name="value">The second parameter to the command.</param>
+            <returns>The result of the command.</returns>
+        </member>
         <member name="T:Selenium.Internal.SeleniumEmulation.Close">
             <summary>
             Defines the command for the close keyword.

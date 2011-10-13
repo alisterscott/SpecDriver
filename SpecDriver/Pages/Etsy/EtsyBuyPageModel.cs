@@ -18,7 +18,7 @@
 
         private IWebElement TreasuryPanelButtonElement
         {
-            get { return Driver.FindElement(TreasuryPanelButtonSelector); }
+            get { return Driver.GetElement(TreasuryPanelButtonSelector); }
         }
 
         public EtsyTreasuryPageModel ClickTreasuryButton()

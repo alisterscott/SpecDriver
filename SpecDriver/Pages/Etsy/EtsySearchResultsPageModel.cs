@@ -23,17 +23,17 @@ namespace Project1.Pages
             
         private IWebElement SearchResultsElement
         {
-            get { return Driver.FindElement(SearchResultsSelector); }
+            get { return Driver.GetElement(SearchResultsSelector); }
         }
 
         private IWebElement SpellingElement
         {
-            get { return Driver.FindElement(SpellingSelector); }
+            get { return Driver.GetElement(SpellingSelector); }
         }
 
         private IWebElement FirstResultLink
         {
-            get { return Driver.FindElement(FirstResultLinkSelector); }
+            get { return Driver.GetElement(FirstResultLinkSelector); }
         }
 
         

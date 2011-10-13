@@ -24,32 +24,32 @@
 
         private IWebElement TreasuryListing
         {
-            get { return Driver.FindElement(GallerySelector); }
+            get { return Driver.GetElement(GallerySelector); }
         }
 
         private IWebElement TreasuryItem
         {
-            get { return TreasuryListing.FindElement(ItemSelector); }
+            get { return TreasuryListing.GetElement(ItemSelector); }
         }
 
         private IWebElement HotnessElement
         {
-            get { return TreasuryItem.FindElement(HotnessSelector); }
+            get { return TreasuryItem.GetElement(HotnessSelector); }
         }
 
         private IWebElement InfoElement
         {
-            get { return TreasuryItem.FindElement(InfoSelector); }
+            get { return TreasuryItem.GetElement(InfoSelector); }
         }
 
         private IWebElement StatsElement
         {
-            get { return TreasuryItem.FindElement(StatsSelector); }
+            get { return TreasuryItem.GetElement(StatsSelector); }
         }
 
         private IWebElement PreviewElement
         {
-            get { return TreasuryItem.FindElement(PreviewSelector); }
+            get { return TreasuryItem.GetElement(PreviewSelector); }
         }
 
         public void AssertGalleryPresent()

@@ -21,17 +21,17 @@
 
         private IWebElement RemoveItemLinkElement
         {
-            get { return Driver.FindElement(RemoveItemSelector); }
+            get { return Driver.GetElement(RemoveItemSelector); }
         }
 
         private IWebElement FirstItemTitleElement
         {
-            get { return Driver.FindElement(ItemDetailsDivSelector).FindElement(By.TagName("h3")); }
+            get { return Driver.GetElement(ItemDetailsDivSelector).GetElement(By.TagName("h3")); }
         }
 
         private IWebElement CheckOutHeaderElement
         {
-           get { return Driver.FindElement(CartHeaderSelector).FindElement(By.TagName("h1")); }
+           get { return Driver.GetElement(CartHeaderSelector).GetElement(By.TagName("h1")); }
         }
 
         public string ItemsInCart()

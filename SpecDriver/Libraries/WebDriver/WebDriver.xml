@@ -4554,11 +4554,23 @@
             <param name="onElement">The element on which to click and hold.</param>
             <returns>A self-reference to this <see cref="T:OpenQA.Selenium.Interactions.Actions"/>.</returns>
         </member>
+        <member name="M:OpenQA.Selenium.Interactions.Actions.ClickAndHold">
+            <summary>
+            Clicks and holds the mouse button at the last known mouse coordinates.
+            </summary>
+            <returns>A self-reference to this <see cref="T:OpenQA.Selenium.Interactions.Actions"/>.</returns>
+        </member>
         <member name="M:OpenQA.Selenium.Interactions.Actions.Release(OpenQA.Selenium.IWebElement)">
             <summary>
             Releases the mouse button on the specified element.
             </summary>
             <param name="onElement">The element on which to release the button.</param>
+            <returns>A self-reference to this <see cref="T:OpenQA.Selenium.Interactions.Actions"/>.</returns>
+        </member>
+        <member name="M:OpenQA.Selenium.Interactions.Actions.Release">
+            <summary>
+            Releases the mouse button at the last known mouse coordinates.
+            </summary>
             <returns>A self-reference to this <see cref="T:OpenQA.Selenium.Interactions.Actions"/>.</returns>
         </member>
         <member name="M:OpenQA.Selenium.Interactions.Actions.Click(OpenQA.Selenium.IWebElement)">
@@ -4579,6 +4591,12 @@
             Double-clicks the mouse on the specified element.
             </summary>
             <param name="onElement">The element on which to double-click.</param>
+            <returns>A self-reference to this <see cref="T:OpenQA.Selenium.Interactions.Actions"/>.</returns>
+        </member>
+        <member name="M:OpenQA.Selenium.Interactions.Actions.DoubleClick">
+            <summary>
+            Double-clicks the mouse at the last known mouse coordinates.
+            </summary>
             <returns>A self-reference to this <see cref="T:OpenQA.Selenium.Interactions.Actions"/>.</returns>
         </member>
         <member name="M:OpenQA.Selenium.Interactions.Actions.MoveToElement(OpenQA.Selenium.IWebElement)">

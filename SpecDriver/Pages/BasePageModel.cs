@@ -33,7 +33,7 @@ namespace Project1.Pages
 
         private void FindKnownElementOnPage(By knownElementOnPage)
         {
-            this.Driver.FindElement(knownElementOnPage);
+            this.Driver.GetElement(knownElementOnPage);
         }
     }
 }

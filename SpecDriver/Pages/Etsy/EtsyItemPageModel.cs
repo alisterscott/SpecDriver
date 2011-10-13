@@ -19,12 +19,12 @@
 
         private IWebElement ItemTitleElement
         {
-            get { return Driver.FindElement(ItemTitleSelector); }
+            get { return Driver.GetElement(ItemTitleSelector); }
         }
 
         private IWebElement AddToCartElement
         {
-            get { return Driver.FindElement(AddToCartSelector); }
+            get { return Driver.GetElement(AddToCartSelector); }
         }
 
         public EtsyCartPageModel ClickAddToCart()

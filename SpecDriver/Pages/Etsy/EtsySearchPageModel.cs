@@ -5,6 +5,7 @@
     using System.Linq;
     using System.Text;
     using OpenQA.Selenium;
+    using OpenQA.Selenium.Support.UI;
 
     public class EtsySearchPageModel : BasePageModel
     {
@@ -19,24 +20,24 @@
         {
         }
 
-        private IWebElement SearchCategoryComboElement
+        private SelectElement SearchCategoryComboElement
         {
-            get { return Driver.FindElement(SearchCategoryDivSelector).FindElement(By.TagName("select")); }
+            get { return new SelectElement(Driver.GetElement(SearchCategoryDivSelector).GetElement(By.TagName("select"))); }
         }
 
         private IWebElement AdvancedSearchFieldElement
         {
-            get { return Driver.FindElement(AdvancedSearchDivSelector).FindElement(SearchSelector); }
+            get { return Driver.GetElement(AdvancedSearchDivSelector).GetElement(SearchSelector); }
         }
 
         private IWebElement SearchButtonElement
         {
-            get { return Driver.FindElement(AdvancedSearchDivSelector).FindElement(SearchButtonSelector); }
+            get { return Driver.GetElement(AdvancedSearchDivSelector).GetElement(SearchButtonSelector); }
         }
 
         public void SpecifySubCategory(String subCategory)
         {
-            this.SearchCategoryComboElement.SelectValue(subCategory);
+            this.SearchCategoryComboElement.SelectByText(subCategory);
         }
 
         public EtsySearchResultsPageModel SearchForSomething(String term)

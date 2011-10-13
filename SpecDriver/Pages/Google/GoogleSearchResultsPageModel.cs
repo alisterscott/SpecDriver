@@ -19,12 +19,12 @@ namespace Project1.Pages
 
         private IWebElement NumberResultsDivElement
         {
-            get { return Driver.FindElement(NumberResultsDivSelector); }
+            get { return Driver.GetElement(NumberResultsDivSelector); }
         }
 
         private IWebElement ConversionResultsH2Element
         {
-            get { return Driver.FindElement(ConversionResultsH2Selector); }
+            get { return Driver.GetElement(ConversionResultsH2Selector); }
         }
 
         public string NumberOfResults

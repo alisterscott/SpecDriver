@@ -19,12 +19,12 @@
 
         private IWebElement SearchEditElement
         {
-             get { return Driver.FindElement(SearchEditSelector); }
+             get { return Driver.GetElement(SearchEditSelector); }
         }
 
         private IWebElement SearchButtonElement
         {
-            get { return Driver.FindElement(SearchButtonSelector); }
+            get { return Driver.GetElement(SearchButtonSelector); }
         }
 
         public GoogleSearchResultsPageModel Search(string term)
