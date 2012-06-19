@@ -33,7 +33,7 @@ namespace Project1.Pages
 
         private IWebElement FirstResultLink
         {
-            get { return Driver.GetElement(FirstResultLinkSelector); }
+            get { return Driver.GetElement  (FirstResultLinkSelector); }
         }
 
         

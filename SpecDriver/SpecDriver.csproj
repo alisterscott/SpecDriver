@@ -36,12 +36,15 @@
   <ItemGroup>
     <Compile Include="Features\Etsy\EtsyAdvancedSearch.feature.cs">
       <DependentUpon>EtsyAdvancedSearch.feature</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
     <Compile Include="Features\Etsy\EtsyBrowse.feature.cs">
       <DependentUpon>EtsyBrowse.feature</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
     <Compile Include="Features\Etsy\EtsyShoppingCart.feature.cs">
       <DependentUpon>EtsyShoppingCart.feature</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
     <Compile Include="Features\Google\GoogleSearch.feature.cs">
       <DependentUpon>GoogleSearch.feature</DependentUpon>
