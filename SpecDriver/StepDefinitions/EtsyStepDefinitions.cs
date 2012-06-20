@@ -92,7 +92,7 @@
         [Then(@"I should see some search results for '(.+)'")]
         public void ThenIShouldSeeSomeSearchResults(string term)
         {
-            StringAssert.IsMatch(@"\d+,?\d* items for " + term, EtsySearchResultsPage.SearchResultsText());
+            StringAssert.IsMatch(@".+ "+term+@"\d+,?\d* items", EtsySearchResultsPage.SearchResultsText());
             StringAssert.DoesNotMatch(@"^We didn't find anything for " + term + @"\.$", EtsySearchResultsPage.SearchResultsText());
         }
 

@@ -88,6 +88,22 @@
             <param name="cssSelectorToFind">The CSS selector to find.</param>
             <returns>A <see cref="T:OpenQA.Selenium.By"/> object the driver can use to find the elements.</returns>
         </member>
+        <member name="M:OpenQA.Selenium.By.op_Equality(OpenQA.Selenium.By,OpenQA.Selenium.By)">
+            <summary>
+            Determines if two <see cref="T:OpenQA.Selenium.By"/> instances are equal.
+            </summary>
+            <param name="one">One instance to compare.</param>
+            <param name="two">The other instance to compare.</param>
+            <returns><see langword="true"/> if the two instances are equal; otherwise, <see langword="false"/>.</returns>
+        </member>
+        <member name="M:OpenQA.Selenium.By.op_Inequality(OpenQA.Selenium.By,OpenQA.Selenium.By)">
+            <summary>
+            Determines if two <see cref="T:OpenQA.Selenium.By"/> instances are unequal.
+            </summary>s
+            <param name="one">One instance to compare.</param>
+            <param name="two">The other instance to compare.</param>
+            <returns><see langword="true"/> if the two instances are not equal; otherwise, <see langword="false"/>.</returns>
+        </member>
         <member name="M:OpenQA.Selenium.By.FindElement(OpenQA.Selenium.ISearchContext)">
             <summary>
             Finds the first element matching the criteria.
@@ -248,7 +264,55 @@
             Gets the expiration date of the cookie.
             </summary>
         </member>
-        <member name="T:OpenQA.Selenium.ElementNotVisibleException">
+        <member name="T:OpenQA.Selenium.DriverService">
+            <summary>
+            Exposes the service provided by a native WebDriver server executable.
+            </summary>
+        </member>
+        <member name="M:OpenQA.Selenium.DriverService.#ctor(System.String,System.Int32)">
+            <summary>
+            Initializes a new instance of the DriverService class.
+            </summary>
+            <param name="executable">The full path to the executable providing the service to drive the browser.</param>
+            <param name="port">The port on which the driver executable should listen.</param>
+        </member>
+        <member name="M:OpenQA.Selenium.DriverService.Dispose">
+            <summary>
+            Releases all resources associated with this <see cref="T:OpenQA.Selenium.DriverService"/>.
+            </summary>
+        </member>
+        <member name="M:OpenQA.Selenium.DriverService.Start">
+            <summary>
+            Starts the DriverService.
+            </summary>
+        </member>
+        <member name="M:OpenQA.Selenium.DriverService.Dispose(System.Boolean)">
+            <summary>
+            Releases all resources associated with this <see cref="T:OpenQA.Selenium.DriverService"/>.
+            </summary>
+            <param name="disposing"><see langword="true"/> if the Dispose method was explicitly called; otherwise, <see langword="false"/>.</param>
+        </member>
+        <member name="M:OpenQA.Selenium.DriverService.Stop">
+            <summary>
+            Stops the DriverService.
+            </summary>
+        </member>
+        <member name="P:OpenQA.Selenium.DriverService.ServiceUrl">
+            <summary>
+            Gets the Uri of the service.
+            </summary>
+        </member>
+        <member name="P:OpenQA.Selenium.DriverService.IsRunning">
+            <summary>
+            Gets a value indicating whether the service is running.
+            </summary>
+        </member>
+        <member name="P:OpenQA.Selenium.DriverService.DriverServiceExecutableName">
+            <summary>
+            Gets the executable file name of the driver service.
+            </summary>
+        </member>
+        <member name="T:OpenQA.Selenium.DriverServiceNotFoundException">
             <summary>
             The exception that is thrown when an element is not visible.
             </summary>
@@ -288,6 +352,42 @@
             object data about the exception being thrown.</param>
             <param name="context">The <see cref="T:System.Runtime.Serialization.StreamingContext"/> that contains contextual 
             information about the source or destination.</param>
+        </member>
+        <member name="M:OpenQA.Selenium.DriverServiceNotFoundException.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:OpenQA.Selenium.DriverServiceNotFoundException"/> class.
+            </summary>
+        </member>
+        <member name="M:OpenQA.Selenium.DriverServiceNotFoundException.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:OpenQA.Selenium.DriverServiceNotFoundException"/> class with 
+            a specified error message.
+            </summary>
+            <param name="message">The message that describes the error.</param>
+        </member>
+        <member name="M:OpenQA.Selenium.DriverServiceNotFoundException.#ctor(System.String,System.Exception)">
+            <summary>
+            Initializes a new instance of the <see cref="T:OpenQA.Selenium.DriverServiceNotFoundException"/> class with
+            a specified error message and a reference to the inner exception that is the
+            cause of this exception.
+            </summary>
+            <param name="message">The error message that explains the reason for the exception.</param>
+            <param name="innerException">The exception that is the cause of the current exception,
+            or <see langword="null"/> if no inner exception is specified.</param>
+        </member>
+        <member name="M:OpenQA.Selenium.DriverServiceNotFoundException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            Initializes a new instance of the <see cref="T:OpenQA.Selenium.DriverServiceNotFoundException"/> class with serialized data.
+            </summary>
+            <param name="info">The <see cref="T:System.Runtime.Serialization.SerializationInfo"/> that holds the serialized 
+            object data about the exception being thrown.</param>
+            <param name="context">The <see cref="T:System.Runtime.Serialization.StreamingContext"/> that contains contextual 
+            information about the source or destination.</param>
+        </member>
+        <member name="T:OpenQA.Selenium.ElementNotVisibleException">
+            <summary>
+            The exception that is thrown when an element is not visible.
+            </summary>
         </member>
         <member name="M:OpenQA.Selenium.ElementNotVisibleException.#ctor">
             <summary>
@@ -804,6 +904,25 @@
             Gets an object allowing the user to manipulate cookies on the page.
             </summary>
         </member>
+        <member name="P:OpenQA.Selenium.IOptions.Window">
+            <summary>
+            Gets an object allowing the user to manipulate the currently-focused browser window.
+            </summary>
+            <remarks>"Currently-focused" is defined as the browser window having the window handle
+            returned when IWebDriver.CurrentWindowHandle is called.</remarks>
+        </member>
+        <member name="T:OpenQA.Selenium.IRotatable">
+            <summary>
+            Represents rotation of the browser view for orientation-sensitive devices. 
+            When using this with a real device, the device should not be moved so that 
+            the built-in sensors do not interfere. 
+            </summary>
+        </member>
+        <member name="P:OpenQA.Selenium.IRotatable.Orientation">
+            <summary>
+            Gets or sets the screen orientation of the browser on the device.
+            </summary>
+        </member>
         <member name="T:OpenQA.Selenium.ISearchContext">
             <summary>
             Defines the interface used to search for elements.
@@ -924,7 +1043,16 @@
             <summary>
             Specifies the amount of time the driver should wait when executing JavaScript asynchronously.
             </summary>
-            <param name="timeToWait">A <see cref="T:System.TimeSpan"/> structure defining the amount of time to wait.</param>
+            <param name="timeToWait">A <see cref="T:System.TimeSpan"/> structure defining the amount of time to wait.
+            Setting this parameter to <see cref="F:System.TimeSpan.MinValue"/> will allow the script to run indefinitely.</param>
+            <returns>A self reference</returns>
+        </member>
+        <member name="M:OpenQA.Selenium.ITimeouts.SetPageLoadTimeout(System.TimeSpan)">
+            <summary>
+            Specifies the amount of time the driver should wait for a page to load when setting the <see cref="P:OpenQA.Selenium.IWebDriver.Url"/> property.
+            </summary>
+            <param name="timeToWait">A <see cref="T:System.TimeSpan"/> structure defining the amount of time to wait.
+            Setting this parameter to <see cref="F:System.TimeSpan.MinValue"/> will allow the page to load indefinitely.</param>
             <returns>A self reference</returns>
         </member>
         <member name="T:OpenQA.Selenium.IWebDriver">
@@ -1193,6 +1321,28 @@
             of having to parse an element's "style" attribute to determine
             visibility of an element.</remarks>
             <exception cref="T:OpenQA.Selenium.StaleElementReferenceException">Thrown when the target element is no longer valid in the document DOM.</exception>
+        </member>
+        <member name="T:OpenQA.Selenium.IWindow">
+            <summary>
+            Provides methods for getting and setting the size and position of the browser window.
+            </summary>
+        </member>
+        <member name="M:OpenQA.Selenium.IWindow.Maximize">
+            <summary>
+            Maximizes the current window if it is not already maximized.
+            </summary>
+        </member>
+        <member name="P:OpenQA.Selenium.IWindow.Position">
+            <summary>
+            Gets or sets the position of the browser window relative to the upper-left corner of the screen.
+            </summary>
+            <remarks>When setting this property, it should act as the JavaScript window.moveTo() method.</remarks>
+        </member>
+        <member name="P:OpenQA.Selenium.IWindow.Size">
+            <summary>
+            Gets or sets ths size of the outer browser window, including title bars and window borders.
+            </summary>
+            <remarks>When setting this property, it should act as the JavaScript window.resizeTo() method.</remarks>
         </member>
         <member name="T:OpenQA.Selenium.Keys">
             <summary>
@@ -1519,42 +1669,6 @@
             The exception that is thrown when an alert is not found.
             </summary>
         </member>
-        <member name="M:OpenQA.Selenium.NoAlertPresentException.#ctor">
-            <summary>
-            Initializes a new instance of the <see cref="T:OpenQA.Selenium.NoAlertPresentException"/> class.
-            </summary>
-        </member>
-        <member name="M:OpenQA.Selenium.NoAlertPresentException.#ctor(System.String)">
-            <summary>
-            Initializes a new instance of the <see cref="T:OpenQA.Selenium.NoAlertPresentException"/> class with 
-            a specified error message.
-            </summary>
-            <param name="message">The message that describes the error.</param>
-        </member>
-        <member name="M:OpenQA.Selenium.NoAlertPresentException.#ctor(System.String,System.Exception)">
-            <summary>
-            Initializes a new instance of the <see cref="T:OpenQA.Selenium.NoAlertPresentException"/> class with
-            a specified error message and a reference to the inner exception that is the
-            cause of this exception.
-            </summary>
-            <param name="message">The error message that explains the reason for the exception.</param>
-            <param name="innerException">The exception that is the cause of the current exception,
-            or <see langword="null"/> if no inner exception is specified.</param>
-        </member>
-        <member name="M:OpenQA.Selenium.NoAlertPresentException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
-            <summary>
-            Initializes a new instance of the <see cref="T:OpenQA.Selenium.NoAlertPresentException"/> class with serialized data.
-            </summary>
-            <param name="info">The <see cref="T:System.Runtime.Serialization.SerializationInfo"/> that holds the serialized 
-            object data about the exception being thrown.</param>
-            <param name="context">The <see cref="T:System.Runtime.Serialization.StreamingContext"/> that contains contextual 
-            information about the source or destination.</param>
-        </member>
-        <member name="T:OpenQA.Selenium.NoSuchElementException">
-            <summary>
-            The exception that is thrown when an element is not found.
-            </summary>
-        </member>
         <member name="T:OpenQA.Selenium.NotFoundException">
             <summary>
             The exception that is thrown when an item is not found.
@@ -1590,6 +1704,42 @@
             object data about the exception being thrown.</param>
             <param name="context">The <see cref="T:System.Runtime.Serialization.StreamingContext"/> that contains contextual 
             information about the source or destination.</param>
+        </member>
+        <member name="M:OpenQA.Selenium.NoAlertPresentException.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:OpenQA.Selenium.NoAlertPresentException"/> class.
+            </summary>
+        </member>
+        <member name="M:OpenQA.Selenium.NoAlertPresentException.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:OpenQA.Selenium.NoAlertPresentException"/> class with 
+            a specified error message.
+            </summary>
+            <param name="message">The message that describes the error.</param>
+        </member>
+        <member name="M:OpenQA.Selenium.NoAlertPresentException.#ctor(System.String,System.Exception)">
+            <summary>
+            Initializes a new instance of the <see cref="T:OpenQA.Selenium.NoAlertPresentException"/> class with
+            a specified error message and a reference to the inner exception that is the
+            cause of this exception.
+            </summary>
+            <param name="message">The error message that explains the reason for the exception.</param>
+            <param name="innerException">The exception that is the cause of the current exception,
+            or <see langword="null"/> if no inner exception is specified.</param>
+        </member>
+        <member name="M:OpenQA.Selenium.NoAlertPresentException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            Initializes a new instance of the <see cref="T:OpenQA.Selenium.NoAlertPresentException"/> class with serialized data.
+            </summary>
+            <param name="info">The <see cref="T:System.Runtime.Serialization.SerializationInfo"/> that holds the serialized 
+            object data about the exception being thrown.</param>
+            <param name="context">The <see cref="T:System.Runtime.Serialization.StreamingContext"/> that contains contextual 
+            information about the source or destination.</param>
+        </member>
+        <member name="T:OpenQA.Selenium.NoSuchElementException">
+            <summary>
+            The exception that is thrown when an element is not found.
+            </summary>
         </member>
         <member name="M:OpenQA.Selenium.NoSuchElementException.#ctor">
             <summary>
@@ -1746,6 +1896,11 @@
             Any version of the Linux operating system.
             </summary>
         </member>
+        <member name="F:OpenQA.Selenium.PlatformType.Android">
+            <summary>
+            A version of the Android mobile operating system.
+            </summary>
+        </member>
         <member name="T:OpenQA.Selenium.Platform">
             <summary>
             Represents the platform on which tests are to be run.
@@ -1872,6 +2027,21 @@
         <member name="P:OpenQA.Selenium.Proxy.SslProxy">
             <summary>
             Gets or sets the value of the proxy for the SSL protocol.
+            </summary>
+        </member>
+        <member name="T:OpenQA.Selenium.ScreenOrientation">
+            <summary>
+            Represents possible screen orientations. 
+            </summary>
+        </member>
+        <member name="F:OpenQA.Selenium.ScreenOrientation.Portrait">
+            <summary>
+            Represents a portrait mode, where the screen is vertical.
+            </summary>
+        </member>
+        <member name="F:OpenQA.Selenium.ScreenOrientation.Landscape">
+            <summary>
+            Represents Landscape mode, where the screen is horizontal.
             </summary>
         </member>
         <member name="T:OpenQA.Selenium.Screenshot">
@@ -2766,7 +2936,7 @@
             Dispose the RemoteWebDriver Instance
             </summary>
         </member>
-        <member name="M:OpenQA.Selenium.Remote.RemoteWebDriver.InternalExecute(OpenQA.Selenium.Remote.DriverCommand,System.Collections.Generic.Dictionary{System.String,System.Object})">
+        <member name="M:OpenQA.Selenium.Remote.RemoteWebDriver.InternalExecute(System.String,System.Collections.Generic.Dictionary{System.String,System.Object})">
             <summary>
             Executes commands with the driver 
             </summary>
@@ -2800,7 +2970,7 @@
             </summary>
             <param name="desiredCapabilities">Capabilities of the browser</param>
         </member>
-        <member name="M:OpenQA.Selenium.Remote.RemoteWebDriver.Execute(OpenQA.Selenium.Remote.DriverCommand,System.Collections.Generic.Dictionary{System.String,System.Object})">
+        <member name="M:OpenQA.Selenium.Remote.RemoteWebDriver.Execute(System.String,System.Collections.Generic.Dictionary{System.String,System.Object})">
             <summary>
             Executes a command with this driver .
             </summary>
@@ -2920,6 +3090,11 @@
             </summary>
             <returns>A <see cref="T:OpenQA.Selenium.Screenshot"/> object containing the image.</returns>
         </member>
+        <member name="P:OpenQA.Selenium.Android.AndroidDriver.Orientation">
+            <summary>
+            Gets or sets the screen orientation of the browser on the device.
+            </summary>
+        </member>
         <member name="T:OpenQA.Selenium.Chrome.ChromeCommandExecutor">
             <summary>
             Provides a mechanism to execute commands on the browser
@@ -2963,15 +3138,12 @@
             <param name="driverService">The <see cref="T:OpenQA.Selenium.Chrome.ChromeDriverService"/> that drives the browser.</param>
             <param name="commandTimeout">The maximum amount of time to wait for each command.</param>
         </member>
-        <member name="M:OpenQA.Selenium.Chrome.ChromeCommandExecutor.Start">
+        <member name="M:OpenQA.Selenium.Chrome.ChromeCommandExecutor.Execute(OpenQA.Selenium.Remote.Command)">
             <summary>
-            Starts the <see cref="T:OpenQA.Selenium.Chrome.ChromeCommandExecutor"/>.
+            Executes a command with the ChromeDriver.
             </summary>
-        </member>
-        <member name="M:OpenQA.Selenium.Chrome.ChromeCommandExecutor.Stop">
-            <summary>
-            Stops the <see cref="T:OpenQA.Selenium.Chrome.ChromeCommandExecutor"/>.
-            </summary>
+            <param name="commandToExecute">The command you wish to execute</param>
+            <returns>A response from the browser</returns>
         </member>
         <member name="T:OpenQA.Selenium.Chrome.ChromeDriver">
             <summary>
@@ -3024,33 +3196,33 @@
             </summary>
             <param name="chromeDriverDirectory">The full path to the directory containing ChromeDriver.exe.</param>
         </member>
-        <member name="M:OpenQA.Selenium.Chrome.ChromeDriver.#ctor(OpenQA.Selenium.ICapabilities)">
+        <member name="M:OpenQA.Selenium.Chrome.ChromeDriver.#ctor(OpenQA.Selenium.Chrome.ChromeOptions)">
             <summary>
-            Initializes a new instance of the ChromeDriver class using the capabilities.
+            Initializes a new instance of the ChromeDriver class using the specified options.
             </summary>
-            <param name="capabilities">The desired capabilities of the Chrome driver.</param>
+            <param name="options">The <see cref="T:OpenQA.Selenium.Chrome.ChromeOptions"/> to be used with the Chrome driver.</param>
         </member>
-        <member name="M:OpenQA.Selenium.Chrome.ChromeDriver.#ctor(System.String,OpenQA.Selenium.ICapabilities)">
+        <member name="M:OpenQA.Selenium.Chrome.ChromeDriver.#ctor(System.String,OpenQA.Selenium.Chrome.ChromeOptions)">
             <summary>
-            Initializes a new instance of the ChromeDriver class using the specified path to the directory containing ChromeDriver.exe and capabilities.
+            Initializes a new instance of the ChromeDriver class using the specified path to the directory containing ChromeDriver.exe and options.
             </summary>
             <param name="chromeDriverDirectory">The full path to the directory containing ChromeDriver.exe.</param>
-            <param name="capabilities">The desired capabilities of the Chrome driver.</param>
+            <param name="options">The <see cref="T:OpenQA.Selenium.Chrome.ChromeOptions"/> to be used with the Chrome driver.</param>
         </member>
-        <member name="M:OpenQA.Selenium.Chrome.ChromeDriver.#ctor(System.String,OpenQA.Selenium.ICapabilities,System.TimeSpan)">
+        <member name="M:OpenQA.Selenium.Chrome.ChromeDriver.#ctor(System.String,OpenQA.Selenium.Chrome.ChromeOptions,System.TimeSpan)">
             <summary>
-            Initializes a new instance of the ChromeDriver class using the specified path to the directory containing ChromeDriver.exe, command timeout, and capabilities.
+            Initializes a new instance of the ChromeDriver class using the specified path to the directory containing ChromeDriver.exe, command timeout, and options.
             </summary>
             <param name="chromeDriverDirectory">The full path to the directory containing ChromeDriver.exe.</param>
-            <param name="capabilities">The desired capabilities of the Chrome driver.</param>
+            <param name="options">The <see cref="T:OpenQA.Selenium.Chrome.ChromeOptions"/> to be used with the Chrome driver.</param>
             <param name="commandTimeout">The maximum amount of time to wait for each command.</param>
         </member>
-        <member name="M:OpenQA.Selenium.Chrome.ChromeDriver.#ctor(OpenQA.Selenium.Chrome.ChromeDriverService,OpenQA.Selenium.ICapabilities,System.TimeSpan)">
+        <member name="M:OpenQA.Selenium.Chrome.ChromeDriver.#ctor(OpenQA.Selenium.DriverService,OpenQA.Selenium.Chrome.ChromeOptions,System.TimeSpan)">
             <summary>
             Initializes a new instance of the ChromeDriver class using the specified <see cref="T:OpenQA.Selenium.Chrome.ChromeDriverService"/>.
             </summary>
             <param name="service">The <see cref="T:OpenQA.Selenium.Chrome.ChromeDriverService"/> to use.</param>
-            <param name="capabilities">The desired capabilities of the Chrome driver.</param>
+            <param name="options">The <see cref="T:OpenQA.Selenium.Chrome.ChromeOptions"/> to be used with the Chrome driver.</param>
             <param name="commandTimeout">The maximum amount of time to wait for each command.</param>
         </member>
         <member name="M:OpenQA.Selenium.Chrome.ChromeDriver.GetScreenshot">
@@ -3058,20 +3230,6 @@
             Gets a <see cref="T:OpenQA.Selenium.Screenshot"/> object representing the image of the page on the screen.
             </summary>
             <returns>A <see cref="T:OpenQA.Selenium.Screenshot"/> object containing the image.</returns>
-        </member>
-        <member name="M:OpenQA.Selenium.Chrome.ChromeDriver.StartClient">
-            <summary>
-            By default will try to load Chrome from system property
-            webdriver.chrome.bin and the extension from
-            webdriver.chrome.extensiondir.  If the former fails, will try to guess the
-            path to Chrome.  If the latter fails, will try to unzip from the JAR we 
-            hope we're in.  If these fail, throws exceptions.
-            </summary>
-        </member>
-        <member name="M:OpenQA.Selenium.Chrome.ChromeDriver.StopClient">
-            <summary>
-            Kills the started Chrome process and ChromeCommandExecutor if they exist
-            </summary>
         </member>
         <member name="T:OpenQA.Selenium.Chrome.ChromeDriverService">
             <summary>
@@ -3098,29 +3256,106 @@
             <param name="driverPath">The directory containing the ChromeDriver executable.</param>
             <returns>A ChromeDriverService using a random port.</returns>
         </member>
-        <member name="M:OpenQA.Selenium.Chrome.ChromeDriverService.Dispose">
+        <member name="P:OpenQA.Selenium.Chrome.ChromeDriverService.DriverServiceExecutableName">
             <summary>
-            Releases all resources associated with this <see cref="T:OpenQA.Selenium.Chrome.ChromeDriverService"/>.
+            Gets the executable file name of the driver service.
             </summary>
         </member>
-        <member name="M:OpenQA.Selenium.Chrome.ChromeDriverService.Start">
+        <member name="T:OpenQA.Selenium.Chrome.ChromeOptions">
             <summary>
-            Starts the ChromeDriverService.
+            Class to manage options specific to <see cref="T:OpenQA.Selenium.Chrome.ChromeDriver"/>
+            </summary>
+            <remarks>
+            Used with ChromeDriver.exe v17.0.963.0 and higher.
+            </remarks>
+            <example>
+            <code>
+            ChromeOptions options = new ChromeOptions();
+            options.AddExtensions("\path\to\extension.crx");
+            options.BinaryLocation = "\path\to\chrome";
+            </code>
+            <para></para>
+            <para>For use with ChromeDriver:</para>
+            <para></para>
+            <code>
+            ChromeDriver driver = new ChromeDriver(options);
+            </code>
+            <para></para>
+            <para>For use with RemoteWebDriver:</para>
+            <para></para>
+            <code>
+            DesiredCapabilities capabilities = DesiredCapabilities.Chrome();
+            capabilities.SetCapability(ChromeOptions.Capability, options);
+            RemoteWebDriver driver = new RemoteWebDriver(new Uri("http://localhost:4444/wd/hub"), capabilities);
+            </code>
+            </example>
+        </member>
+        <member name="F:OpenQA.Selenium.Chrome.ChromeOptions.Capability">
+            <summary>
+            Gets the name of the capability used to store Chrome options in
+            a <see cref="T:OpenQA.Selenium.Remote.DesiredCapabilities"/> object.
             </summary>
         </member>
-        <member name="M:OpenQA.Selenium.Chrome.ChromeDriverService.Stop">
+        <member name="M:OpenQA.Selenium.Chrome.ChromeOptions.AddArgument(System.String)">
             <summary>
-            Stops the ChromeDriverService.
+            Adds a single argument to the list of arguments to be appended to the Chrome.exe command line.
+            </summary>
+            <param name="argument">The argument to add.</param>
+        </member>
+        <member name="M:OpenQA.Selenium.Chrome.ChromeOptions.AddArguments(System.String[])">
+            <summary>
+            Adds arguments to be appended to the Chrome.exe command line.
+            </summary>
+            <param name="arguments">An array of arguments to add.</param>
+        </member>
+        <member name="M:OpenQA.Selenium.Chrome.ChromeOptions.AddArguments(System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            Adds arguments to be appended to the Chrome.exe command line.
+            </summary>
+            <param name="arguments">An <see cref="T:System.Collections.Generic.IEnumerable`1"/> object of arguments to add.</param>
+        </member>
+        <member name="M:OpenQA.Selenium.Chrome.ChromeOptions.AddExtension(System.String)">
+            <summary>
+            Adds a path to a packed Chrome extension (.crx file) to the list of extensions 
+            to be installed in the instance of Chrome.
+            </summary>
+            <param name="pathToExtension">The full path to the extension to add.</param>
+        </member>
+        <member name="M:OpenQA.Selenium.Chrome.ChromeOptions.AddExtensions(System.String[])">
+            <summary>
+            Adds a list of paths to packed Chrome extensions (.crx files) to be installed
+            in the instance of Chrome.
+            </summary>
+            <param name="extensions">An array of full paths to the extensions to add.</param>
+        </member>
+        <member name="M:OpenQA.Selenium.Chrome.ChromeOptions.AddExtensions(System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            Adds a list of paths to packed Chrome extensions (.crx files) to be installed
+            in the instance of Chrome.
+            </summary>
+            <param name="extensions">An <see cref="T:System.Collections.Generic.IEnumerable`1"/> of full paths to the extensions to add.</param>
+        </member>
+        <member name="M:OpenQA.Selenium.Chrome.ChromeOptions.ToCapabilities">
+            <summary>
+            Returns DesiredCapabiliites for Chrome with these options included as
+            capabilities. This does not copy the options. Further changes will be
+            reflected in the returned capabilities.
+            </summary>
+            <returns>The DesiredCapabilities for Chrome with these options.</returns>
+        </member>
+        <member name="P:OpenQA.Selenium.Chrome.ChromeOptions.BinaryLocation">
+            <summary>
+            Gets or sets the location of the Chrome browser's binary executable file.
             </summary>
         </member>
-        <member name="P:OpenQA.Selenium.Chrome.ChromeDriverService.ServiceUrl">
+        <member name="P:OpenQA.Selenium.Chrome.ChromeOptions.Arguments">
             <summary>
-            Gets the Uri of the service.
+            Gets the list of arguments appended to the Chrome command line as a string array.
             </summary>
         </member>
-        <member name="P:OpenQA.Selenium.Chrome.ChromeDriverService.IsRunning">
+        <member name="P:OpenQA.Selenium.Chrome.ChromeOptions.Extensions">
             <summary>
-            Gets a value indicating whether the service is running.
+            Gets the list of extensions to be installed as an array of base64-encoded strings.
             </summary>
         </member>
         <member name="T:OpenQA.Selenium.Chrome.ChromeWebElement">
@@ -3492,7 +3727,7 @@
             <param name="value">The value to use to search for the elements.</param>
             <returns>A collection of all of the <see cref="T:OpenQA.Selenium.IWebElement">IWebElements</see> matchings the given criteria.</returns>
         </member>
-        <member name="M:OpenQA.Selenium.Remote.RemoteWebElement.Execute(OpenQA.Selenium.Remote.DriverCommand,System.Collections.Generic.Dictionary{System.String,System.Object})">
+        <member name="M:OpenQA.Selenium.Remote.RemoteWebElement.Execute(System.String,System.Collections.Generic.Dictionary{System.String,System.Object})">
             <summary>
             Executes a command on this element using the specified parameters.
             </summary>
@@ -4065,11 +4300,6 @@
             Gets or sets a value indicating whether Firefox should accept untrusted certificates.
             </summary>
         </member>
-        <member name="P:OpenQA.Selenium.Firefox.FirefoxProfile.IsRunning">
-            <summary>
-            Gets a value indicating whether Firefox is currently running with this profile loaded.
-            </summary>
-        </member>
         <member name="T:OpenQA.Selenium.Firefox.FirefoxProfileManager">
             <summary>
             Allows the user to enumerate and access existing named Firefox profiles.
@@ -4373,31 +4603,39 @@
             Initializes a new instance of the InternetExplorerDriver class.
             </summary>
         </member>
-        <member name="M:OpenQA.Selenium.IE.InternetExplorerDriver.#ctor(System.Int32)">
+        <member name="M:OpenQA.Selenium.IE.InternetExplorerDriver.#ctor(OpenQA.Selenium.IE.InternetExplorerOptions)">
             <summary>
-            Initializes a new instance of the InternetExplorerDriver class for the specified port.
+            Initializes a new instance of the InternetExplorerDriver class with the desired options.
             </summary>
-            <param name="port">The port to use to communicate with the IE server.</param>
+            <param name="options">The <see cref="T:OpenQA.Selenium.IE.InternetExplorerOptions"/> used to initialize the driver.</param>
         </member>
-        <member name="M:OpenQA.Selenium.IE.InternetExplorerDriver.#ctor(OpenQA.Selenium.ICapabilities)">
+        <member name="M:OpenQA.Selenium.IE.InternetExplorerDriver.#ctor(System.String)">
             <summary>
-            Initializes a new instance of the InternetExplorerDriver class with the desired capabilities.
+            Initializes a new instance of the InternetExplorerDriver class using the specified path to the directory containing IEDriverServer.exe.
             </summary>
-            <param name="desiredCapabilities">The desired capabilities of the IE driver.</param>
+            <param name="internetExplorerDriverServerDirectory">The full path to the directory containing IEDriverServer.exe.</param>
         </member>
-        <member name="M:OpenQA.Selenium.IE.InternetExplorerDriver.#ctor(System.Int32,OpenQA.Selenium.ICapabilities)">
+        <member name="M:OpenQA.Selenium.IE.InternetExplorerDriver.#ctor(System.String,OpenQA.Selenium.IE.InternetExplorerOptions)">
             <summary>
-            Initializes a new instance of the InternetExplorerDriver class for the specified port and desired capabilities.
+            Initializes a new instance of the InternetExplorerDriver class using the specified path to the directory containing IEDriverServer.exe and command timeout.
             </summary>
-            <param name="port">The port to use to communicate with the IE server.</param>
-            <param name="desiredCapabilities">The desired capabilities of the IE driver.</param>
+            <param name="internetExplorerDriverServerDirectory">The full path to the directory containing IEDriverServer.exe.</param>
+            <param name="options">The <see cref="T:OpenQA.Selenium.IE.InternetExplorerOptions"/> used to initialize the driver.</param>
         </member>
-        <member name="M:OpenQA.Selenium.IE.InternetExplorerDriver.#ctor(System.Int32,OpenQA.Selenium.ICapabilities,System.TimeSpan)">
+        <member name="M:OpenQA.Selenium.IE.InternetExplorerDriver.#ctor(System.String,OpenQA.Selenium.IE.InternetExplorerOptions,System.TimeSpan)">
             <summary>
-            Initializes a new instance of the InternetExplorerDriver class for the specified port, desired capabilities, and command timeout.
+            Initializes a new instance of the InternetExplorerDriver class using the specified path to the directory containing IEDriverServer.exe and command timeout.
             </summary>
-            <param name="port">The port to use to communicate with the IE server.</param>
-            <param name="desiredCapabilities">The desired capabilities of the IE driver.</param>
+            <param name="internetExplorerDriverServerDirectory">The full path to the directory containing IEDriverServer.exe.</param>
+            <param name="options">The <see cref="T:OpenQA.Selenium.IE.InternetExplorerOptions"/> used to initialize the driver.</param>
+            <param name="commandTimeout">The maximum amount of time to wait for each command.</param>
+        </member>
+        <member name="M:OpenQA.Selenium.IE.InternetExplorerDriver.#ctor(OpenQA.Selenium.DriverService,OpenQA.Selenium.IE.InternetExplorerOptions,System.TimeSpan)">
+            <summary>
+            Initializes a new instance of the InternetExplorerDriver class using the specified <see cref="T:OpenQA.Selenium.DriverService"/>.
+            </summary>
+            <param name="service">The <see cref="T:OpenQA.Selenium.DriverService"/> to use.</param>
+            <param name="options">The <see cref="T:OpenQA.Selenium.IE.InternetExplorerOptions"/> used to initialize the driver.</param>
             <param name="commandTimeout">The maximum amount of time to wait for each command.</param>
         </member>
         <member name="M:OpenQA.Selenium.IE.InternetExplorerDriver.GetScreenshot">
@@ -4406,57 +4644,88 @@
             </summary>
             <returns>A <see cref="T:OpenQA.Selenium.Screenshot"/> object containing the image.</returns>
         </member>
-        <member name="M:OpenQA.Selenium.IE.InternetExplorerDriver.StartClient">
+        <member name="T:OpenQA.Selenium.IE.InternetExplorerDriverService">
             <summary>
-            Starts the command executor, enabling communication with the browser.
+            Exposes the service provided by the native ChromeDriver executable.
             </summary>
         </member>
-        <member name="M:OpenQA.Selenium.IE.InternetExplorerDriver.StopClient">
+        <member name="M:OpenQA.Selenium.IE.InternetExplorerDriverService.#ctor(System.String,System.Int32)">
             <summary>
-            Stops the command executor, ending further communication with the browser.
+            Initializes a new instance of the InternetExplorerDriverService class.
+            </summary>
+            <param name="executable">The full path to the IEDriverServer executable.</param>
+            <param name="port">The port on which the IEDriverServer executable should listen.</param>
+        </member>
+        <member name="M:OpenQA.Selenium.IE.InternetExplorerDriverService.CreateDefaultService">
+            <summary>
+            Creates a default instance of the InternetExplorerDriverService.
+            </summary>
+            <returns>A InternetExplorerDriverService that implements default settings.</returns>
+        </member>
+        <member name="M:OpenQA.Selenium.IE.InternetExplorerDriverService.CreateDefaultService(System.String)">
+            <summary>
+            Creates a default instance of the InternetExplorerDriverService using a specified path to the IEDriverServer executable.
+            </summary>
+            <param name="driverPath">The directory containing the IEDriverServer executable.</param>
+            <returns>A InternetExplorerDriverService using a random port.</returns>
+        </member>
+        <member name="P:OpenQA.Selenium.IE.InternetExplorerDriverService.DriverServiceExecutableName">
+            <summary>
+            Gets the executable file name of the driver service.
             </summary>
         </member>
-        <member name="T:OpenQA.Selenium.IE.InternetExplorerDriverServer">
+        <member name="T:OpenQA.Selenium.IE.InternetExplorerOptions">
             <summary>
-            Provides a wrapper for the native-code Internet Explorer driver library.
+            Class to manage options specific to <see cref="T:OpenQA.Selenium.IE.InternetExplorerDriver"/>
+            </summary>
+            <example>
+            <code>
+            InternetExplorerOptions options = new InternetExplorerOptions();
+            options.IntroduceInstabilityByIgnoringProtectedModeSettings = true;
+            </code>
+            <para></para>
+            <para>For use with InternetExplorerDriver:</para>
+            <para></para>
+            <code>
+            InternetExplorerDriver driver = new InternetExplorerDriver(options);
+            </code>
+            <para></para>
+            <para>For use with RemoteWebDriver:</para>
+            <para></para>
+            <code>
+            RemoteWebDriver driver = new RemoteWebDriver(new Uri("http://localhost:4444/wd/hub"), options.ToCapabilities());
+            </code>
+            </example>
+        </member>
+        <member name="M:OpenQA.Selenium.IE.InternetExplorerOptions.ToCapabilities">
+            <summary>
+            Returns DesiredCapabiliites for IE with these options included as
+            capabilities. This copies the options. Further changes will not be
+            reflected in the returned capabilities.
+            </summary>
+            <returns>The DesiredCapabilities for IE with these options.</returns>
+        </member>
+        <member name="P:OpenQA.Selenium.IE.InternetExplorerOptions.IntroduceInstabilityByIgnoringProtectedModeSettings">
+            <summary>
+            Gets or sets a value indicating whether to ignore the settings of the Internet Explorer Protected Mode.
             </summary>
         </member>
-        <member name="M:OpenQA.Selenium.IE.InternetExplorerDriverServer.#ctor">
+        <member name="P:OpenQA.Selenium.IE.InternetExplorerOptions.EnableNativeEvents">
             <summary>
-            Initializes a new instance of the <see cref="T:OpenQA.Selenium.IE.InternetExplorerDriverServer"/> class.
+            Gets or sets a value indicating whether to use native events in interacting with elements.
             </summary>
         </member>
-        <member name="M:OpenQA.Selenium.IE.InternetExplorerDriverServer.Start(System.Int32)">
+        <member name="P:OpenQA.Selenium.IE.InternetExplorerOptions.InitialBrowserUrl">
             <summary>
-            Starts the server, communicating on the specified port, if it is not already running
+            Gets or sets the initial URL displayed when IE is launched. If not set, the browser launches
+            with the internal startup page for the WebDriver server.
             </summary>
-            <param name="port">The port on which the server should listen for requests.</param>
-            <returns>The port on which the server is actually listening for requests.</returns>
-            <remarks>If the server has already been started, there is no need to start it
-            again. We can leverage the already-running server, and the port it is listening
-            on.</remarks>
-        </member>
-        <member name="M:OpenQA.Selenium.IE.InternetExplorerDriverServer.Dispose">
-            <summary>
-            Releases all resources used by this InternetExplorerDriverServer.
-            </summary>
-        </member>
-        <member name="M:OpenQA.Selenium.IE.InternetExplorerDriverServer.Dispose(System.Boolean)">
-            <summary>
-            Releases all resources used by this InternetExplorerDriverServer.
-            </summary>
-            <param name="disposing"><see langword="true"/> to dispose of managed and unmanaged resources;
-            <see langword="false"/> to only dispose of unmanaged resources.</param>
-        </member>
-        <member name="P:OpenQA.Selenium.IE.InternetExplorerDriverServer.LibraryIsLoaded">
-            <summary>
-            Gets a value indicating whether the unmanaged native code library has been loaded.
-            </summary>
-        </member>
-        <member name="P:OpenQA.Selenium.IE.InternetExplorerDriverServer.IsRunning">
-            <summary>
-            Gets a value indicating whether the Internet Explorer driver server is running.
-            </summary>
+            <remarks>
+            By setting the  <see cref="P:OpenQA.Selenium.IE.InternetExplorerOptions.IntroduceInstabilityByIgnoringProtectedModeSettings"/> to <see langword="true"/>
+            and this property to a correct URL, you can launch IE in the Internet Protected Mode zone. This can be helpful
+            to avoid the flakiness introduced by ignoring the Protected Mode settings. Nevertheless, setting Protected Mode
+            zone settings to the same value in the IE configuration is the preferred method.
+            </remarks>
         </member>
         <member name="T:OpenQA.Selenium.IE.InternetExplorerWebElement">
             <summary>
@@ -5055,78 +5324,6 @@
             Gets the <see cref="T:OpenQA.Selenium.IWebElement"/> wrapped by this object.
             </summary>
         </member>
-        <member name="T:OpenQA.Selenium.NativeLibrary">
-            <summary>
-            Utility class to wrap an unmanaged DLL and be responsible for freeing it.
-            </summary>
-            <remarks>
-            This is a managed wrapper over the native LoadLibrary, GetProcAddress, 
-            and FreeLibrary calls.
-            </remarks>
-        </member>
-        <member name="M:OpenQA.Selenium.NativeLibrary.#ctor(System.String)">
-            <summary>
-            Initializes a new instance of the <see cref="T:OpenQA.Selenium.NativeLibrary"/> class.
-            </summary>
-            <param name="fileName">full path name of dll to load</param>
-            <exception cref="T:System.IO.FileNotFoundException">
-            If fileName can't be found
-            </exception>
-            <remarks>
-            This constructor loads a DLL and makes this class responible for 
-            freeing it. Throws exceptions on failure. Most common failure would be 
-            file-not-found, or that the file is not a loadable image.
-            </remarks>
-        </member>
-        <member name="M:OpenQA.Selenium.NativeLibrary.GetUnmanagedFunction(System.String,System.Type)">
-            <summary>
-            Dynamically lookup a function in the dll via kernel32!GetProcAddress.
-            </summary>
-            <param name="functionName">The name of the function in the export table.</param>
-            <param name="delegateType">The Type of the delegate to be returned.</param>
-            <returns>A delegate to the unmanaged function. Returns 
-            <see langword="null"/> if the function is not found.
-            </returns>
-            <remarks>
-            GetProcAddress results are valid as long as the dll is not yet 
-            unloaded. This is very very dangerous to use since you need to 
-            ensure that the dll is not unloaded until after you're done with any 
-            objects implemented by the dll. For example, if you get a delegate 
-            that then gets an IUnknown implemented by this dll, you can not 
-            dispose this library until that IUnknown is collected. Else, you may 
-            free the library and then the CLR may call release on that IUnknown 
-            and it will crash.
-            </remarks>
-        </member>
-        <member name="M:OpenQA.Selenium.NativeLibrary.Dispose">
-            <summary>
-            Call FreeLibrary on the unmanaged dll. All function pointers handed 
-            out from this class become invalid after this.
-            </summary>
-            <remarks>
-            This is very dangerous because it suddenly invalidate everything
-            retrieved from this dll. This includes any functions handed out via 
-            GetProcAddress, and potentially any objects returned from those 
-            functions (which may have an implemention in the dll).
-            </remarks>
-        </member>
-        <member name="T:OpenQA.Selenium.NativeLibrarySafeHandle">
-            <summary>
-            Represents a wrapper class for the handle to a native library.
-            </summary>
-        </member>
-        <member name="M:OpenQA.Selenium.NativeLibrarySafeHandle.#ctor">
-            <summary>
-            Initializes a new instance of the <see cref="T:OpenQA.Selenium.NativeLibrarySafeHandle"/> class.
-            </summary>
-        </member>
-        <member name="M:OpenQA.Selenium.NativeLibrarySafeHandle.ReleaseHandle">
-            <summary>
-            Releases the native library handle.
-            </summary>
-            <returns><see langword="true"/> if the library was released, otherwise <see langword="false"/>.</returns>
-            <remarks>The handle is released by calling the FreeLibrary API.</remarks>
-        </member>
         <member name="T:OpenQA.Selenium.NativeMethods">
             <summary>
             Provides entry points into needed unmanaged APIs.
@@ -5153,6 +5350,17 @@
             If this flag is set, calling the CloseHandle function will not close the 
             object handle.
             </summary>
+        </member>
+        <member name="T:OpenQA.Selenium.Internal.PortUtilities">
+            <summary>
+            Encapsulates methods for working with ports.
+            </summary>
+        </member>
+        <member name="M:OpenQA.Selenium.Internal.PortUtilities.FindFreePort">
+            <summary>
+            Finds a random, free port to be listened on.
+            </summary>
+            <returns>A random, free port to be listened on.</returns>
         </member>
         <member name="T:OpenQA.Selenium.Internal.ResourceUtilities">
             <summary>
@@ -5282,14 +5490,14 @@
             Provides a way to send commands to the remote server
             </summary>
         </member>
-        <member name="M:OpenQA.Selenium.Remote.Command.#ctor(OpenQA.Selenium.Remote.DriverCommand,System.String)">
+        <member name="M:OpenQA.Selenium.Remote.Command.#ctor(System.String,System.String)">
             <summary>
             Initializes a new instance of the Command class using a command name and a JSON-encoded string for the parameters.
             </summary>
             <param name="name">Name of the command</param>
             <param name="jsonParameters">Parameters for the command as a JSON-encoded string.</param>
         </member>
-        <member name="M:OpenQA.Selenium.Remote.Command.#ctor(OpenQA.Selenium.Remote.SessionId,OpenQA.Selenium.Remote.DriverCommand,System.Collections.Generic.Dictionary{System.String,System.Object})">
+        <member name="M:OpenQA.Selenium.Remote.Command.#ctor(OpenQA.Selenium.Remote.SessionId,System.String,System.Collections.Generic.Dictionary{System.String,System.Object})">
             <summary>
             Initializes a new instance of the Command class for a Session
             </summary>
@@ -5385,7 +5593,7 @@
             Prevents a default instance of the <see cref="T:OpenQA.Selenium.Remote.CommandInfoRepository"/> class from being created.
             </summary>
         </member>
-        <member name="M:OpenQA.Selenium.Remote.CommandInfoRepository.GetCommandInfo(OpenQA.Selenium.Remote.DriverCommand)">
+        <member name="M:OpenQA.Selenium.Remote.CommandInfoRepository.GetCommandInfo(System.String)">
             <summary>
             Gets the <see cref="T:OpenQA.Selenium.Remote.CommandInfo"/> for a <see cref="T:OpenQA.Selenium.Remote.DriverCommand"/>.
             </summary>
@@ -5455,7 +5663,13 @@
             <summary>
             Method to return a new DesiredCapabilities using defaults
             </summary>
-            <returns>New instance of DesiredCapabilities for use with IPhone</returns>
+            <returns>New instance of DesiredCapabilities for use with iPhone</returns>
+        </member>
+        <member name="M:OpenQA.Selenium.Remote.DesiredCapabilities.IPad">
+            <summary>
+            Method to return a new DesiredCapabilities using defaults
+            </summary>
+            <returns>New instance of DesiredCapabilities for use with iPad</returns>
         </member>
         <member name="M:OpenQA.Selenium.Remote.DesiredCapabilities.Chrome">
             <summary>
@@ -5474,6 +5688,12 @@
             Method to return a new DesiredCapabilities using defaults
             </summary>
             <returns>New instance of DesiredCapabilities for use with Opera</returns>
+        </member>
+        <member name="M:OpenQA.Selenium.Remote.DesiredCapabilities.Safari">
+            <summary>
+            Method to return a new DesiredCapabilities using defaults
+            </summary>
+            <returns>New instance of DesiredCapabilities for use with Safari</returns>
         </member>
         <member name="M:OpenQA.Selenium.Remote.DesiredCapabilities.HasCapability(System.String)">
             <summary>
@@ -5551,9 +5771,19 @@
             Represents the Define Driver Mapping command
             </summary>
         </member>
+        <member name="F:OpenQA.Selenium.Remote.DriverCommand.Status">
+            <summary>
+            Represents the Status command.
+            </summary>
+        </member>
         <member name="F:OpenQA.Selenium.Remote.DriverCommand.NewSession">
             <summary>
             Represents a New Session command
+            </summary>
+        </member>
+        <member name="F:OpenQA.Selenium.Remote.DriverCommand.GetSessionList">
+            <summary>
+            Represents the Get Session List command
             </summary>
         </member>
         <member name="F:OpenQA.Selenium.Remote.DriverCommand.GetSessionCapabilities">
@@ -5646,11 +5876,6 @@
             Represents clickelements command
             </summary>
         </member>
-        <member name="F:OpenQA.Selenium.Remote.DriverCommand.HoverOverElement">
-            <summary>
-            Represents hoverelements command
-            </summary>
-        </member>
         <member name="F:OpenQA.Selenium.Remote.DriverCommand.SendKeysToElement">
             <summary>
             Represents SendKeysToElements command
@@ -5659,11 +5884,6 @@
         <member name="F:OpenQA.Selenium.Remote.DriverCommand.SubmitElement">
             <summary>
             Represents SubmitElement command
-            </summary>
-        </member>
-        <member name="F:OpenQA.Selenium.Remote.DriverCommand.ToggleElement">
-            <summary>
-            Represents TogleElements command
             </summary>
         </member>
         <member name="F:OpenQA.Selenium.Remote.DriverCommand.GetCurrentWindowHandle">
@@ -5716,49 +5936,14 @@
             Represents ExecuteAsyncScript command
             </summary>
         </member>
-        <member name="F:OpenQA.Selenium.Remote.DriverCommand.GetSpeed">
-            <summary>
-            Represents GetSpeed command
-            </summary>
-        </member>
-        <member name="F:OpenQA.Selenium.Remote.DriverCommand.SetSpeed">
-            <summary>
-            Represents SetSpeed command
-            </summary>
-        </member>
-        <member name="F:OpenQA.Selenium.Remote.DriverCommand.SetBrowserVisible">
-            <summary>
-            Represents SetBrowserVisible command
-            </summary>
-        </member>
-        <member name="F:OpenQA.Selenium.Remote.DriverCommand.IsBrowserVisible">
-            <summary>
-            Represents IsBrowserVisible command
-            </summary>
-        </member>
         <member name="F:OpenQA.Selenium.Remote.DriverCommand.GetElementText">
             <summary>
             Represents GetElementText command
             </summary>
         </member>
-        <member name="F:OpenQA.Selenium.Remote.DriverCommand.GetElementValue">
-            <summary>
-            Represents GetElementValue command
-            </summary>
-        </member>
         <member name="F:OpenQA.Selenium.Remote.DriverCommand.GetElementTagName">
             <summary>
             Represents GetElementTagName command
-            </summary>
-        </member>
-        <member name="F:OpenQA.Selenium.Remote.DriverCommand.SetElementSelected">
-            <summary>
-            Represents SetElementSelected command
-            </summary>
-        </member>
-        <member name="F:OpenQA.Selenium.Remote.DriverCommand.DragElement">
-            <summary>
-            Represents DragElement command
             </summary>
         </member>
         <member name="F:OpenQA.Selenium.Remote.DriverCommand.IsElementSelected">
@@ -5811,6 +5996,41 @@
             Represents Screenshot command
             </summary>
         </member>
+        <member name="F:OpenQA.Selenium.Remote.DriverCommand.GetOrientation">
+            <summary>
+            Represents GetOrientation command
+            </summary>
+        </member>
+        <member name="F:OpenQA.Selenium.Remote.DriverCommand.SetOrientation">
+            <summary>
+            Represents SetOrientation command
+            </summary>
+        </member>
+        <member name="F:OpenQA.Selenium.Remote.DriverCommand.GetWindowSize">
+            <summary>
+            Represents GetWindowSize command
+            </summary>
+        </member>
+        <member name="F:OpenQA.Selenium.Remote.DriverCommand.SetWindowSize">
+            <summary>
+            Represents SetWindowSize command
+            </summary>
+        </member>
+        <member name="F:OpenQA.Selenium.Remote.DriverCommand.GetWindowPosition">
+            <summary>
+            Represents GetWindowPosition command
+            </summary>
+        </member>
+        <member name="F:OpenQA.Selenium.Remote.DriverCommand.SetWindowPosition">
+            <summary>
+            Represents SetWindowPosition command
+            </summary>
+        </member>
+        <member name="F:OpenQA.Selenium.Remote.DriverCommand.MaximizeWindow">
+            <summary>
+            Represents MaximizeWindow command
+            </summary>
+        </member>
         <member name="F:OpenQA.Selenium.Remote.DriverCommand.DismissAlert">
             <summary>
             Represents the DismissAlert command
@@ -5841,6 +6061,11 @@
             Represents the SetAsyncScriptTimeout command
             </summary>
         </member>
+        <member name="F:OpenQA.Selenium.Remote.DriverCommand.SetTimeout">
+            <summary>
+            Represents the SetTimeout command
+            </summary>
+        </member>
         <member name="F:OpenQA.Selenium.Remote.DriverCommand.MouseClick">
             <summary>
             Represents the MouseClick command.
@@ -5866,15 +6091,29 @@
             Represents the MouseMoveTo command.
             </summary>
         </member>
-        <member name="F:OpenQA.Selenium.Remote.DriverCommand.SendModifierKeyToActiveElement">
+        <member name="F:OpenQA.Selenium.Remote.DriverCommand.SendKeysToActiveElement">
             <summary>
-            Represents the SendModifierKeyToActiveElement command.
+            Represents the SendKeysToActiveElement command.
             </summary>
         </member>
-        <member name="F:OpenQA.Selenium.Remote.DriverCommand.SendKeysToSession">
+        <member name="T:OpenQA.Selenium.Remote.DriverServiceCommandExecutor">
             <summary>
-            Represents the SendKeysToSession command.
+            Provides a mechanism to execute commands on the browser
             </summary>
+        </member>
+        <member name="M:OpenQA.Selenium.Remote.DriverServiceCommandExecutor.#ctor(OpenQA.Selenium.DriverService,System.TimeSpan)">
+            <summary>
+            Initializes a new instance of the <see cref="T:OpenQA.Selenium.Remote.DriverServiceCommandExecutor"/> class.
+            </summary>
+            <param name="driverService">The <see cref="T:OpenQA.Selenium.DriverService"/> that drives the browser.</param>
+            <param name="commandTimeout">The maximum amount of time to wait for each command.</param>
+        </member>
+        <member name="M:OpenQA.Selenium.Remote.DriverServiceCommandExecutor.Execute(OpenQA.Selenium.Remote.Command)">
+            <summary>
+            Executes a command with the ChromeDriver.
+            </summary>
+            <param name="commandToExecute">The command you wish to execute</param>
+            <returns>A response from the browser</returns>
         </member>
         <member name="T:OpenQA.Selenium.Remote.ErrorResponse">
             <summary>
@@ -6174,6 +6413,13 @@
             Gets an object allowing the user to manipulate cookies on the page.
             </summary>
         </member>
+        <member name="P:OpenQA.Selenium.Remote.RemoteOptions.Window">
+            <summary>
+            Gets an object allowing the user to manipulate the currently-focused browser window.
+            </summary>
+            <remarks>"Currently-focused" is defined as the browser window having the window handle
+            returned when IWebDriver.CurrentWindowHandle is called.</remarks>
+        </member>
         <member name="T:OpenQA.Selenium.Remote.RemoteTargetLocator">
             <summary>
             Provides a mechanism for finding elements on the page with locators.
@@ -6266,8 +6512,45 @@
             <summary>
             Specifies the amount of time the driver should wait when executing JavaScript asynchronously.
             </summary>
-            <param name="timeToWait">A <see cref="T:System.TimeSpan"/> structure defining the amount of time to wait.</param>
+            <param name="timeToWait">A <see cref="T:System.TimeSpan"/> structure defining the amount of time to wait.
+            Setting this parameter to <see cref="F:System.TimeSpan.MinValue"/> will allow the script to run indefinitely.</param>
             <returns>A self reference</returns>
+        </member>
+        <member name="M:OpenQA.Selenium.Remote.RemoteTimeouts.SetPageLoadTimeout(System.TimeSpan)">
+            <summary>
+            Specifies the amount of time the driver should wait for a page to load when setting the <see cref="P:OpenQA.Selenium.IWebDriver.Url"/> property.
+            </summary>
+            <param name="timeToWait">A <see cref="T:System.TimeSpan"/> structure defining the amount of time to wait.
+            Setting this parameter to <see cref="F:System.TimeSpan.MinValue"/> will allow the page to load indefinitely.</param>
+            <returns>A self reference</returns>
+        </member>
+        <member name="T:OpenQA.Selenium.Remote.RemoteWindow">
+            <summary>
+            Defines the interface through which the user can manipulate the browser window.
+            </summary>
+        </member>
+        <member name="M:OpenQA.Selenium.Remote.RemoteWindow.#ctor(OpenQA.Selenium.Remote.RemoteWebDriver)">
+            <summary>
+            Initializes a new instance of the <see cref="T:OpenQA.Selenium.Remote.RemoteWindow"/> class.
+            </summary>
+            <param name="driver">Instance of the driver currently in use</param>
+        </member>
+        <member name="M:OpenQA.Selenium.Remote.RemoteWindow.Maximize">
+            <summary>
+            Maximizes the current window if it is not already maximized.
+            </summary>
+        </member>
+        <member name="P:OpenQA.Selenium.Remote.RemoteWindow.Position">
+            <summary>
+            Gets or sets the position of the browser window relative to the upper-left corner of the screen.
+            </summary>
+            <remarks>When setting this property, it should act as the JavaScript window.moveTo() method.</remarks>
+        </member>
+        <member name="P:OpenQA.Selenium.Remote.RemoteWindow.Size">
+            <summary>
+            Gets or sets ths size of the outer browser window, including title bars and window borders.
+            </summary>
+            <remarks>When setting this property, it should act as the JavaScript window.resizeTo() method.</remarks>
         </member>
         <member name="T:OpenQA.Selenium.Remote.Response">
             <summary>
@@ -6570,6 +6853,1666 @@
             <param name="writer">JSON Writer Object</param>
             <param name="value">Value to be written</param>
             <param name="serializer">JSON Serializer </param>
+        </member>
+        <member name="T:OpenQA.Selenium.Safari.SafariCommand">
+            <summary>
+            Wraps a commmand object to give it a unique ID as required by the Safari extension.
+            </summary>
+        </member>
+        <member name="M:OpenQA.Selenium.Safari.SafariCommand.#ctor(OpenQA.Selenium.Remote.Command)">
+            <summary>
+            Initializes a new instance of the <see cref="T:OpenQA.Selenium.Safari.SafariCommand"/> class.
+            </summary>
+            <param name="command">The <see cref="T:OpenQA.Selenium.Remote.Command"/> object used as a base for this <see cref="T:OpenQA.Selenium.Safari.SafariCommand"/>.</param>
+        </member>
+        <member name="P:OpenQA.Selenium.Safari.SafariCommand.Id">
+            <summary>
+            Gets the ID of the command.
+            </summary>
+        </member>
+        <member name="T:OpenQA.Selenium.Safari.SafariCommandMessage">
+            <summary>
+            Creates a WebSockets command message according to the SafariDriver specification.
+            </summary>
+        </member>
+        <member name="M:OpenQA.Selenium.Safari.SafariCommandMessage.#ctor(OpenQA.Selenium.Safari.SafariCommand)">
+            <summary>
+            Initializes a new instance of the <see cref="T:OpenQA.Selenium.Safari.SafariCommandMessage"/> class.
+            </summary>
+            <param name="command">The <see cref="T:OpenQA.Selenium.Safari.SafariCommand"/> to wrap.</param>
+        </member>
+        <member name="P:OpenQA.Selenium.Safari.SafariCommandMessage.MessageOrigin">
+            <summary>
+            Gets the origin of the WebSocket message.
+            </summary>
+        </member>
+        <member name="P:OpenQA.Selenium.Safari.SafariCommandMessage.MessageType">
+            <summary>
+            Gets the type of the WebSocket message.
+            </summary>
+        </member>
+        <member name="P:OpenQA.Selenium.Safari.SafariCommandMessage.Command">
+            <summary>
+            Gets the wrapped command for transport.
+            </summary>
+        </member>
+        <member name="T:OpenQA.Selenium.Safari.SafariDriver">
+            <summary>
+            Provides a way to access Safari to run your tests by creating a SafariDriver instance
+            </summary>
+            <remarks>
+            When the WebDriver object has been instantiated the browser will load. The test can then navigate to the URL under test and 
+            start your test.
+            </remarks>
+            <example>
+            <code>
+            [TestFixture]
+            public class Testing
+            {
+                private IWebDriver driver;
+                <para></para>
+                [SetUp]
+                public void SetUp()
+                {
+                    driver = new SafariDriver();
+                }
+                <para></para>
+                [Test]
+                public void TestGoogle()
+                {
+                    driver.Navigate().GoToUrl("http://www.google.co.uk");
+                    /*
+                    *   Rest of the test
+                    */
+                }
+                <para></para>
+                [TearDown]
+                public void TearDown()
+                {
+                    driver.Quit();
+                    driver.Dispose();
+                } 
+            }
+            </code>
+            </example>
+        </member>
+        <member name="M:OpenQA.Selenium.Safari.SafariDriver.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:OpenQA.Selenium.Safari.SafariDriver"/> class.
+            </summary>
+        </member>
+        <member name="M:OpenQA.Selenium.Safari.SafariDriver.StartClient">
+            <summary>
+            Starts the command executor, enabling communication with the browser.
+            </summary>
+        </member>
+        <member name="M:OpenQA.Selenium.Safari.SafariDriver.StopClient">
+            <summary>
+            Stops the command executor, ending further communication with the browser.
+            </summary>
+        </member>
+        <member name="T:OpenQA.Selenium.Safari.SafariDriverCommandExecutor">
+            <summary>
+            Provides a way of executing Commands using the SafariDriver.
+            </summary>
+        </member>
+        <member name="M:OpenQA.Selenium.Safari.SafariDriverCommandExecutor.#ctor(System.Int32)">
+            <summary>
+            Initializes a new instance of the <see cref="T:OpenQA.Selenium.Safari.SafariDriverCommandExecutor"/> class.
+            </summary>
+            <param name="port">The port on which the executor communicates with the extension.</param>
+        </member>
+        <member name="M:OpenQA.Selenium.Safari.SafariDriverCommandExecutor.#ctor(System.Int32,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:OpenQA.Selenium.Safari.SafariDriverCommandExecutor"/> class.
+            </summary>
+            <param name="port">The port on which the executor communicates with the extension.</param>
+            <param name="safariLocation">The locatoin of the Safari exectuable</param>
+        </member>
+        <member name="M:OpenQA.Selenium.Safari.SafariDriverCommandExecutor.Start">
+            <summary>
+            Starts the command executor.
+            </summary>
+        </member>
+        <member name="M:OpenQA.Selenium.Safari.SafariDriverCommandExecutor.Execute(OpenQA.Selenium.Remote.Command)">
+            <summary>
+            Executes a command
+            </summary>
+            <param name="commandToExecute">The command you wish to execute</param>
+            <returns>A response from the browser</returns>
+        </member>
+        <member name="M:OpenQA.Selenium.Safari.SafariDriverCommandExecutor.Dispose">
+            <summary>
+            Releases all resources used by the <see cref="T:OpenQA.Selenium.Safari.SafariDriverCommandExecutor"/>.
+            </summary>
+        </member>
+        <member name="M:OpenQA.Selenium.Safari.SafariDriverCommandExecutor.Dispose(System.Boolean)">
+            <summary>
+            Releases all resources associated with this <see cref="T:OpenQA.Selenium.Safari.SafariDriverCommandExecutor"/>.
+            </summary>
+            <param name="disposing"><see langword="true"/> if the Dispose method was explicitly called; otherwise, <see langword="false"/>.</param>
+        </member>
+        <member name="T:OpenQA.Selenium.Safari.SafariDriverConnection">
+            <summary>
+            Represents a connection to an instance of the Safari browser.
+            </summary>
+        </member>
+        <member name="M:OpenQA.Selenium.Safari.SafariDriverConnection.#ctor(OpenQA.Selenium.Safari.Internal.IWebSocketConnection)">
+            <summary>
+            Initializes a new instance of the <see cref="T:OpenQA.Selenium.Safari.SafariDriverConnection"/> class.
+            </summary>
+            <param name="connection">An <see cref="T:OpenQA.Selenium.Safari.Internal.IWebSocketConnection"/> representing a 
+            connection using the WebSockets protocol.</param>
+        </member>
+        <member name="M:OpenQA.Selenium.Safari.SafariDriverConnection.Send(OpenQA.Selenium.Remote.Command)">
+            <summary>
+            Sends a command to the SafariDriver and waits for a response.
+            </summary>
+            <param name="command">The <see cref="T:OpenQA.Selenium.Remote.Command"/> to send to the driver.</param>
+            <returns>The <see cref="T:OpenQA.Selenium.Remote.Response"/> from the command.</returns>
+        </member>
+        <member name="T:OpenQA.Selenium.Safari.SafariDriverServer">
+            <summary>
+            Provides the WebSockets server for communicating with the Safari extension.
+            </summary>
+        </member>
+        <member name="M:OpenQA.Selenium.Safari.SafariDriverServer.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:OpenQA.Selenium.Safari.SafariDriverServer"/> class.
+            </summary>
+        </member>
+        <member name="M:OpenQA.Selenium.Safari.SafariDriverServer.#ctor(System.Int32)">
+            <summary>
+            Initializes a new instance of the <see cref="T:OpenQA.Selenium.Safari.SafariDriverServer"/> class using a specific port for communication.
+            </summary>
+            <param name="port">The port to use to communicate.</param>
+        </member>
+        <member name="M:OpenQA.Selenium.Safari.SafariDriverServer.Start">
+            <summary>
+            Starts the server.
+            </summary>
+        </member>
+        <member name="M:OpenQA.Selenium.Safari.SafariDriverServer.Stop">
+            <summary>
+            Stops the server.
+            </summary>
+        </member>
+        <member name="M:OpenQA.Selenium.Safari.SafariDriverServer.WaitForConnection(System.TimeSpan)">
+            <summary>
+            Waits for a connection to be established with the server by the Safari browser extension.
+            </summary>
+            <param name="timeout">A <see cref="T:System.TimeSpan"/> containing the amount of time to wait for the connection.</param>
+            <returns>A <see cref="T:OpenQA.Selenium.Safari.SafariDriverConnection"/> representing the connection to the browser.</returns>
+        </member>
+        <member name="M:OpenQA.Selenium.Safari.SafariDriverServer.Dispose">
+            <summary>
+            Releases all resources used by the <see cref="T:OpenQA.Selenium.Safari.SafariDriverServer"/>.
+            </summary>
+        </member>
+        <member name="M:OpenQA.Selenium.Safari.SafariDriverServer.Dispose(System.Boolean)">
+            <summary>
+            Releases the unmanaged resources used by the <see cref="T:OpenQA.Selenium.Safari.Internal.SocketWrapper"/> and optionally 
+            releases the managed resources.
+            </summary>
+            <param name="disposing"><see langword="true"/> to release managed and resources; 
+            <see langword="false"/> to only release unmanaged resources.</param>
+        </member>
+        <member name="P:OpenQA.Selenium.Safari.SafariDriverServer.ServerUri">
+            <summary>
+            Gets the URI of the server.
+            </summary>
+        </member>
+        <member name="T:OpenQA.Selenium.Safari.SafariResponseMessage">
+            <summary>
+            Creates a WebSockets response message according to the SafariDriver specification.
+            </summary>
+        </member>
+        <member name="M:OpenQA.Selenium.Safari.SafariResponseMessage.FromJson(System.String)">
+            <summary>
+            Returns a new <see cref="P:OpenQA.Selenium.Safari.SafariResponseMessage.Response"/> from a JSON-encoded string.
+            </summary>
+            <param name="value">The JSON string to deserialize into a <see cref="P:OpenQA.Selenium.Safari.SafariResponseMessage.Response"/>.</param>
+            <returns>A <see cref="P:OpenQA.Selenium.Safari.SafariResponseMessage.Response"/> object described by the JSON string.</returns>
+        </member>
+        <member name="P:OpenQA.Selenium.Safari.SafariResponseMessage.Id">
+            <summary>
+            Gets or sets the ID of the command.
+            </summary>
+        </member>
+        <member name="P:OpenQA.Selenium.Safari.SafariResponseMessage.MessageOrigin">
+            <summary>
+            Gets or sets the origin of the response message.
+            </summary>
+        </member>
+        <member name="P:OpenQA.Selenium.Safari.SafariResponseMessage.MessageType">
+            <summary>
+            Gets or sets the type of the response message.
+            </summary>
+        </member>
+        <member name="P:OpenQA.Selenium.Safari.SafariResponseMessage.Response">
+            <summary>
+            Gets or sets the internal response for the given command.
+            </summary>
+        </member>
+        <member name="T:OpenQA.Selenium.Safari.Internal.AcceptEventArgs">
+            <summary>
+            Provides arguments for handling the event for accepting connections.
+            </summary>
+        </member>
+        <member name="M:OpenQA.Selenium.Safari.Internal.AcceptEventArgs.#ctor(OpenQA.Selenium.Safari.Internal.ISocket)">
+            <summary>
+            Initializes a new instance of the <see cref="T:OpenQA.Selenium.Safari.Internal.AcceptEventArgs"/> class.
+            </summary>
+            <param name="socket">The <see cref="T:OpenQA.Selenium.Safari.Internal.ISocket"/> to use in the event.</param>
+        </member>
+        <member name="P:OpenQA.Selenium.Safari.Internal.AcceptEventArgs.Socket">
+            <summary>
+            Gets the <see cref="T:OpenQA.Selenium.Safari.Internal.ISocket"/> object to use in handling the event.
+            </summary>
+        </member>
+        <member name="T:OpenQA.Selenium.Safari.Internal.BinaryMessageHandledEventArgs">
+            <summary>
+            Provides arguments for handling the event for receiving a binary message.
+            </summary>
+        </member>
+        <member name="M:OpenQA.Selenium.Safari.Internal.BinaryMessageHandledEventArgs.#ctor(System.Byte[])">
+            <summary>
+            Initializes a new instance of the <see cref="T:OpenQA.Selenium.Safari.Internal.BinaryMessageHandledEventArgs"/> class.
+            </summary>
+            <param name="data">The binary data in the message.</param>
+        </member>
+        <member name="P:OpenQA.Selenium.Safari.Internal.BinaryMessageHandledEventArgs.Data">
+            <summary>
+            Gets the binary data of the message.
+            </summary>
+        </member>
+        <member name="T:OpenQA.Selenium.Safari.Internal.ConnectionEventArgs">
+            <summary>
+            Provides arguments for handling events associated with connections to the server.
+            </summary>
+        </member>
+        <member name="M:OpenQA.Selenium.Safari.Internal.ConnectionEventArgs.#ctor(OpenQA.Selenium.Safari.Internal.IWebSocketConnection)">
+            <summary>
+            Initializes a new instance of the <see cref="T:OpenQA.Selenium.Safari.Internal.ConnectionEventArgs"/> class.
+            </summary>
+            <param name="connection">The <see cref="T:OpenQA.Selenium.Safari.Internal.IWebSocketConnection"/> representing the 
+            connection to the client.</param>
+        </member>
+        <member name="P:OpenQA.Selenium.Safari.Internal.ConnectionEventArgs.Connection">
+            <summary>
+            Gets the connection to the client.
+            </summary>
+        </member>
+        <member name="T:OpenQA.Selenium.Safari.Internal.ErrorEventArgs">
+            <summary>
+            Provides arguments for handling events associated with errors.
+            </summary>
+        </member>
+        <member name="M:OpenQA.Selenium.Safari.Internal.ErrorEventArgs.#ctor(System.Exception)">
+            <summary>
+            Initializes a new instance of the <see cref="T:OpenQA.Selenium.Safari.Internal.ErrorEventArgs"/> class.
+            </summary>
+            <param name="exception">The <see cref="P:OpenQA.Selenium.Safari.Internal.ErrorEventArgs.Exception"/> thrown for the error condition.</param>
+        </member>
+        <member name="P:OpenQA.Selenium.Safari.Internal.ErrorEventArgs.Exception">
+            <summary>
+            Gets the <see cref="P:OpenQA.Selenium.Safari.Internal.ErrorEventArgs.Exception"/> associated with the error condition.
+            </summary>
+        </member>
+        <member name="T:OpenQA.Selenium.Safari.Internal.FrameType">
+            <summary>
+            Enumerates the types of frames described by the WebSocket protocol.
+            </summary>
+        </member>
+        <member name="F:OpenQA.Selenium.Safari.Internal.FrameType.Continuation">
+            <summary>
+            Indicates a continuation frame.
+            </summary>
+        </member>
+        <member name="F:OpenQA.Selenium.Safari.Internal.FrameType.Text">
+            <summary>
+            Indicates a text frame.
+            </summary>
+        </member>
+        <member name="F:OpenQA.Selenium.Safari.Internal.FrameType.Binary">
+            <summary>
+            Indicates a binary frame.
+            </summary>
+        </member>
+        <member name="F:OpenQA.Selenium.Safari.Internal.FrameType.Close">
+            <summary>
+            Indicates a close frame.
+            </summary>
+        </member>
+        <member name="F:OpenQA.Selenium.Safari.Internal.FrameType.Ping">
+            <summary>
+            Indicates a ping frame.
+            </summary>
+        </member>
+        <member name="F:OpenQA.Selenium.Safari.Internal.FrameType.Pong">
+            <summary>
+            Indicates a ping response frame.
+            </summary>
+        </member>
+        <member name="T:OpenQA.Selenium.Safari.Internal.HandlerFactory">
+            <summary>
+            Provides a factory for creating handlers for the different versions of the WebSocket protocol.
+            </summary>
+        </member>
+        <member name="M:OpenQA.Selenium.Safari.Internal.HandlerFactory.#ctor">
+            <summary>
+            Prevents a default instance of the <see cref="T:OpenQA.Selenium.Safari.Internal.HandlerFactory"/> class from being created.
+            </summary>
+        </member>
+        <member name="M:OpenQA.Selenium.Safari.Internal.HandlerFactory.BuildHandler(OpenQA.Selenium.Safari.Internal.WebSocketHttpRequest)">
+            <summary>
+            Creates a handler to handle a <see cref="T:OpenQA.Selenium.Safari.Internal.WebSocketHttpRequest"/>.
+            </summary>
+            <param name="request">The <see cref="T:OpenQA.Selenium.Safari.Internal.WebSocketHttpRequest"/> to create the handler for.</param>
+            <returns>An <see cref="T:OpenQA.Selenium.Safari.Internal.IHandler"/> object that can handle the specific protocol version
+            of the request.</returns>
+        </member>
+        <member name="M:OpenQA.Selenium.Safari.Internal.HandlerFactory.GetVersion(OpenQA.Selenium.Safari.Internal.WebSocketHttpRequest)">
+            <summary>
+            Gets the version of an <see cref="T:OpenQA.Selenium.Safari.Internal.WebSocketHttpRequest"/>.
+            </summary>
+            <param name="request">The <see cref="T:OpenQA.Selenium.Safari.Internal.WebSocketHttpRequest"/> to get the protocol version of.</param>
+            <returns>A string containing the version of the protocol of the request.</returns>
+        </member>
+        <member name="T:OpenQA.Selenium.Safari.Internal.HandshakeException">
+            <summary>
+            Provides an exception for handshake errors in the protocol connection.
+            </summary>
+        </member>
+        <member name="M:OpenQA.Selenium.Safari.Internal.HandshakeException.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:OpenQA.Selenium.Safari.Internal.HandshakeException"/> class.
+            </summary>
+        </member>
+        <member name="M:OpenQA.Selenium.Safari.Internal.HandshakeException.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:OpenQA.Selenium.Safari.Internal.HandshakeException"/> class with a specified error message.
+            </summary>
+            <param name="message">The message for the exception.</param>
+        </member>
+        <member name="M:OpenQA.Selenium.Safari.Internal.HandshakeException.#ctor(System.String,System.Exception)">
+            <summary>
+            Initializes a new instance of the <see cref="T:OpenQA.Selenium.Safari.Internal.HandshakeException"/> class with a specified error message
+            and a reference to the inner exception that is the cause of this exception.
+            </summary>
+            <param name="message">The message for the exception.</param>
+            <param name="innerException">The inner exception that is the cause of this exception.</param>
+        </member>
+        <member name="M:OpenQA.Selenium.Safari.Internal.HandshakeException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            Initializes a new instance of the <see cref="T:OpenQA.Selenium.Safari.Internal.HandshakeException"/> class with serialized data.
+            </summary>
+            <param name="info">The object that holds the serialized object data.</param>
+            <param name="context">The contextual information about the source or destination.</param>
+        </member>
+        <member name="T:OpenQA.Selenium.Safari.Internal.IHandler">
+            <summary>
+            Provides an interface for handling communication over the WebSocket connection.
+            </summary>
+        </member>
+        <member name="M:OpenQA.Selenium.Safari.Internal.IHandler.ProcessData(System.Collections.Generic.IEnumerable{System.Byte})">
+            <summary>
+            Processes data received by the connection.
+            </summary>
+            <param name="data">The data to be processed.</param>
+        </member>
+        <member name="M:OpenQA.Selenium.Safari.Internal.IHandler.CreateHandshake">
+            <summary>
+            Creates a handshake message for initiating connections.
+            </summary>
+            <returns>A byte array containing the handshake message.</returns>
+        </member>
+        <member name="M:OpenQA.Selenium.Safari.Internal.IHandler.CreateTextFrame(System.String)">
+            <summary>
+            Creates a frame for text messages in the WebSocket protocol.
+            </summary>
+            <param name="text">The text of the message.</param>
+            <returns>A byte array containing the message frame.</returns>
+        </member>
+        <member name="M:OpenQA.Selenium.Safari.Internal.IHandler.CreateBinaryFrame(System.Byte[])">
+            <summary>
+            Creates a frame for binary messages in the WebSocket protocol.
+            </summary>
+            <param name="frameData">The binary data of the message.</param>
+            <returns>A byte array containing the message frame.</returns>
+        </member>
+        <member name="M:OpenQA.Selenium.Safari.Internal.IHandler.CreateCloseFrame(System.Int32)">
+            <summary>
+            Creates a frame for close messages in the WebSocket protocol.
+            </summary>
+            <param name="code">The connection close code of the message.</param>
+            <returns>A byte array containing the message frame.</returns>
+        </member>
+        <member name="E:OpenQA.Selenium.Safari.Internal.IHandler.TextMessageHandled">
+            <summary>
+            Event raised when a text message is processed by the handler.
+            </summary>
+        </member>
+        <member name="E:OpenQA.Selenium.Safari.Internal.IHandler.BinaryMessageHandled">
+            <summary>
+            Event raised when a binary message is processed by the handler.
+            </summary>
+        </member>
+        <member name="E:OpenQA.Selenium.Safari.Internal.IHandler.CloseHandled">
+            <summary>
+            Event raised when a close message is processed by the handler.
+            </summary>
+        </member>
+        <member name="T:OpenQA.Selenium.Safari.Internal.IntExtensions">
+            <summary>
+            Provides extension methods for converting integers.
+            </summary>
+        </member>
+        <member name="M:OpenQA.Selenium.Safari.Internal.IntExtensions.ToBigEndianByteArray(System.UInt16)">
+            <summary>
+            Converts a <see cref="T:System.UInt16"/> to a big-endian byte array.
+            </summary>
+            <param name="source">The value to convert.</param>
+            <returns>A byte array containing a big-endian representation of the value.</returns>
+        </member>
+        <member name="M:OpenQA.Selenium.Safari.Internal.IntExtensions.ToBigEndianByteArray(System.UInt64)">
+            <summary>
+            Converts a <see cref="T:System.UInt64"/> to a big-endian byte array.
+            </summary>
+            <param name="source">The value to convert.</param>
+            <returns>A byte array containing a big-endian representation of the value.</returns>
+        </member>
+        <member name="M:OpenQA.Selenium.Safari.Internal.IntExtensions.ToLittleEndianInt32(System.Byte[])">
+            <summary>
+            Converts a byte array to a little-endian value.
+            </summary>
+            <param name="source">The byte array to convert.</param>
+            <returns>The little-endian representation of the array as a <see cref="T:System.Int32"/>.</returns>
+        </member>
+        <member name="T:OpenQA.Selenium.Safari.Internal.IRequestParser">
+            <summary>
+            Provides an interface for parsing requests.
+            </summary>
+        </member>
+        <member name="M:OpenQA.Selenium.Safari.Internal.IRequestParser.Parse(System.Byte[])">
+            <summary>
+            Parses the specified data into a <see cref="T:OpenQA.Selenium.Safari.Internal.WebSocketHttpRequest"/>.
+            </summary>
+            <param name="requestData">The data to be parsed.</param>
+            <returns>The parsed <see cref="T:OpenQA.Selenium.Safari.Internal.WebSocketHttpRequest"/>.</returns>
+        </member>
+        <member name="M:OpenQA.Selenium.Safari.Internal.IRequestParser.Parse(System.Byte[],System.String)">
+            <summary>
+            Parses the specified data into a <see cref="T:OpenQA.Selenium.Safari.Internal.WebSocketHttpRequest"/> for the given scheme.
+            </summary>
+            <param name="requestData">The data to be parsed.</param>
+            <param name="scheme">The scheme to use in parsing the data.</param>
+            <returns>The parsed <see cref="T:OpenQA.Selenium.Safari.Internal.WebSocketHttpRequest"/>.</returns>
+        </member>
+        <member name="T:OpenQA.Selenium.Safari.Internal.ISocket">
+            <summary>
+            Provides an interface simplifying the use of asynchronous communication using a socket.
+            </summary>
+        </member>
+        <member name="M:OpenQA.Selenium.Safari.Internal.ISocket.Accept">
+            <summary>
+            Accepts a connection for the socket.
+            </summary>
+        </member>
+        <member name="M:OpenQA.Selenium.Safari.Internal.ISocket.Send(System.Byte[])">
+            <summary>
+            Sends data over the socket.
+            </summary>
+            <param name="buffer">The data to be sent.</param>
+        </member>
+        <member name="M:OpenQA.Selenium.Safari.Internal.ISocket.Receive(System.Byte[],System.Int32)">
+            <summary>
+            Receives data over the socket.
+            </summary>
+            <param name="buffer">The buffer into which the data will be read.</param>
+            <param name="offset">The offset into the buffer at which the data will be read.</param>
+        </member>
+        <member name="M:OpenQA.Selenium.Safari.Internal.ISocket.Authenticate(System.Security.Cryptography.X509Certificates.X509Certificate2)">
+            <summary>
+            Authenticates over the socket.
+            </summary>
+            <param name="certificate">An <see cref="T:System.Security.Cryptography.X509Certificates.X509Certificate2"/> that specifies authentication information.</param>
+        </member>
+        <member name="M:OpenQA.Selenium.Safari.Internal.ISocket.Close">
+            <summary>
+            Closes the socket connection.
+            </summary>
+        </member>
+        <member name="M:OpenQA.Selenium.Safari.Internal.ISocket.Bind(System.Net.EndPoint)">
+            <summary>
+            Binds the socket to a local end point.
+            </summary>
+            <param name="localEndPoint">The local end point to which to bind the socket.</param>
+        </member>
+        <member name="M:OpenQA.Selenium.Safari.Internal.ISocket.Listen(System.Int32)">
+            <summary>
+            Starts listening to data received over the socket.
+            </summary>
+            <param name="backlog">The number of pending connections to process.</param>
+        </member>
+        <member name="E:OpenQA.Selenium.Safari.Internal.ISocket.Accepted">
+            <summary>
+            Event raised when a connection is accepted by the socket.
+            </summary>
+        </member>
+        <member name="E:OpenQA.Selenium.Safari.Internal.ISocket.AcceptError">
+            <summary>
+            Event raised when an error occurs accepting a connection.
+            </summary>
+        </member>
+        <member name="E:OpenQA.Selenium.Safari.Internal.ISocket.Sent">
+            <summary>
+            Event raised when data is sent through the socket.
+            </summary>
+        </member>
+        <member name="E:OpenQA.Selenium.Safari.Internal.ISocket.SendError">
+            <summary>
+            Event raised when there is an error sending data.
+            </summary>
+        </member>
+        <member name="E:OpenQA.Selenium.Safari.Internal.ISocket.Received">
+            <summary>
+            Event raised when data is received by the socket.
+            </summary>
+        </member>
+        <member name="E:OpenQA.Selenium.Safari.Internal.ISocket.ReceiveError">
+            <summary>
+            Event raised when there is an error receiving data.
+            </summary>
+        </member>
+        <member name="E:OpenQA.Selenium.Safari.Internal.ISocket.Authenticated">
+            <summary>
+            Event raised when authentication is completed over the socket.
+            </summary>
+        </member>
+        <member name="E:OpenQA.Selenium.Safari.Internal.ISocket.AuthenticateError">
+            <summary>
+            Event raised when there is an error authenticating over the socket.
+            </summary>
+        </member>
+        <member name="P:OpenQA.Selenium.Safari.Internal.ISocket.Connected">
+            <summary>
+            Gets a value indicating whether the socket is connected.
+            </summary>
+        </member>
+        <member name="P:OpenQA.Selenium.Safari.Internal.ISocket.RemoteIPAddress">
+            <summary>
+            Gets the remote IP address of the socket connection.
+            </summary>
+        </member>
+        <member name="P:OpenQA.Selenium.Safari.Internal.ISocket.Stream">
+            <summary>
+            Gets a stream for reading and writing data.
+            </summary>
+        </member>
+        <member name="T:OpenQA.Selenium.Safari.Internal.IWebSocketConnection">
+            <summary>
+            Provides an interface describing a connection to a WebSocket.
+            </summary>
+        </member>
+        <member name="M:OpenQA.Selenium.Safari.Internal.IWebSocketConnection.Send(System.String)">
+            <summary>
+            Sends a text message over the connection.
+            </summary>
+            <param name="message">The text message to send.</param>
+        </member>
+        <member name="M:OpenQA.Selenium.Safari.Internal.IWebSocketConnection.Send(System.Byte[])">
+            <summary>
+            Sends a binary message over the connection.
+            </summary>
+            <param name="message">The binary message to send.</param>
+        </member>
+        <member name="M:OpenQA.Selenium.Safari.Internal.IWebSocketConnection.SendRaw(System.String)">
+            <summary>
+            Sends raw text over the connection, without passing through a handler.
+            </summary>
+            <param name="message">The message to send.</param>
+        </member>
+        <member name="M:OpenQA.Selenium.Safari.Internal.IWebSocketConnection.Close">
+            <summary>
+            Closes the connection.
+            </summary>
+        </member>
+        <member name="E:OpenQA.Selenium.Safari.Internal.IWebSocketConnection.Opened">
+            <summary>
+            Event raised when a connection is opened.
+            </summary>
+        </member>
+        <member name="E:OpenQA.Selenium.Safari.Internal.IWebSocketConnection.Closed">
+            <summary>
+            Event raised when a connection is closed.
+            </summary>
+        </member>
+        <member name="E:OpenQA.Selenium.Safari.Internal.IWebSocketConnection.MessageReceived">
+            <summary>
+            Event raised when a text message is received via the connection.
+            </summary>
+        </member>
+        <member name="E:OpenQA.Selenium.Safari.Internal.IWebSocketConnection.BinaryMessageReceived">
+            <summary>
+            Event raised when a binary message is received via the connection.
+            </summary>
+        </member>
+        <member name="E:OpenQA.Selenium.Safari.Internal.IWebSocketConnection.StandardHttpRequestReceived">
+            <summary>
+            Event raised when a non-WebSocket message is received.
+            </summary>
+        </member>
+        <member name="E:OpenQA.Selenium.Safari.Internal.IWebSocketConnection.ErrorReceived">
+            <summary>
+            Event raised when an error occurs via the connection.
+            </summary>
+        </member>
+        <member name="E:OpenQA.Selenium.Safari.Internal.IWebSocketConnection.Sent">
+            <summary>
+            Event raised when data is sent via the connection.
+            </summary>
+        </member>
+        <member name="P:OpenQA.Selenium.Safari.Internal.IWebSocketConnection.ConnectionInfo">
+            <summary>
+            Gets an <see cref="T:OpenQA.Selenium.Safari.Internal.IWebSocketConnectionInfo"/> object describing the connection.
+            </summary>
+        </member>
+        <member name="T:OpenQA.Selenium.Safari.Internal.IWebSocketConnectionInfo">
+            <summary>
+            Provides an interface describing information about the WebSocket connection.
+            </summary>
+        </member>
+        <member name="P:OpenQA.Selenium.Safari.Internal.IWebSocketConnectionInfo.SubProtocol">
+            <summary>
+            Gets the subprotocol of the connection.
+            </summary>
+        </member>
+        <member name="P:OpenQA.Selenium.Safari.Internal.IWebSocketConnectionInfo.Origin">
+            <summary>
+            Gets the origin of the connection.
+            </summary>
+        </member>
+        <member name="P:OpenQA.Selenium.Safari.Internal.IWebSocketConnectionInfo.Host">
+            <summary>
+            Gets the host for the connection.
+            </summary>
+        </member>
+        <member name="P:OpenQA.Selenium.Safari.Internal.IWebSocketConnectionInfo.Path">
+            <summary>
+            Gets the path for the connection.
+            </summary>
+        </member>
+        <member name="P:OpenQA.Selenium.Safari.Internal.IWebSocketConnectionInfo.ClientIPAddress">
+            <summary>
+            Gets the IP address of the client for the connection.
+            </summary>
+        </member>
+        <member name="P:OpenQA.Selenium.Safari.Internal.IWebSocketConnectionInfo.Cookies">
+            <summary>
+            Gets the collection of cookies for the connection.
+            </summary>
+        </member>
+        <member name="T:OpenQA.Selenium.Safari.Internal.IWebSocketServer">
+            <summary>
+            Provides an interface for the server.
+            </summary>
+        </member>
+        <member name="M:OpenQA.Selenium.Safari.Internal.IWebSocketServer.Start">
+            <summary>
+            Starts the server.
+            </summary>
+        </member>
+        <member name="T:OpenQA.Selenium.Safari.Internal.ReadState">
+            <summary>
+            Represents the state of a connection.
+            </summary>
+        </member>
+        <member name="M:OpenQA.Selenium.Safari.Internal.ReadState.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:OpenQA.Selenium.Safari.Internal.ReadState"/> class.
+            </summary>
+        </member>
+        <member name="M:OpenQA.Selenium.Safari.Internal.ReadState.Clear">
+            <summary>
+            Clears the current state.
+            </summary>
+        </member>
+        <member name="P:OpenQA.Selenium.Safari.Internal.ReadState.Data">
+            <summary>
+            Gets the data of the current state.
+            </summary>
+        </member>
+        <member name="P:OpenQA.Selenium.Safari.Internal.ReadState.FrameType">
+            <summary>
+            Gets or sets the frame type of the current state.
+            </summary>
+        </member>
+        <member name="T:OpenQA.Selenium.Safari.Internal.ReceivedEventArgs">
+            <summary>
+            Provides arguments for handling the event for when data is received.
+            </summary>
+        </member>
+        <member name="M:OpenQA.Selenium.Safari.Internal.ReceivedEventArgs.#ctor(System.Int32,System.Byte[])">
+            <summary>
+            Initializes a new instance of the <see cref="T:OpenQA.Selenium.Safari.Internal.ReceivedEventArgs"/> class.
+            </summary>
+            <param name="bytesRead">The number of bytes read.</param>
+            <param name="buffer">A byte array containing the data read.</param>
+        </member>
+        <member name="P:OpenQA.Selenium.Safari.Internal.ReceivedEventArgs.BytesRead">
+            <summary>
+            Gets the number of bytes read.
+            </summary>
+        </member>
+        <member name="P:OpenQA.Selenium.Safari.Internal.ReceivedEventArgs.Buffer">
+            <summary>
+            Gets the data read by the connection.
+            </summary>
+        </member>
+        <member name="T:OpenQA.Selenium.Safari.Internal.RequestParser">
+            <summary>
+            Parses a request.
+            </summary>
+        </member>
+        <member name="M:OpenQA.Selenium.Safari.Internal.RequestParser.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:OpenQA.Selenium.Safari.Internal.RequestParser"/> class.
+            </summary>
+        </member>
+        <member name="M:OpenQA.Selenium.Safari.Internal.RequestParser.Parse(System.Byte[])">
+            <summary>
+            Parses the specified data into a <see cref="T:OpenQA.Selenium.Safari.Internal.WebSocketHttpRequest"/>.
+            </summary>
+            <param name="requestData">The data to be parsed.</param>
+            <returns>The parsed <see cref="T:OpenQA.Selenium.Safari.Internal.WebSocketHttpRequest"/>.</returns>
+        </member>
+        <member name="M:OpenQA.Selenium.Safari.Internal.RequestParser.Parse(System.Byte[],System.String)">
+            <summary>
+            Parses the specified data into a <see cref="T:OpenQA.Selenium.Safari.Internal.WebSocketHttpRequest"/> for the given scheme.
+            </summary>
+            <param name="requestData">The data to be parsed.</param>
+            <param name="scheme">The scheme to use in parsing the data.</param>
+            <returns>The parsed <see cref="T:OpenQA.Selenium.Safari.Internal.WebSocketHttpRequest"/>.</returns>
+        </member>
+        <member name="T:OpenQA.Selenium.Safari.Internal.SocketWrapper">
+            <summary>
+            Provides a wrapper around a <see cref="T:System.Net.Sockets.Socket"/>.
+            </summary>
+        </member>
+        <member name="M:OpenQA.Selenium.Safari.Internal.SocketWrapper.#ctor(System.Net.Sockets.Socket)">
+            <summary>
+            Initializes a new instance of the <see cref="T:OpenQA.Selenium.Safari.Internal.SocketWrapper"/> class.
+            </summary>
+            <param name="socket">The <see cref="T:System.Net.Sockets.Socket"/> to wrap.</param>
+        </member>
+        <member name="M:OpenQA.Selenium.Safari.Internal.SocketWrapper.Accept">
+            <summary>
+            Accepts a connection for the socket.
+            </summary>
+        </member>
+        <member name="M:OpenQA.Selenium.Safari.Internal.SocketWrapper.Send(System.Byte[])">
+            <summary>
+            Sends data over the socket.
+            </summary>
+            <param name="buffer">The data to be sent.</param>
+        </member>
+        <member name="M:OpenQA.Selenium.Safari.Internal.SocketWrapper.Receive(System.Byte[],System.Int32)">
+            <summary>
+            Receives data over the socket.
+            </summary>
+            <param name="buffer">The buffer into which the data will be read.</param>
+            <param name="offset">The offset into the buffer at which the data will be read.</param>
+        </member>
+        <member name="M:OpenQA.Selenium.Safari.Internal.SocketWrapper.Authenticate(System.Security.Cryptography.X509Certificates.X509Certificate2)">
+            <summary>
+            Authenticates over the socket.
+            </summary>
+            <param name="certificate">An <see cref="T:System.Security.Cryptography.X509Certificates.X509Certificate2"/> that specifies authentication information.</param>
+        </member>
+        <member name="M:OpenQA.Selenium.Safari.Internal.SocketWrapper.Close">
+            <summary>
+            Closes the socket connection.
+            </summary>
+        </member>
+        <member name="M:OpenQA.Selenium.Safari.Internal.SocketWrapper.Bind(System.Net.EndPoint)">
+            <summary>
+            Binds the socket to a local end point.
+            </summary>
+            <param name="localEndPoint">The local end point to which to bind the socket.</param>
+        </member>
+        <member name="M:OpenQA.Selenium.Safari.Internal.SocketWrapper.Listen(System.Int32)">
+            <summary>
+            Starts listening to data received over the socket.
+            </summary>
+            <param name="backlog">The number of pending connections to process.</param>
+        </member>
+        <member name="M:OpenQA.Selenium.Safari.Internal.SocketWrapper.Dispose">
+            <summary>
+            Releases all resources used by the <see cref="T:OpenQA.Selenium.Safari.Internal.SocketWrapper"/>.
+            </summary>
+        </member>
+        <member name="M:OpenQA.Selenium.Safari.Internal.SocketWrapper.OnAccepted(OpenQA.Selenium.Safari.Internal.AcceptEventArgs)">
+            <summary>
+            Raises the Accepted event.
+            </summary>
+            <param name="e">An <see cref="T:OpenQA.Selenium.Safari.Internal.AcceptEventArgs"/> that contains the event data.</param>
+        </member>
+        <member name="M:OpenQA.Selenium.Safari.Internal.SocketWrapper.OnAcceptError(OpenQA.Selenium.Safari.Internal.ErrorEventArgs)">
+            <summary>
+            Raises the AcceptError event.
+            </summary>
+            <param name="e">An <see cref="T:OpenQA.Selenium.Safari.Internal.ErrorEventArgs"/> that contains the event data.</param>
+        </member>
+        <member name="M:OpenQA.Selenium.Safari.Internal.SocketWrapper.OnSent(System.EventArgs)">
+            <summary>
+            Raises the Sent event.
+            </summary>
+            <param name="e">An <see cref="T:System.EventArgs"/> that contains the event data.</param>
+        </member>
+        <member name="M:OpenQA.Selenium.Safari.Internal.SocketWrapper.OnSendError(OpenQA.Selenium.Safari.Internal.ErrorEventArgs)">
+            <summary>
+            Raises the SendError event.
+            </summary>
+            <param name="e">An <see cref="T:OpenQA.Selenium.Safari.Internal.ErrorEventArgs"/> that contains the event data.</param>
+        </member>
+        <member name="M:OpenQA.Selenium.Safari.Internal.SocketWrapper.OnReceived(OpenQA.Selenium.Safari.Internal.ReceivedEventArgs)">
+            <summary>
+            Raises the Received event.
+            </summary>
+            <param name="e">A <see cref="T:OpenQA.Selenium.Safari.Internal.ReceivedEventArgs"/> that contains the event data.</param>
+        </member>
+        <member name="M:OpenQA.Selenium.Safari.Internal.SocketWrapper.OnReceiveError(OpenQA.Selenium.Safari.Internal.ErrorEventArgs)">
+            <summary>
+            Raises the ReceiveError event.
+            </summary>
+            <param name="e">An <see cref="T:OpenQA.Selenium.Safari.Internal.ErrorEventArgs"/> that contains the event data.</param>
+        </member>
+        <member name="M:OpenQA.Selenium.Safari.Internal.SocketWrapper.OnAuthenticated(System.EventArgs)">
+            <summary>
+            Raises the Authenticated event.
+            </summary>
+            <param name="e">An <see cref="T:System.EventArgs"/> that contains the event data.</param>
+        </member>
+        <member name="M:OpenQA.Selenium.Safari.Internal.SocketWrapper.OnAuthenticateError(OpenQA.Selenium.Safari.Internal.ErrorEventArgs)">
+            <summary>
+            Raises the AuthenticateError event.
+            </summary>
+            <param name="e">An <see cref="T:OpenQA.Selenium.Safari.Internal.ErrorEventArgs"/> that contains the event data.</param>
+        </member>
+        <member name="M:OpenQA.Selenium.Safari.Internal.SocketWrapper.Dispose(System.Boolean)">
+            <summary>
+            Releases the unmanaged resources used by the <see cref="T:OpenQA.Selenium.Safari.Internal.SocketWrapper"/> and optionally 
+            releases the managed resources.
+            </summary>
+            <param name="disposing"><see langword="true"/> to release managed and resources; 
+            <see langword="false"/> to only release unmanaged resources.</param>
+        </member>
+        <member name="E:OpenQA.Selenium.Safari.Internal.SocketWrapper.Accepted">
+            <summary>
+            Event raised when a connection is accepted by the socket.
+            </summary>
+        </member>
+        <member name="E:OpenQA.Selenium.Safari.Internal.SocketWrapper.AcceptError">
+            <summary>
+            Event raised when an error occurs accepting a connection.
+            </summary>
+        </member>
+        <member name="E:OpenQA.Selenium.Safari.Internal.SocketWrapper.Sent">
+            <summary>
+            Event raised when data is sent through the socket.
+            </summary>
+        </member>
+        <member name="E:OpenQA.Selenium.Safari.Internal.SocketWrapper.SendError">
+            <summary>
+            Event raised when there is an error sending data.
+            </summary>
+        </member>
+        <member name="E:OpenQA.Selenium.Safari.Internal.SocketWrapper.Received">
+            <summary>
+            Event raised when data is received by the socket.
+            </summary>
+        </member>
+        <member name="E:OpenQA.Selenium.Safari.Internal.SocketWrapper.ReceiveError">
+            <summary>
+            Event raised when there is an error receiving data.
+            </summary>
+        </member>
+        <member name="E:OpenQA.Selenium.Safari.Internal.SocketWrapper.Authenticated">
+            <summary>
+            Event raised when authentication is completed over the socket.
+            </summary>
+        </member>
+        <member name="E:OpenQA.Selenium.Safari.Internal.SocketWrapper.AuthenticateError">
+            <summary>
+            Event raised when there is an error authenticating over the socket.
+            </summary>
+        </member>
+        <member name="P:OpenQA.Selenium.Safari.Internal.SocketWrapper.Connected">
+            <summary>
+            Gets a value indicating whether the socket is connected.
+            </summary>
+        </member>
+        <member name="P:OpenQA.Selenium.Safari.Internal.SocketWrapper.RemoteIPAddress">
+            <summary>
+            Gets the remote IP address of the socket connection.
+            </summary>
+        </member>
+        <member name="P:OpenQA.Selenium.Safari.Internal.SocketWrapper.Stream">
+            <summary>
+            Gets a stream for reading and writing data.
+            </summary>
+        </member>
+        <member name="T:OpenQA.Selenium.Safari.Internal.StandardHttpRequestReceivedEventArgs">
+            <summary>
+            Provides arguments for handling events associated with connections to the server.
+            </summary>
+        </member>
+        <member name="M:OpenQA.Selenium.Safari.Internal.StandardHttpRequestReceivedEventArgs.#ctor(OpenQA.Selenium.Safari.Internal.IWebSocketConnection)">
+            <summary>
+            Initializes a new instance of the <see cref="T:OpenQA.Selenium.Safari.Internal.StandardHttpRequestReceivedEventArgs"/> class.
+            </summary>
+            <param name="connection">The <see cref="T:OpenQA.Selenium.Safari.Internal.IWebSocketConnection"/> representing the 
+            connection to the client.</param>
+        </member>
+        <member name="P:OpenQA.Selenium.Safari.Internal.StandardHttpRequestReceivedEventArgs.Connection">
+            <summary>
+            Gets the connection to the client.
+            </summary>
+        </member>
+        <member name="P:OpenQA.Selenium.Safari.Internal.StandardHttpRequestReceivedEventArgs.Handled">
+            <summary>
+            Gets or sets a value indicating whether to the event was processed.
+            </summary>
+        </member>
+        <member name="T:OpenQA.Selenium.Safari.Internal.TextMessageHandledEventArgs">
+            <summary>
+            Provides arguments for handling the event for receiving a text message.
+            </summary>
+        </member>
+        <member name="M:OpenQA.Selenium.Safari.Internal.TextMessageHandledEventArgs.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:OpenQA.Selenium.Safari.Internal.TextMessageHandledEventArgs"/> class.
+            </summary>
+            <param name="message">The text message received.</param>
+        </member>
+        <member name="P:OpenQA.Selenium.Safari.Internal.TextMessageHandledEventArgs.Message">
+            <summary>
+            Gets the text message received.
+            </summary>
+        </member>
+        <member name="T:OpenQA.Selenium.Safari.Internal.WebSocketConnection">
+            <summary>
+            Represents a connection to a WebSocket.
+            </summary>
+        </member>
+        <member name="M:OpenQA.Selenium.Safari.Internal.WebSocketConnection.#ctor(OpenQA.Selenium.Safari.Internal.ISocket,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:OpenQA.Selenium.Safari.Internal.WebSocketConnection"/> class.
+            </summary>
+            <param name="socket">The <see cref="T:OpenQA.Selenium.Safari.Internal.ISocket"/> used in the connection.</param>
+            <param name="parseScheme">The scheme used to parse requests.</param>
+        </member>
+        <member name="M:OpenQA.Selenium.Safari.Internal.WebSocketConnection.Send(System.String)">
+            <summary>
+            Sends a text message over the connection.
+            </summary>
+            <param name="message">The text message to send.</param>
+        </member>
+        <member name="M:OpenQA.Selenium.Safari.Internal.WebSocketConnection.Send(System.Byte[])">
+            <summary>
+            Sends a binary message over the connection.
+            </summary>
+            <param name="message">The binary message to send.</param>
+        </member>
+        <member name="M:OpenQA.Selenium.Safari.Internal.WebSocketConnection.SendRaw(System.String)">
+            <summary>
+            Sends raw text over the connection, without passing through a handler.
+            </summary>
+            <param name="message">The message to send.</param>
+        </member>
+        <member name="M:OpenQA.Selenium.Safari.Internal.WebSocketConnection.Close">
+            <summary>
+            Closes the connection.
+            </summary>
+        </member>
+        <member name="M:OpenQA.Selenium.Safari.Internal.WebSocketConnection.StartReceiving">
+            <summary>
+            Starts the connection receiving requests.
+            </summary>
+        </member>
+        <member name="M:OpenQA.Selenium.Safari.Internal.WebSocketConnection.OnMessageReceived(OpenQA.Selenium.Safari.Internal.TextMessageHandledEventArgs)">
+            <summary>
+            Fires the MessageReceived event.
+            </summary>
+            <param name="e">A <see cref="T:OpenQA.Selenium.Safari.Internal.TextMessageHandledEventArgs"/> that contains the event data.</param>
+        </member>
+        <member name="M:OpenQA.Selenium.Safari.Internal.WebSocketConnection.OnBinaryMessageReceived(OpenQA.Selenium.Safari.Internal.BinaryMessageHandledEventArgs)">
+            <summary>
+            Fires the BinaryMessageReceived event.
+            </summary>
+            <param name="e">A <see cref="T:OpenQA.Selenium.Safari.Internal.BinaryMessageHandledEventArgs"/> that contains the event data.</param>
+        </member>
+        <member name="M:OpenQA.Selenium.Safari.Internal.WebSocketConnection.OnOpen(OpenQA.Selenium.Safari.Internal.ConnectionEventArgs)">
+            <summary>
+            Fires the Opened event.
+            </summary>
+            <param name="e">A <see cref="T:OpenQA.Selenium.Safari.Internal.ConnectionEventArgs"/> that contains the event data.</param>
+        </member>
+        <member name="M:OpenQA.Selenium.Safari.Internal.WebSocketConnection.OnClose(OpenQA.Selenium.Safari.Internal.ConnectionEventArgs)">
+            <summary>
+            Fires the Closed event.
+            </summary>
+            <param name="e">A <see cref="T:OpenQA.Selenium.Safari.Internal.ConnectionEventArgs"/> that contains the event data.</param>
+        </member>
+        <member name="M:OpenQA.Selenium.Safari.Internal.WebSocketConnection.OnStandardHttpRequestReceived(OpenQA.Selenium.Safari.Internal.StandardHttpRequestReceivedEventArgs)">
+            <summary>
+            Fires the StandardHttpRequestReceived event.
+            </summary>
+            <param name="e">A <see cref="T:OpenQA.Selenium.Safari.Internal.StandardHttpRequestReceivedEventArgs"/> that contains the event data.</param>
+        </member>
+        <member name="M:OpenQA.Selenium.Safari.Internal.WebSocketConnection.OnSend(System.EventArgs)">
+            <summary>
+            Fires the Sent event.
+            </summary>
+            <param name="e">An <see cref="T:System.EventArgs"/> that contains the event data.</param>
+        </member>
+        <member name="M:OpenQA.Selenium.Safari.Internal.WebSocketConnection.OnError(OpenQA.Selenium.Safari.Internal.ErrorEventArgs)">
+            <summary>
+            Fires the ErrorReceived event.
+            </summary>
+            <param name="e">An <see cref="T:OpenQA.Selenium.Safari.Internal.ErrorEventArgs"/> that contains the event data.</param>
+        </member>
+        <member name="E:OpenQA.Selenium.Safari.Internal.WebSocketConnection.Opened">
+            <summary>
+            Event raised when a connection is opened.
+            </summary>
+        </member>
+        <member name="E:OpenQA.Selenium.Safari.Internal.WebSocketConnection.Closed">
+            <summary>
+            Event raised when a connection is closed.
+            </summary>
+        </member>
+        <member name="E:OpenQA.Selenium.Safari.Internal.WebSocketConnection.MessageReceived">
+            <summary>
+            Event raised when a text message is received via the connection.
+            </summary>
+        </member>
+        <member name="E:OpenQA.Selenium.Safari.Internal.WebSocketConnection.BinaryMessageReceived">
+            <summary>
+            Event raised when a binary message is received via the connection.
+            </summary>
+        </member>
+        <member name="E:OpenQA.Selenium.Safari.Internal.WebSocketConnection.StandardHttpRequestReceived">
+            <summary>
+            Event raised when a non-WebSocket message is received.
+            </summary>
+        </member>
+        <member name="E:OpenQA.Selenium.Safari.Internal.WebSocketConnection.ErrorReceived">
+            <summary>
+            Event raised when an error occurs via the connection.
+            </summary>
+        </member>
+        <member name="E:OpenQA.Selenium.Safari.Internal.WebSocketConnection.Sent">
+            <summary>
+            Event raised when data is sent via the connection.
+            </summary>
+        </member>
+        <member name="P:OpenQA.Selenium.Safari.Internal.WebSocketConnection.Socket">
+            <summary>
+            Gets or sets the <see cref="T:OpenQA.Selenium.Safari.Internal.ISocket"/> implementation used for communication.
+            </summary>
+        </member>
+        <member name="P:OpenQA.Selenium.Safari.Internal.WebSocketConnection.Handler">
+            <summary>
+            Gets or sets the <see cref="T:OpenQA.Selenium.Safari.Internal.IHandler"/> implementation used for parsing and handling requests.
+            </summary>
+        </member>
+        <member name="P:OpenQA.Selenium.Safari.Internal.WebSocketConnection.ConnectionInfo">
+            <summary>
+            Gets an <see cref="T:OpenQA.Selenium.Safari.Internal.IWebSocketConnectionInfo"/> object describing the connection.
+            </summary>
+        </member>
+        <member name="T:OpenQA.Selenium.Safari.Internal.WebSocketConnectionInfo">
+            <summary>
+            Provides information about a WebSocket connection.
+            </summary>
+        </member>
+        <member name="M:OpenQA.Selenium.Safari.Internal.WebSocketConnectionInfo.#ctor">
+            <summary>
+            Prevents a default instance of the <see cref="T:OpenQA.Selenium.Safari.Internal.WebSocketConnectionInfo"/> class from being created.
+            </summary>
+        </member>
+        <member name="M:OpenQA.Selenium.Safari.Internal.WebSocketConnectionInfo.Create(OpenQA.Selenium.Safari.Internal.WebSocketHttpRequest,System.String)">
+            <summary>
+            Creates a <see cref="T:OpenQA.Selenium.Safari.Internal.WebSocketConnectionInfo"/> for a given request and IP address.
+            </summary>
+            <param name="request">The <see cref="T:OpenQA.Selenium.Safari.Internal.WebSocketHttpRequest"/> to get the connection information for.</param>
+            <param name="clientIPAddress">The IP address of the client connection.</param>
+            <returns>The created <see cref="T:OpenQA.Selenium.Safari.Internal.WebSocketConnectionInfo"/>.</returns>
+        </member>
+        <member name="P:OpenQA.Selenium.Safari.Internal.WebSocketConnectionInfo.SubProtocol">
+            <summary>
+            Gets the subprotocol of the connection.
+            </summary>
+        </member>
+        <member name="P:OpenQA.Selenium.Safari.Internal.WebSocketConnectionInfo.Origin">
+            <summary>
+            Gets the origin of the connection.
+            </summary>
+        </member>
+        <member name="P:OpenQA.Selenium.Safari.Internal.WebSocketConnectionInfo.Host">
+            <summary>
+            Gets the host for the connection.
+            </summary>
+        </member>
+        <member name="P:OpenQA.Selenium.Safari.Internal.WebSocketConnectionInfo.Path">
+            <summary>
+            Gets the path for the connection.
+            </summary>
+        </member>
+        <member name="P:OpenQA.Selenium.Safari.Internal.WebSocketConnectionInfo.ClientIPAddress">
+            <summary>
+            Gets the IP address of the client for the connection.
+            </summary>
+        </member>
+        <member name="P:OpenQA.Selenium.Safari.Internal.WebSocketConnectionInfo.Cookies">
+            <summary>
+            Gets the collection of cookies for the connection.
+            </summary>
+        </member>
+        <member name="T:OpenQA.Selenium.Safari.Internal.WebSocketException">
+            <summary>
+            Provides a base exception for WebSocket errors.
+            </summary>
+        </member>
+        <member name="M:OpenQA.Selenium.Safari.Internal.WebSocketException.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:OpenQA.Selenium.Safari.Internal.WebSocketException"/> class.
+            </summary>
+        </member>
+        <member name="M:OpenQA.Selenium.Safari.Internal.WebSocketException.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:OpenQA.Selenium.Safari.Internal.WebSocketException"/> class with a specified error message.
+            </summary>
+            <param name="message">The message for the exception.</param>
+        </member>
+        <member name="M:OpenQA.Selenium.Safari.Internal.WebSocketException.#ctor(System.String,System.Exception)">
+            <summary>
+            Initializes a new instance of the <see cref="T:OpenQA.Selenium.Safari.Internal.WebSocketException"/> class with a specified error message
+            and a reference to the inner exception that is the cause of this exception.
+            </summary>
+            <param name="message">The message for the exception.</param>
+            <param name="innerException">The inner exception that is the cause of this exception.</param>
+        </member>
+        <member name="M:OpenQA.Selenium.Safari.Internal.WebSocketException.#ctor(System.Int32)">
+            <summary>
+            Initializes a new instance of the <see cref="T:OpenQA.Selenium.Safari.Internal.WebSocketException"/> class with a specified status code.
+            </summary>
+            <param name="statusCode">The status code of the exception.</param>
+        </member>
+        <member name="M:OpenQA.Selenium.Safari.Internal.WebSocketException.#ctor(System.Int32,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:OpenQA.Selenium.Safari.Internal.WebSocketException"/> class with a specified status code
+            and error message.
+            </summary>
+            <param name="statusCode">The status code of the exception.</param>
+            <param name="message">The message for the exception.</param>
+        </member>
+        <member name="M:OpenQA.Selenium.Safari.Internal.WebSocketException.#ctor(System.Int32,System.String,System.Exception)">
+            <summary>
+            Initializes a new instance of the <see cref="T:OpenQA.Selenium.Safari.Internal.WebSocketException"/> class with a specified status code,
+            error message, and a reference to the inner exception that is the cause of this exception.
+            </summary>
+            <param name="statusCode">The status code for the exception.</param>
+            <param name="message">The message for the exception.</param>
+            <param name="innerException">The inner exception that is the cause of this exception.</param>
+        </member>
+        <member name="M:OpenQA.Selenium.Safari.Internal.WebSocketException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            Initializes a new instance of the <see cref="T:OpenQA.Selenium.Safari.Internal.WebSocketException"/> class with serialized data.
+            </summary>
+            <param name="info">The object that holds the serialized object data.</param>
+            <param name="context">The contextual information about the source or destination.</param>
+        </member>
+        <member name="M:OpenQA.Selenium.Safari.Internal.WebSocketException.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            Sets the <see cref="T:System.Runtime.Serialization.SerializationInfo"/> with information about the exception.
+            </summary>
+            <param name="info">The <see cref="T:System.Runtime.Serialization.SerializationInfo"/> that holds the serialized object data about the exception being thrown.</param>
+            <param name="context">The <see cref="T:System.Runtime.Serialization.StreamingContext"/> that contains contextual information about the source or destination.</param>
+        </member>
+        <member name="P:OpenQA.Selenium.Safari.Internal.WebSocketException.StatusCode">
+            <summary>
+            Gets the status code.
+            </summary>
+        </member>
+        <member name="T:OpenQA.Selenium.Safari.Internal.WebSocketHttpRequest">
+            <summary>
+            Defines an HTTP request via the WebSocket protocol.
+            </summary>
+        </member>
+        <member name="P:OpenQA.Selenium.Safari.Internal.WebSocketHttpRequest.Method">
+            <summary>
+            Gets or sets the HTTP method of the request.
+            </summary>
+        </member>
+        <member name="P:OpenQA.Selenium.Safari.Internal.WebSocketHttpRequest.Path">
+            <summary>
+            Gets or sets the path of the request.
+            </summary>
+        </member>
+        <member name="P:OpenQA.Selenium.Safari.Internal.WebSocketHttpRequest.Body">
+            <summary>
+            Gets or sets the body of the request
+            </summary>
+        </member>
+        <member name="P:OpenQA.Selenium.Safari.Internal.WebSocketHttpRequest.Scheme">
+            <summary>
+            Gets or sets the scheme of the request.
+            </summary>
+        </member>
+        <member name="P:OpenQA.Selenium.Safari.Internal.WebSocketHttpRequest.Payload">
+            <summary>
+            Gets or sets the WebSocket payload of the request.
+            </summary>
+        </member>
+        <member name="P:OpenQA.Selenium.Safari.Internal.WebSocketHttpRequest.Headers">
+            <summary>
+            Gets the headers for the request.
+            </summary>
+        </member>
+        <member name="P:OpenQA.Selenium.Safari.Internal.WebSocketHttpRequest.Item(System.String)">
+            <summary>
+            Gets or sets the value associated with the specified header.
+            </summary>
+            <param name="name">The name of the header.</param>
+            <returns>The value of the header, if it exists. If it does not exist, returns an empty string.</returns>
+        </member>
+        <member name="T:OpenQA.Selenium.Safari.Internal.WebSocketServer">
+            <summary>
+            Provides an implementation of a WebSocket server.
+            </summary>
+        </member>
+        <member name="M:OpenQA.Selenium.Safari.Internal.WebSocketServer.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:OpenQA.Selenium.Safari.Internal.WebSocketServer"/> class.
+            </summary>
+            <param name="location">The location at which to listen for connections.</param>
+        </member>
+        <member name="M:OpenQA.Selenium.Safari.Internal.WebSocketServer.#ctor(System.Int32,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:OpenQA.Selenium.Safari.Internal.WebSocketServer"/> class.
+            </summary>
+            <param name="port">The port on which to listen for connections.</param>
+            <param name="location">The location at which to listen for connections.</param>
+        </member>
+        <member name="M:OpenQA.Selenium.Safari.Internal.WebSocketServer.Start">
+            <summary>
+            Starts the server.
+            </summary>
+        </member>
+        <member name="M:OpenQA.Selenium.Safari.Internal.WebSocketServer.Dispose">
+            <summary>
+            Releases all resources used by the <see cref="T:OpenQA.Selenium.Safari.Internal.WebSocketServer"/>.
+            </summary>
+        </member>
+        <member name="M:OpenQA.Selenium.Safari.Internal.WebSocketServer.OnConnectionOpened(OpenQA.Selenium.Safari.Internal.ConnectionEventArgs)">
+            <summary>
+            Raises the ConnectionOpened event.
+            </summary>
+            <param name="e">A <see cref="T:OpenQA.Selenium.Safari.Internal.ConnectionEventArgs"/> that contains the event data.</param>
+        </member>
+        <member name="M:OpenQA.Selenium.Safari.Internal.WebSocketServer.OnConnectionClosed(OpenQA.Selenium.Safari.Internal.ConnectionEventArgs)">
+            <summary>
+            Raises the ConnectionClosed event.
+            </summary>
+            <param name="e">A <see cref="T:OpenQA.Selenium.Safari.Internal.ConnectionEventArgs"/> that contains the event data.</param>
+        </member>
+        <member name="M:OpenQA.Selenium.Safari.Internal.WebSocketServer.OnStandardHttpRequestReceived(OpenQA.Selenium.Safari.Internal.StandardHttpRequestReceivedEventArgs)">
+            <summary>
+            Raises the StandardHttpRequestReceived event.
+            </summary>
+            <param name="e">A <see cref="T:OpenQA.Selenium.Safari.Internal.StandardHttpRequestReceivedEventArgs"/> that contains the event data.</param>
+        </member>
+        <member name="M:OpenQA.Selenium.Safari.Internal.WebSocketServer.OnMessageReceived(OpenQA.Selenium.Safari.Internal.TextMessageHandledEventArgs)">
+            <summary>
+            Raises the MessageReceived event.
+            </summary>
+            <param name="e">A <see cref="T:OpenQA.Selenium.Safari.Internal.TextMessageHandledEventArgs"/> that contains the event data.</param>
+        </member>
+        <member name="M:OpenQA.Selenium.Safari.Internal.WebSocketServer.OnErrorOccurred(OpenQA.Selenium.Safari.Internal.ErrorEventArgs)">
+            <summary>
+            Raises the ErrorOccurred event.
+            </summary>
+            <param name="e">An <see cref="T:OpenQA.Selenium.Safari.Internal.ErrorEventArgs"/> that contains the event data.</param>
+        </member>
+        <member name="M:OpenQA.Selenium.Safari.Internal.WebSocketServer.Dispose(System.Boolean)">
+            <summary>
+            Releases the unmanaged resources used by the <see cref="T:OpenQA.Selenium.Safari.Internal.SocketWrapper"/> and optionally 
+            releases the managed resources.
+            </summary>
+            <param name="disposing"><see langword="true"/> to release managed and resources; 
+            <see langword="false"/> to only release unmanaged resources.</param>
+        </member>
+        <member name="E:OpenQA.Selenium.Safari.Internal.WebSocketServer.MessageReceived">
+            <summary>
+            Event raised when a message is received from the WebSocket.
+            </summary>
+        </member>
+        <member name="E:OpenQA.Selenium.Safari.Internal.WebSocketServer.Opened">
+            <summary>
+            Event raised when a connection is opened.
+            </summary>
+        </member>
+        <member name="E:OpenQA.Selenium.Safari.Internal.WebSocketServer.Closed">
+            <summary>
+            Event raised when a connection is closed.
+            </summary>
+        </member>
+        <member name="E:OpenQA.Selenium.Safari.Internal.WebSocketServer.ErrorOccurred">
+            <summary>
+            Event raised when an error occurs.
+            </summary>
+        </member>
+        <member name="E:OpenQA.Selenium.Safari.Internal.WebSocketServer.StandardHttpRequestReceived">
+            <summary>
+            Event raised when a non-WebSocket message is received.
+            </summary>
+        </member>
+        <member name="P:OpenQA.Selenium.Safari.Internal.WebSocketServer.ListenerSocket">
+            <summary>
+            Gets or sets the <see cref="T:OpenQA.Selenium.Safari.Internal.ISocket"/> on which communication occurs.
+            </summary>
+        </member>
+        <member name="P:OpenQA.Selenium.Safari.Internal.WebSocketServer.Location">
+            <summary>
+            Gets the location the server is listening on for connections.
+            </summary>
+        </member>
+        <member name="P:OpenQA.Selenium.Safari.Internal.WebSocketServer.Port">
+            <summary>
+            Gets the port the server is listening on for connections.
+            </summary>
+        </member>
+        <member name="P:OpenQA.Selenium.Safari.Internal.WebSocketServer.Certificate">
+            <summary>
+            Gets or sets the certificate used for authentication.
+            </summary>
+        </member>
+        <member name="P:OpenQA.Selenium.Safari.Internal.WebSocketServer.IsSecure">
+            <summary>
+            Gets a value indicating whether the connection is secure.
+            </summary>
+        </member>
+        <member name="T:OpenQA.Selenium.Safari.Internal.WebSocketStatusCodes">
+            <summary>
+            Provides status codes for the WebSocket protocol
+            </summary>
+        </member>
+        <member name="F:OpenQA.Selenium.Safari.Internal.WebSocketStatusCodes.NormalClosure">
+            <summary>
+            Indicates a normal closure status.
+            </summary>
+        </member>
+        <member name="F:OpenQA.Selenium.Safari.Internal.WebSocketStatusCodes.GoingAway">
+            <summary>
+            Indicates a notification that the socket is closing.
+            </summary>
+        </member>
+        <member name="F:OpenQA.Selenium.Safari.Internal.WebSocketStatusCodes.ProtocolError">
+            <summary>
+            Indicates an error in the protocol.
+            </summary>
+        </member>
+        <member name="F:OpenQA.Selenium.Safari.Internal.WebSocketStatusCodes.UnsupportedDataType">
+            <summary>
+            Indicates an attempt to transmit an unsupported data type.
+            </summary>
+        </member>
+        <member name="F:OpenQA.Selenium.Safari.Internal.WebSocketStatusCodes.NoStatusReceived">
+            <summary>
+            Indicates no status information received.
+            </summary>
+        </member>
+        <member name="F:OpenQA.Selenium.Safari.Internal.WebSocketStatusCodes.AbnormalClosure">
+            <summary>
+            Represens an abnormal closure of the socket.
+            </summary>
+        </member>
+        <member name="F:OpenQA.Selenium.Safari.Internal.WebSocketStatusCodes.InvalidFramePayloadData">
+            <summary>
+            Indicates invalid data in the frame.
+            </summary>
+        </member>
+        <member name="F:OpenQA.Selenium.Safari.Internal.WebSocketStatusCodes.PolicyViolation">
+            <summary>
+            Indicates a policy violation.
+            </summary>
+        </member>
+        <member name="F:OpenQA.Selenium.Safari.Internal.WebSocketStatusCodes.MessageTooBig">
+            <summary>
+            Indicates that the message is too big.
+            </summary>
+        </member>
+        <member name="F:OpenQA.Selenium.Safari.Internal.WebSocketStatusCodes.MandatoryExt">
+            <summary>
+            Indicates a mandatory extension.
+            </summary>
+        </member>
+        <member name="F:OpenQA.Selenium.Safari.Internal.WebSocketStatusCodes.InternalServerError">
+            <summary>
+            Indicates an internal server error.
+            </summary>
+        </member>
+        <member name="F:OpenQA.Selenium.Safari.Internal.WebSocketStatusCodes.TlsHandshake">
+            <summary>
+            Indicates a TLS handshake.
+            </summary>
+        </member>
+        <member name="F:OpenQA.Selenium.Safari.Internal.WebSocketStatusCodes.ApplicationError">
+            <summary>
+            Indicates an application error.
+            </summary>
+        </member>
+        <member name="F:OpenQA.Selenium.Safari.Internal.WebSocketStatusCodes.ValidCloseCodes">
+            <summary>
+            A collection of all of the status codes indicating a valid closing of the connection.
+            </summary>
+        </member>
+        <member name="T:OpenQA.Selenium.Safari.Internal.Handlers.Hybi00Handler">
+            <summary>
+            Provides a request handler for the Hixie76 or Hybi00 version of the WebSocket protocol.
+            </summary>
+        </member>
+        <member name="T:OpenQA.Selenium.Safari.Internal.Handlers.RequestHandler">
+            <summary>
+            Provides the base class for handling WebSocket protocol requests.
+            </summary>
+        </member>
+        <member name="M:OpenQA.Selenium.Safari.Internal.Handlers.RequestHandler.ProcessData(System.Collections.Generic.IEnumerable{System.Byte})">
+            <summary>
+            Processes data received by the connection.
+            </summary>
+            <param name="data">The data to be processed.</param>
+        </member>
+        <member name="M:OpenQA.Selenium.Safari.Internal.Handlers.RequestHandler.CreateHandshake">
+            <summary>
+            Creates a handshake message for initiating connections.
+            </summary>
+            <returns>A byte array containing the handshake message.</returns>
+        </member>
+        <member name="M:OpenQA.Selenium.Safari.Internal.Handlers.RequestHandler.CreateTextFrame(System.String)">
+            <summary>
+            Creates a frame for text messages in the WebSocket protocol.
+            </summary>
+            <param name="text">The text of the message.</param>
+            <returns>A byte array containing the message frame.</returns>
+        </member>
+        <member name="M:OpenQA.Selenium.Safari.Internal.Handlers.RequestHandler.CreateBinaryFrame(System.Byte[])">
+            <summary>
+            Creates a frame for binary messages in the WebSocket protocol.
+            </summary>
+            <param name="frameData">The binary data of the message.</param>
+            <returns>A byte array containing the message frame.</returns>
+        </member>
+        <member name="M:OpenQA.Selenium.Safari.Internal.Handlers.RequestHandler.CreateCloseFrame(System.Int32)">
+            <summary>
+            Creates a frame for close messages in the WebSocket protocol.
+            </summary>
+            <param name="code">The connection close code of the message.</param>
+            <returns>A byte array containing the message frame.</returns>
+        </member>
+        <member name="M:OpenQA.Selenium.Safari.Internal.Handlers.RequestHandler.ProcessReceivedData">
+            <summary>
+            Receives the data from the protocol.
+            </summary>
+        </member>
+        <member name="M:OpenQA.Selenium.Safari.Internal.Handlers.RequestHandler.GetHandshake">
+            <summary>
+            Gets the handshake for WebSocket protocol.
+            </summary>
+            <returns>A byte array representing the handshake in the WebSocket protocol.</returns>
+        </member>
+        <member name="M:OpenQA.Selenium.Safari.Internal.Handlers.RequestHandler.GetTextFrame(System.String)">
+            <summary>
+            Prepares a text frame for the given text.
+            </summary>
+            <param name="text">The text for which to prepare the frame</param>
+            <returns>A byte array representing the frame in the WebSocket protocol.</returns>
+        </member>
+        <member name="M:OpenQA.Selenium.Safari.Internal.Handlers.RequestHandler.GetBinaryFrame(System.Byte[])">
+            <summary>
+            Prepares a binary frame for the given binary data.
+            </summary>
+            <param name="frameData">The binary data for which to prepare the frame.</param>
+            <returns>A byte array representing the frame in the WebSocket protocol.</returns>
+        </member>
+        <member name="M:OpenQA.Selenium.Safari.Internal.Handlers.RequestHandler.GetCloseFrame(System.Int32)">
+            <summary>
+            Prepares a close frame for the given connection.
+            </summary>
+            <param name="code">The code to use in closing the connection.</param>
+            <returns>A byte array representing the frame in the WebSocket protocol.</returns>
+        </member>
+        <member name="M:OpenQA.Selenium.Safari.Internal.Handlers.RequestHandler.OnTextMessageHandled(OpenQA.Selenium.Safari.Internal.TextMessageHandledEventArgs)">
+            <summary>
+            Raises the TextMessageHandled event.
+            </summary>
+            <param name="e">A <see cref="T:OpenQA.Selenium.Safari.Internal.TextMessageHandledEventArgs"/> that contains the event data.</param>
+        </member>
+        <member name="M:OpenQA.Selenium.Safari.Internal.Handlers.RequestHandler.OnBinaryMessageHandled(OpenQA.Selenium.Safari.Internal.BinaryMessageHandledEventArgs)">
+            <summary>
+            Raises the BinaryMessageHandled event.
+            </summary>
+            <param name="e">A <see cref="T:OpenQA.Selenium.Safari.Internal.BinaryMessageHandledEventArgs"/> that contains the event data.</param>
+        </member>
+        <member name="M:OpenQA.Selenium.Safari.Internal.Handlers.RequestHandler.OnCloseHandled(System.EventArgs)">
+            <summary>
+            Raises the CloseHandled event.
+            </summary>
+            <param name="e">An <see cref="T:System.EventArgs"/> that contains the event data.</param>
+        </member>
+        <member name="E:OpenQA.Selenium.Safari.Internal.Handlers.RequestHandler.TextMessageHandled">
+            <summary>
+            Event raised when a text message is processed by the handler.
+            </summary>
+        </member>
+        <member name="E:OpenQA.Selenium.Safari.Internal.Handlers.RequestHandler.BinaryMessageHandled">
+            <summary>
+            Event raised when a binary message is processed by the handler.
+            </summary>
+        </member>
+        <member name="E:OpenQA.Selenium.Safari.Internal.Handlers.RequestHandler.CloseHandled">
+            <summary>
+            Event raised when a close message is processed by the handler.
+            </summary>
+        </member>
+        <member name="P:OpenQA.Selenium.Safari.Internal.Handlers.RequestHandler.Data">
+            <summary>
+            Gets the data to be handled by this handler.
+            </summary>
+        </member>
+        <member name="M:OpenQA.Selenium.Safari.Internal.Handlers.Hybi00Handler.#ctor(OpenQA.Selenium.Safari.Internal.WebSocketHttpRequest)">
+            <summary>
+            Initializes a new instance of the <see cref="T:OpenQA.Selenium.Safari.Internal.Handlers.Hybi00Handler"/> class.
+            </summary>
+            <param name="request">The <see cref="T:OpenQA.Selenium.Safari.Internal.WebSocketHttpRequest"/> to handle.</param>
+        </member>
+        <member name="M:OpenQA.Selenium.Safari.Internal.Handlers.Hybi00Handler.Create(OpenQA.Selenium.Safari.Internal.WebSocketHttpRequest)">
+            <summary>
+            Creates a new instance of the <see cref="T:OpenQA.Selenium.Safari.Internal.Handlers.Hybi00Handler"/>.
+            </summary>
+            <param name="request">The <see cref="T:OpenQA.Selenium.Safari.Internal.WebSocketHttpRequest"/> to handle.</param>
+            <returns>A <see cref="T:OpenQA.Selenium.Safari.Internal.IHandler"/> to perform handling of subsequent requests.</returns>
+        </member>
+        <member name="M:OpenQA.Selenium.Safari.Internal.Handlers.Hybi00Handler.GetHandshake">
+            <summary>
+            Gets the handshake for WebSocket protocol.
+            </summary>
+            <returns>A byte array representing the handshake in the WebSocket protocol.</returns>
+        </member>
+        <member name="M:OpenQA.Selenium.Safari.Internal.Handlers.Hybi00Handler.GetTextFrame(System.String)">
+            <summary>
+            Prepares a text frame for the given text.
+            </summary>
+            <param name="text">The text for which to prepare the frame.</param>
+            <returns>A byte array representing the frame in the WebSocket protocol.</returns>
+        </member>
+        <member name="M:OpenQA.Selenium.Safari.Internal.Handlers.Hybi00Handler.ProcessReceivedData">
+            <summary>
+            Receives the data from the protocol.
+            </summary>
+        </member>
+        <member name="T:OpenQA.Selenium.Safari.Internal.Handlers.Rfc6455Handler">
+            <summary>
+            Provides a handler for the RFC 6455 version of the WebSocket protocol.
+            </summary>
+        </member>
+        <member name="M:OpenQA.Selenium.Safari.Internal.Handlers.Rfc6455Handler.#ctor(OpenQA.Selenium.Safari.Internal.WebSocketHttpRequest)">
+            <summary>
+            Initializes a new instance of the <see cref="T:OpenQA.Selenium.Safari.Internal.Handlers.Rfc6455Handler"/> class.
+            </summary>
+            <param name="request">The <see cref="T:OpenQA.Selenium.Safari.Internal.WebSocketHttpRequest"/> to handle.</param>
+        </member>
+        <member name="M:OpenQA.Selenium.Safari.Internal.Handlers.Rfc6455Handler.Create(OpenQA.Selenium.Safari.Internal.WebSocketHttpRequest)">
+            <summary>
+            Creates a new instance of the handler.
+            </summary>
+            <param name="request">The request to handle.</param>
+            <returns>A <see cref="T:OpenQA.Selenium.Safari.Internal.IHandler"/> to perform handling of subsequent requests.</returns>
+        </member>
+        <member name="M:OpenQA.Selenium.Safari.Internal.Handlers.Rfc6455Handler.ProcessReceivedData">
+            <summary>
+            Receives data from the protocol.
+            </summary>
+        </member>
+        <member name="M:OpenQA.Selenium.Safari.Internal.Handlers.Rfc6455Handler.GetTextFrame(System.String)">
+            <summary>
+            Prepares a text frame for the given text.
+            </summary>
+            <param name="text">The text for which to prepare the frame.</param>
+            <returns>A byte array representing the frame in the WebSocket protocol.</returns>
+        </member>
+        <member name="M:OpenQA.Selenium.Safari.Internal.Handlers.Rfc6455Handler.GetCloseFrame(System.Int32)">
+            <summary>
+            Prepares a close frame for the given connection.
+            </summary>
+            <param name="code">The code to use in closing the connection.</param>
+            <returns>A byte array representing the frame in the WebSocket protocol.</returns>
+        </member>
+        <member name="M:OpenQA.Selenium.Safari.Internal.Handlers.Rfc6455Handler.GetHandshake">
+            <summary>
+            Gets the handshake for WebSocket protocol.
+            </summary>
+            <returns>A byte array representing the handshake in the WebSocket protocol.</returns>
+        </member>
+        <member name="M:OpenQA.Selenium.Safari.Internal.Handlers.Rfc6455Handler.GetBinaryFrame(System.Byte[])">
+            <summary>
+            Prepares a binary frame for the given binary data.
+            </summary>
+            <param name="frameData">The binary data for which to prepare the frame.</param>
+            <returns>A byte array representing the frame in the WebSocket protocol.</returns>
         </member>
     </members>
 </doc>
